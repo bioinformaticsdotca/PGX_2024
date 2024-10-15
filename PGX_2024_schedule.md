@@ -20,4 +20,3 @@ home: https://bioinformaticsdotca.github.io/PGX_2024
 |      15:00     |                                  Break (30min)                                 |      15:00     |               Module 4 Lab: Statistical analysis - Part 2 (Nikta, Julia)              |
 |      15:30     |       Module 2 Lab: Hands-on with pharmacogenomics data (Jermiah, Almas)       |      17:00     |                                Survey & Closing Remarks                               |
 |      17:30     |                                    Finished                                    |      17:30     |                                        Finished                                       |
-|      17:30     |              Networking & dinner (Sponsored by CNPN) + Group photo             |                |                                                                                       |
