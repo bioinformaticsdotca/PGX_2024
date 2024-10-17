@@ -52,6 +52,7 @@ Coming soon!
 <!-- [Module 2 Lecture Recording]()   -->
 [Module 2 Lab](https://bhklab.github.io/CBWWorkshop2024/articles/Module2.html)  
 [Module 2 Lab Rmd](https://drive.google.com/file/d/1Z_D1A3sZyFTFr209AjwSfARTivsPxEhE/view?usp=drive_link)  
+[Module 2 Lab Exercises](https://drive.google.com/file/d/1g8EkBxy-ibFE1JgNBzQnF315qNY5LqTB/view?usp=drive_link)
 
 <!-- # Day 2 <a id="day2"></a> -->
 
