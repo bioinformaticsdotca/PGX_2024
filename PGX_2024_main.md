@@ -42,7 +42,7 @@ Coming soon!
 [Module 1 Lecture Slides](https://drive.google.com/file/d/1FrUBL7m8o_5EBT3nnsgMykGoNMCNuLhw/view?usp=drive_link)  
 <!-- [Module 1 Lecture Recording]()   -->
 [Module 1 Lab](https://bhklab.github.io/CBWWorkshop2024/articles/Module1.html)  
-[Module 1 Lab Rmd](https://drive.google.com/file/d/1vhetLp7PqleOi8Hjkts2X7xjWbE-plra/view?usp=drive_link)  
+[Module 1 Lab Rmd - empty](https://drive.google.com/file/d/1r4IYYFX3KQ-CbRPaQq-ZnwA9vDMZzbMt/view?usp=drive_link) | [Module 1 Lab Rmd - complete](https://drive.google.com/file/d/1vhetLp7PqleOi8Hjkts2X7xjWbE-plra/view?usp=drive_link)  
 
 ##  Module 2
 
@@ -51,8 +51,7 @@ Coming soon!
 [Module 2 Lecture Slides](https://drive.google.com/file/d/13hEXKfqoDlQp6L-PAzH--GCkcDQhzmkh/view?usp=sharing)  
 <!-- [Module 2 Lecture Recording]()   -->
 [Module 2 Lab](https://bhklab.github.io/CBWWorkshop2024/articles/Module2.html)  
-[Module 2 Lab Rmd](https://drive.google.com/file/d/1Z_D1A3sZyFTFr209AjwSfARTivsPxEhE/view?usp=drive_link)  
-[Module 2 Lab Exercises](https://drive.google.com/file/d/1g8EkBxy-ibFE1JgNBzQnF315qNY5LqTB/view?usp=drive_link)
+[Module 2 Lab Rmd - empty](https://drive.google.com/file/d/1lvVwHhWCBy7PYkM4QeJq_b17DHPkg-RQ/view?usp=drive_link) | [Module 2 Lab Rmd - complete](https://drive.google.com/file/d/1Z_D1A3sZyFTFr209AjwSfARTivsPxEhE/view?usp=drive_link)  
 
 <!-- # Day 2 <a id="day2"></a> -->
 
