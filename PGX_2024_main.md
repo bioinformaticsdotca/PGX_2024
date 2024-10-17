@@ -33,7 +33,8 @@ Coming soon!
 
 # Day 1 <a id="day1"></a>
 
-[Setup instructions](https://bhklab.github.io/CBWWorkshop2024/)
+[Setup instructions](https://bhklab.github.io/CBWWorkshop2024/)  
+[Data downloads](https://drive.google.com/drive/folders/19jcX-y9DrAY_OF7rE82tpyxMViyvsGfY?usp=sharing)  
 
 ##  Module 1
 
