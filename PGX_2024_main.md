@@ -10,8 +10,6 @@ length: 2 days
 
 # Welcome <a id="welcome"></a>
 
-**This page is still being built. Please note that some links may be broken or out of date.**  
-
 Welcome to Pharmacogenomics Data Analysis 2024.  
 
 The course **schedule** can be found [here](https://bioinformaticsdotca.github.io/PGX_2024_schedule)
@@ -20,7 +18,7 @@ The course **schedule** can be found [here](https://bioinformaticsdotca.github.i
 
 # Pre-Workshop Materials <a id="preworkshop"></a>
 
-<!-- **Pre-work** including programs to install, tutorials, and readings can be found [here]() -->
+**Pre-work** including programs to install, tutorials, and readings can be found [here]()
 
 ***
 
@@ -33,23 +31,27 @@ Coming soon!
 
 Coming soon!
 
-<!-- # Day 1 <a id="day1"></a> -->
+# Day 1 <a id="day1"></a>
 
-<!-- ##  Module 1 -->
+[Setup instructions](https://bhklab.github.io/CBWWorkshop2024/)
 
-<!-- *<font color="#827e9c">Martin Hirst</font>*   -->
+##  Module 1
 
-<!-- [Module 1 Lecture Slides]()   -->
+*<font color="#827e9c">Benjamin Haibe-Kains</font>*  
+
+[Module 1 Lecture Slides](https://drive.google.com/file/d/1FrUBL7m8o_5EBT3nnsgMykGoNMCNuLhw/view?usp=drive_link)  
 <!-- [Module 1 Lecture Recording]()   -->
-<!-- [Module 1 Lab]()   -->
+[Module 1 Lab](https://bhklab.github.io/CBWWorkshop2024/articles/Module1.html)  
+[Module 1 Lab Rmd](https://drive.google.com/file/d/1vhetLp7PqleOi8Hjkts2X7xjWbE-plra/view?usp=drive_link)  
 
-<!-- ##  Module 2 -->
+##  Module 2
 
-<!-- *<font color="#827e9c">Martin Hirst</font>*   -->
+*<font color="#827e9c">Jermiah Joseph</font>*  
 
-<!-- [Module 2 Lecture Slides]()   -->
+[Module 2 Lecture Slides](https://drive.google.com/file/d/13hEXKfqoDlQp6L-PAzH--GCkcDQhzmkh/view?usp=sharing)  
 <!-- [Module 2 Lecture Recording]()   -->
-<!-- [Module 2 Lab]()   -->
+[Module 2 Lab](https://bhklab.github.io/CBWWorkshop2024/articles/Module2.html)  
+[Module 2 Lab Rmd](https://drive.google.com/file/d/1Z_D1A3sZyFTFr209AjwSfARTivsPxEhE/view?usp=drive_link)  
 
 <!-- # Day 2 <a id="day2"></a> -->
 
