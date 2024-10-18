@@ -57,21 +57,23 @@ Coming soon!
 
 <!-- # Day 2 <a id="day2"></a> -->
 
-<!-- ##  Module 3 -->
+##  Module 3
+*<font color="#827e9c">Nikta and Julia</font>* 
 
-<!-- *<font color="#827e9c">Edmund Su</font>*   -->
+[Module 3 Lecture Slides](https://drive.google.com/file/d/1qTd_ywKqpbAY6_UcCEVLjwoehZlieVvS/view?usp=drive_link)
 
-<!-- [Module 3 Lecture Slides]()   -->
-<!-- [Module 3 Lecture Recording]()   -->
-<!-- [Module 3 Lab]()   -->
+[Module 3 Lab](https://bhklab.github.io/CBWWorkshop2024/articles/Module3.html)
+[Module 3 Lab Rmd - complete](https://drive.google.com/file/d/1tNMr-wmrM-Bmsiy0PMBhObksdxsiL_LY/view?usp=drive_link)
 
-<!-- ##  Module 4 -->
 
-<!-- *<font color="#827e9c">Guillaume Bourque</font>*   -->
+##  Module 4
+*<font color="#827e9c">Nikta and Julia</font>*
 
-<!-- [Module 4 Lecture Slides]()   -->
-<!-- [Module 4 Lecture Recording]()   -->
-<!-- [Module 4 Lab]()   --> 
+[Module 4 Lecture Slides](https://drive.google.com/file/d/1iuzxJENmCwG6X1ymU9Qnf_5Gw011YXDv/view?usp=drive_link)
+
+[Module 4 Lab](https://bhklab.github.io/CBWWorkshop2024/articles/Module4.html)
+[Module 4 Lab Rmd - complete](https://drive.google.com/file/d/1l3v8jCdMi8rDfClX4NroU2wuxnZae3S8/view?usp=drive_link)
+<!-- [Module 4 Lecture Recording]() -->
 
 <!-- # Day 3 <a id="day2"></a> -->
 
