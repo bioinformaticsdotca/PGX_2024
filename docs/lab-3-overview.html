@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab 3 Overview | NAME OF WORKSHOP YEAR</title>
+  <meta name="description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab 3 Overview | NAME OF WORKSHOP YEAR" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://cbw-dev.github.io/bookdown-template/img/bioinformatics_logo.png" />
+  <meta property="og:description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="github-repo" content="cbw-dev/bookdown-template" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab 3 Overview | NAME OF WORKSHOP YEAR" />
+  
+  <meta name="twitter:description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="twitter:image" content="https://cbw-dev.github.io/bookdown-template/img/bioinformatics_logo.png" />
+
+<meta name="author" content="Faculty: INSTRUCTOR AND TA NAMES" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"/>
+<link rel="next" href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://bioinformaticsdotca.github.io/">
+ <img src="img/bioinformatics_logo.png" width="90%" alt="bioinformatics.ca logo" style="display:block; margin-left:auto; margin-right:auto; margin-top:15px;">
+ </a>
+<li><center><strong><a href="./"><br>Pharmacogenomics Data Analysis<br><br></a></strong></center></li>
+<a href="./">
+ <img src="img/pgx.png" width="70%" alt="Pharmacogenomics Data Analysis logo" style="display:block; margin-left:auto; margin-right:auto; ">
+ </a>
+<br>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop Info</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-work"><i class="fa fa-check"></i>Pre-work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-and-compute-setup.html"><a href="data-and-compute-setup.html"><i class="fa fa-check"></i>Data and Compute Setup</a></li>
+<li class="part"><span><b>II Modules</b></span></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><i class="fa fa-check"></i>Module 1: Intro to Pharmacogenomics in the Context of Cancer</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lecture"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lab"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html"><i class="fa fa-check"></i>Module 2: Data Preparation for Pharmacogenomic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lecture-1"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lab-1"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><i class="fa fa-check"></i>Module 3: Pharmacogenomics for Biomarker Discover - Basic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lecture-2"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lab-2"><i class="fa fa-check"></i>Lab</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html"><i class="fa fa-check"></i>Lab 3 Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#instructors-names-and-contact-information"><i class="fa fa-check"></i>Instructor(s) name(s) and contact information</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#pharmacogx-package-overview"><i class="fa fa-check"></i>PharmacoGx Package Overview</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#introduction"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#exploring-gdsc-and-ccle-datasets"><i class="fa fa-check"></i>Exploring GDSC and CCLE Datasets</a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#load-gdsc-and-ccle-datasets"><i class="fa fa-check"></i>Load GDSC and CCLE Datasets</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#find-common-genes-between-gdsc-and-ccle"><i class="fa fa-check"></i>Find Common Genes Between GDSC and CCLE</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#identify-common-cell-lines-and-drugs"><i class="fa fa-check"></i>Identify Common Cell Lines and Drugs</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#summarize-drug-sensitivity-profiles"><i class="fa fa-check"></i>Summarize Drug Sensitivity Profiles</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#summarize-gene-expression-profiles"><i class="fa fa-check"></i>Summarize Gene Expression Profiles</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#correlation-analysis-between-gdsc-and-ccle"><i class="fa fa-check"></i>Correlation Analysis Between GDSC and CCLE</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#statistical-comparison"><i class="fa fa-check"></i>Statistical Comparison</a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#boxplot-visualization"><i class="fa fa-check"></i>Boxplot Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#statistical-analysis-for-drug-response-associations"><i class="fa fa-check"></i>Statistical Analysis for Drug Response Associations</a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#concordance-index"><i class="fa fa-check"></i>Concordance Index</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i>Pearson’s Correlation Coefficient</a></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#drug-sensitivity-signatures-pharmacogx"><i class="fa fa-check"></i>Drug Sensitivity Signatures (PharmacoGx)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#univariate-vs-multivariate-analysis"><i class="fa fa-check"></i>Univariate vs Multivariate Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#univariate-analysis"><i class="fa fa-check"></i>Univariate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-3-overview.html"><a href="lab-3-overview.html#individual-practice"><i class="fa fa-check"></i>Individual Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><i class="fa fa-check"></i>Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lecture-3"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lab-3"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#data-acquisition-and-preparation"><i class="fa fa-check"></i>Data Acquisition and Preparation</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#effect-size-calculation"><i class="fa fa-check"></i>Effect Size Calculation</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#perform-meta-analysis"><i class="fa fa-check"></i>Perform Meta-Analysis</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#subgroup-analysis"><i class="fa fa-check"></i>Subgroup Analysis</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#interactive-exercise"><i class="fa fa-check"></i>Interactive Exercise</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<h1 id="sponsors">Sponsors</h1>
+<center>
+<a href="https://oicr.on.ca/"><img src="img/sponsors/oicr.png" width=25% style="display:inline-block;" style="padding-bottom: 20px" alt="Ontario Institute for Cancer Research logo.">
+<a href="https://www.hpcforhealth.ca/"><img src="img/sponsors/hpc4health.png" width=60% style="display:inline-block;" style="padding-bottom: 20px "alt="HPC4Health logo.">
+
+<br><br>
+
+<a href="https://genomecanada.ca/"><img src="img/sponsors/genomecanada.png" height="70" style="display:inline-block;"  style="padding-bottom: 20px" alt="Genome Canada logo.">
+<a href="https://www.ontariogenomics.ca/"><img src="img/sponsors/ontariogenomics.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Ontario Genomics logo.">
+
+<br><br>
+
+<a href="https://computationalgenomics.ca/"><img src="img/sponsors/c3g.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Canadian Centre for Computational Genomics logo.">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NAME OF WORKSHOP YEAR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lab-3-overview" class="section level1 unnumbered hasAnchor">
+<h1>Lab 3 Overview<a href="lab-3-overview.html#lab-3-overview" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="instructors-names-and-contact-information" class="section level2 unnumbered hasAnchor">
+<h2>Instructor(s) name(s) and contact information<a href="lab-3-overview.html#instructors-names-and-contact-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Jermiah J. Joseph <a href="mailto:jermiah.joseph@uhn.ca" class="email">jermiah.joseph@uhn.ca</a></li>
+<li>Nikta Feizi &lt;&gt;</li>
+<li>Julia Nguyen <a href="mailto:julia.nguyen@uhn.ca" class="email">julia.nguyen@uhn.ca</a></li>
+</ul>
+</div>
+<div id="pharmacogx-package-overview" class="section level2 hasAnchor">
+<h2>PharmacoGx Package Overview<a href="lab-3-overview.html#pharmacogx-package-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>PharmacoGx:</strong> An R package for analyzing pharmacogenomic datasets.</p>
+<p><strong>Key Functions:</strong></p>
+<ul>
+<li><p><strong>Install and Load PharmacoGx</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="lab-3-overview.html#cb4-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb4-2"><a href="lab-3-overview.html#cb4-2" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;PharmacoGx&quot;</span>)</span>
+<span id="cb4-3"><a href="lab-3-overview.html#cb4-3" tabindex="-1"></a><span class="fu">library</span>(PharmacoGx)</span></code></pre></div></li>
+<li><p><strong>Download a PharmacoSet</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="lab-3-overview.html#cb5-1" tabindex="-1"></a><span class="fu">availablePSets</span>()</span>
+<span id="cb5-2"><a href="lab-3-overview.html#cb5-2" tabindex="-1"></a>GDSC <span class="ot">&lt;-</span> <span class="fu">downloadPSet</span>(<span class="st">&quot;GDSC_2020(v2-8.2)&quot;</span>)</span>
+<span id="cb5-3"><a href="lab-3-overview.html#cb5-3" tabindex="-1"></a><span class="co"># downloadPSet(): Download pharmacogenomic datasets.</span></span></code></pre></div></li>
+<li><p><strong>Extract Drug Response Data</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="lab-3-overview.html#cb6-1" tabindex="-1"></a>drug_response <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(GDSC, <span class="at">sensitivity.measure=</span><span class="st">&#39;aac_recomputed&#39;</span>)</span>
+<span id="cb6-2"><a href="lab-3-overview.html#cb6-2" tabindex="-1"></a><span class="co"># summarizeSensitivityProfiles(): Summarize drug response data.</span></span></code></pre></div></li>
+<li><p><strong>Extract Gene Expression Data</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="lab-3-overview.html#cb7-1" tabindex="-1"></a>gene_expr <span class="ot">&lt;-</span> <span class="fu">summarizeMolecularProfiles</span>(GDSC, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>) </span>
+<span id="cb7-2"><a href="lab-3-overview.html#cb7-2" tabindex="-1"></a>gene_expr_mtx <span class="ot">&lt;-</span> <span class="fu">assay</span>(gene_expr)</span></code></pre></div></li>
+</ul>
+<p><strong>Data Retrieval:</strong></p>
+<ul>
+<li><p><strong>availablePSets()</strong>: Lists available pharmacogenomic datasets.</p></li>
+<li><p><strong>Downloading Multiple PharmacoSets:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="lab-3-overview.html#cb8-1" tabindex="-1"></a>PSet.list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">c</span>(<span class="st">&quot;GDSC&quot;</span>, <span class="st">&quot;CCLE&quot;</span>, <span class="st">&quot;CTRP&quot;</span>), downloadPSet)</span>
+<span id="cb8-2"><a href="lab-3-overview.html#cb8-2" tabindex="-1"></a><span class="fu">names</span>(PSet.list) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;GDSC&quot;</span>, <span class="st">&quot;CCLE&quot;</span>, <span class="st">&quot;CTRP&quot;</span>)</span></code></pre></div></li>
+<li><p><strong>Accessing Molecular Profiles:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="lab-3-overview.html#cb9-1" tabindex="-1"></a>molecular.data <span class="ot">&lt;-</span> <span class="fu">lapply</span>(PSet.list, <span class="cf">function</span>(pset) {</span>
+<span id="cb9-2"><a href="lab-3-overview.html#cb9-2" tabindex="-1"></a>  <span class="fu">summarizeMolecularProfiles</span>(pset, <span class="at">mDataType =</span> <span class="st">&#39;rna&#39;</span>)</span>
+<span id="cb9-3"><a href="lab-3-overview.html#cb9-3" tabindex="-1"></a>})</span></code></pre></div></li>
+</ul>
+</div>
+<div id="introduction" class="section level2 hasAnchor">
+<h2>Introduction<a href="lab-3-overview.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this workshop, we will explore data integration and comparative analysis
+using the <em><a href="https://bioconductor.org/packages/3.20/PharmacoGx">PharmacoGx</a></em> package, focusing on the <strong>GDSC</strong> and <strong>CCLE</strong> datasets.
+Specifically, we will cover drug sensitivity comparisons using AUC and IC50
+measures and investigate correlations between gene expression profiles. This R
+Markdown file is designed to give participants hands-on experience with data
+exploration and interpretation.</p>
+<div id="learning-objectives" class="section level3 hasAnchor">
+<h3>Learning Objectives<a href="lab-3-overview.html#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Learn how to load and handle data from the <strong>GDSC</strong> and <strong>CCLE</strong> datasets.</li>
+<li>Understand how to summarize drug sensitivity profiles and molecular data.</li>
+<li>Perform correlations to assess concordance between cell line datasets.</li>
+<li>Visualize and interpret the results of statistical tests.</li>
+</ol>
+</div>
+</div>
+<div id="exploring-gdsc-and-ccle-datasets" class="section level2 hasAnchor">
+<h2>Exploring GDSC and CCLE Datasets<a href="lab-3-overview.html#exploring-gdsc-and-ccle-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="load-gdsc-and-ccle-datasets" class="section level3 hasAnchor">
+<h3>Load GDSC and CCLE Datasets<a href="lab-3-overview.html#load-gdsc-and-ccle-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will use the <strong>GDSCsmall</strong> and <strong>CCLEsmall</strong> sample datasets provided by
+<em><a href="https://bioconductor.org/packages/3.20/PharmacoGx">PharmacoGx</a></em> to compare the two data sources.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="lab-3-overview.html#cb10-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GDSCsmall&quot;</span>)</span>
+<span id="cb10-2"><a href="lab-3-overview.html#cb10-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;CCLEsmall&quot;</span>)</span>
+<span id="cb10-3"><a href="lab-3-overview.html#cb10-3" tabindex="-1"></a>GDSCsmall</span></code></pre></div>
+<pre><code>## &lt;PharmacoSet&gt;
+## Name: GDSC 
+## Date Created: Mon Aug 24 15:18:23 2015 
+## Number of samples:  10 
+## Molecular profiles: 
+## RNA :
+##   Dim: 300, 11 
+## rna2 :
+##   Dim: 300, 9 
+## mutation :
+##   Dim: 70, 10 
+## Treatment response: Drug pertubation:
+##    Please look at pertNumber(cSet) to determine number of experiments  for each drug-sample combination.
+## Drug sensitivity:
+##    Number of Experiments:  972 
+##    Please look at sensNumber(cSet) to determine number of  experiments for each drug-sample combination.</code></pre>
+</div>
+<div id="find-common-genes-between-gdsc-and-ccle" class="section level3 hasAnchor">
+<h3>Find Common Genes Between GDSC and CCLE<a href="lab-3-overview.html#find-common-genes-between-gdsc-and-ccle" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first step in comparing datasets is to find shared features between them.
+Here, we identify the genes that are present in both datasets.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="lab-3-overview.html#cb12-1" tabindex="-1"></a>commonGenes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">fNames</span>(GDSCsmall, <span class="st">&quot;rna&quot;</span>), <span class="fu">fNames</span>(CCLEsmall, <span class="st">&quot;rna&quot;</span>))</span>
+<span id="cb12-2"><a href="lab-3-overview.html#cb12-2" tabindex="-1"></a><span class="fu">length</span>(commonGenes)</span></code></pre></div>
+<pre><code>## [1] 41</code></pre>
+<p>There are 41 genes that are common between the RNA profiles of the GDSC and CCLE datasets.</p>
+</div>
+<div id="identify-common-cell-lines-and-drugs" class="section level3 hasAnchor">
+<h3>Identify Common Cell Lines and Drugs<a href="lab-3-overview.html#identify-common-cell-lines-and-drugs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Next, we identify the common cell lines and drugs between <strong>GDSC</strong> and <strong>CCLE</strong>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="lab-3-overview.html#cb14-1" tabindex="-1"></a>common <span class="ot">&lt;-</span> <span class="fu">intersectPSet</span>(</span>
+<span id="cb14-2"><a href="lab-3-overview.html#cb14-2" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;CCLE&quot;</span> <span class="ot">=</span> CCLEsmall, <span class="st">&quot;GDSC&quot;</span> <span class="ot">=</span> GDSCsmall),</span>
+<span id="cb14-3"><a href="lab-3-overview.html#cb14-3" tabindex="-1"></a>  <span class="at">intersectOn =</span> <span class="fu">c</span>(<span class="st">&quot;cell.lines&quot;</span>, <span class="st">&quot;drugs&quot;</span>),</span>
+<span id="cb14-4"><a href="lab-3-overview.html#cb14-4" tabindex="-1"></a>  <span class="at">strictIntersect =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-5"><a href="lab-3-overview.html#cb14-5" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Intersecting large PSets may take a long time ...</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="lab-3-overview.html#cb16-1" tabindex="-1"></a><span class="fu">cellNames</span>(common[[<span class="dv">1</span>]])</span></code></pre></div>
+<pre><code>## [1] &quot;22RV1&quot;    &quot;23132-87&quot; &quot;5637&quot;     &quot;639-V&quot;    &quot;647-V&quot;    &quot;697&quot;      &quot;769-P&quot;   
+## [8] &quot;786-0&quot;    &quot;8-MG-BA&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="lab-3-overview.html#cb18-1" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">cellNames</span>(common[[<span class="dv">1</span>]]))</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<p>There are 9 common samples between GDSC and CCLE. The <code>intersectPSet</code> function returns a
+list of the two PSets subsetted to include only the common cell lines.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="lab-3-overview.html#cb20-1" tabindex="-1"></a>common</span></code></pre></div>
+<pre><code>## $CCLE
+## &lt;PharmacoSet&gt;
+## Name: CCLE 
+## Date Created: Fri Nov  6 14:00:53 2015 
+## Number of samples:  9 
+## Molecular profiles: 
+## RNA :
+##   Dim: 50, 9 
+## RNAseq :
+##   Dim: 50, 9 
+## mutation :
+##   Dim: 1667, 9 
+## CNV :
+##   Dim: 50, 7 
+## Treatment response: Drug pertubation:
+##    Please look at pertNumber(cSet) to determine number of experiments  for each drug-sample combination.
+## Drug sensitivity:
+##    Number of Experiments:  102 
+##    Please look at sensNumber(cSet) to determine number of  experiments for each drug-sample combination.
+## 
+## $GDSC
+## &lt;PharmacoSet&gt;
+## Name: GDSC 
+## Date Created: Mon Aug 24 15:18:23 2015 
+## Number of samples:  9 
+## Molecular profiles: 
+## RNA :
+##   Dim: 300, 10 
+## rna2 :
+##   Dim: 300, 9 
+## mutation :
+##   Dim: 70, 9 
+## Treatment response: Drug pertubation:
+##    Please look at pertNumber(cSet) to determine number of experiments  for each drug-sample combination.
+## Drug sensitivity:
+##    Number of Experiments:  79 
+##    Please look at sensNumber(cSet) to determine number of  experiments for each drug-sample combination.</code></pre>
+<p>Notice that most of the molecular profiles are subsetted to include the 9 common samples.
+Some odd cases include RNA from GDSC which has a technical replicate (hence 10 samples) and
+CNV from CCLE which is missing CNV profiles for two of the nine cell lines.</p>
+</div>
+<div id="summarize-drug-sensitivity-profiles" class="section level3 hasAnchor">
+<h3>Summarize Drug Sensitivity Profiles<a href="lab-3-overview.html#summarize-drug-sensitivity-profiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We summarize drug sensitivity profiles (AUC and IC50) for each dataset. The
+<code>summary.stat</code> parameter can be set to different statistical metrics such as
+<code>mean</code>, <code>median</code>, etc. Here, we use the <code>median</code> for summarizing the sensitivity.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="lab-3-overview.html#cb22-1" tabindex="-1"></a><span class="co"># Summary statistics for AUC</span></span>
+<span id="cb22-2"><a href="lab-3-overview.html#cb22-2" tabindex="-1"></a>GDSC.auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(</span>
+<span id="cb22-3"><a href="lab-3-overview.html#cb22-3" tabindex="-1"></a>  common<span class="sc">$</span>GDSC,</span>
+<span id="cb22-4"><a href="lab-3-overview.html#cb22-4" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb22-5"><a href="lab-3-overview.html#cb22-5" tabindex="-1"></a>  <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb22-6"><a href="lab-3-overview.html#cb22-6" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-7"><a href="lab-3-overview.html#cb22-7" tabindex="-1"></a>)</span>
+<span id="cb22-8"><a href="lab-3-overview.html#cb22-8" tabindex="-1"></a>CCLE.auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(</span>
+<span id="cb22-9"><a href="lab-3-overview.html#cb22-9" tabindex="-1"></a>  common<span class="sc">$</span>CCLE,</span>
+<span id="cb22-10"><a href="lab-3-overview.html#cb22-10" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb22-11"><a href="lab-3-overview.html#cb22-11" tabindex="-1"></a>  <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb22-12"><a href="lab-3-overview.html#cb22-12" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-13"><a href="lab-3-overview.html#cb22-13" tabindex="-1"></a>)</span>
+<span id="cb22-14"><a href="lab-3-overview.html#cb22-14" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="lab-3-overview.html#cb22-15" tabindex="-1"></a><span class="co"># Summary statistics for IC50</span></span>
+<span id="cb22-16"><a href="lab-3-overview.html#cb22-16" tabindex="-1"></a>GDSC.ic50 <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(</span>
+<span id="cb22-17"><a href="lab-3-overview.html#cb22-17" tabindex="-1"></a>  common<span class="sc">$</span>GDSC,</span>
+<span id="cb22-18"><a href="lab-3-overview.html#cb22-18" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;ic50_published&quot;</span>,</span>
+<span id="cb22-19"><a href="lab-3-overview.html#cb22-19" tabindex="-1"></a>  <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb22-20"><a href="lab-3-overview.html#cb22-20" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-21"><a href="lab-3-overview.html#cb22-21" tabindex="-1"></a>)</span>
+<span id="cb22-22"><a href="lab-3-overview.html#cb22-22" tabindex="-1"></a>CCLE.ic50 <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(</span>
+<span id="cb22-23"><a href="lab-3-overview.html#cb22-23" tabindex="-1"></a>  common<span class="sc">$</span>CCLE,</span>
+<span id="cb22-24"><a href="lab-3-overview.html#cb22-24" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;ic50_published&quot;</span>,</span>
+<span id="cb22-25"><a href="lab-3-overview.html#cb22-25" tabindex="-1"></a>  <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb22-26"><a href="lab-3-overview.html#cb22-26" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-27"><a href="lab-3-overview.html#cb22-27" tabindex="-1"></a>)</span>
+<span id="cb22-28"><a href="lab-3-overview.html#cb22-28" tabindex="-1"></a>CCLE.auc <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##               22RV1 23132-87      5637     639-V 647-V       697      769-P
+## PD-0325901 0.385000       NA 0.1708125 0.3088750    NA 0.2291000 0.23250000
+## 17-AAG     0.372460       NA 0.4828250 0.4877500    NA 0.3420875 0.40937500
+## Nilotinib  0.000000       NA 0.0072625 0.0710125    NA 0.1573375 0.00000000
+## PHA-665752 0.094375       NA 0.0000000 0.0194000    NA 0.1609750 0.09427143
+## lapatinib  0.036125       NA 0.2212250 0.0066000    NA 0.0453250 0.16475000
+## Nutlin-3   0.076925       NA 0.0000000 0.0666625    NA 0.2588125 0.08598571
+##                 786-0   8-MG-BA
+## PD-0325901 0.13862500 0.0758750
+## 17-AAG     0.44162500 0.4426500
+## Nilotinib  0.07501250        NA
+## PHA-665752 0.07408625 0.3962500
+## lapatinib  0.12987500 0.0547625
+## Nutlin-3   0.00000000 0.0655125</code></pre>
+<p>We can visualize the distribution of drug sensitivity profiles to compare between the two psets.</p>
+<p>First we quickly reformat the data into a long format to facilitate plotting. We use
+the <code>melt()</code> function from the <code>reshape2</code> package.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="lab-3-overview.html#cb24-1" tabindex="-1"></a>CCLE_toPlot <span class="ot">&lt;-</span> <span class="fu">melt</span>(CCLE.auc)</span>
+<span id="cb24-2"><a href="lab-3-overview.html#cb24-2" tabindex="-1"></a><span class="fu">colnames</span>(CCLE_toPlot) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Drug&quot;</span>, <span class="st">&quot;Gene&quot;</span>, <span class="st">&quot;AUC&quot;</span>)</span>
+<span id="cb24-3"><a href="lab-3-overview.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="lab-3-overview.html#cb24-4" tabindex="-1"></a>CCLE_toPlot <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##         Drug  Gene      AUC
+## 1 PD-0325901 22RV1 0.385000
+## 2     17-AAG 22RV1 0.372460
+## 3  Nilotinib 22RV1 0.000000
+## 4 PHA-665752 22RV1 0.094375
+## 5  lapatinib 22RV1 0.036125
+## 6   Nutlin-3 22RV1 0.076925</code></pre>
+<p>Next, we can create a quick box plot to visualize the AUC distributions per drug.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="lab-3-overview.html#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>(CCLE_toPlot, <span class="fu">aes</span>(<span class="at">x =</span> Drug, <span class="at">y =</span> AUC)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="lab-3-overview.html#cb26-2" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="co">#rotate x-axis labels</span></span></code></pre></div>
+<pre><code>## Warning: Removed 33 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="_main_files/figure-html/plot_sensitivity-1.png" width="672" /></p>
+<p>Let’s do this again but with the GDSC PSet so we can compare the two</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="lab-3-overview.html#cb28-1" tabindex="-1"></a><span class="co"># format the CCLE sensitivity data</span></span>
+<span id="cb28-2"><a href="lab-3-overview.html#cb28-2" tabindex="-1"></a>GDSC_toPlot <span class="ot">&lt;-</span> <span class="fu">melt</span>(GDSC.auc)</span>
+<span id="cb28-3"><a href="lab-3-overview.html#cb28-3" tabindex="-1"></a><span class="fu">colnames</span>(GDSC_toPlot) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Drug&quot;</span>, <span class="st">&quot;Gene&quot;</span>, <span class="st">&quot;AUC&quot;</span>)</span>
+<span id="cb28-4"><a href="lab-3-overview.html#cb28-4" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="lab-3-overview.html#cb28-5" tabindex="-1"></a><span class="co"># merge the two pset dataframes</span></span>
+<span id="cb28-6"><a href="lab-3-overview.html#cb28-6" tabindex="-1"></a>GDSC_toPlot<span class="sc">$</span>PSet <span class="ot">&lt;-</span> <span class="st">&quot;GDSC&quot;</span></span>
+<span id="cb28-7"><a href="lab-3-overview.html#cb28-7" tabindex="-1"></a>CCLE_toPlot<span class="sc">$</span>PSet <span class="ot">&lt;-</span> <span class="st">&quot;CCLE&quot;</span></span>
+<span id="cb28-8"><a href="lab-3-overview.html#cb28-8" tabindex="-1"></a>merge_toPlot <span class="ot">&lt;-</span> <span class="fu">rbind</span>(GDSC_toPlot, CCLE_toPlot)</span>
+<span id="cb28-9"><a href="lab-3-overview.html#cb28-9" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="lab-3-overview.html#cb28-10" tabindex="-1"></a><span class="co"># plot to compare AUC distribution between PSets</span></span>
+<span id="cb28-11"><a href="lab-3-overview.html#cb28-11" tabindex="-1"></a><span class="fu">ggplot</span>(merge_toPlot, <span class="fu">aes</span>(<span class="at">x =</span> Drug, <span class="at">y =</span> AUC)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PSet)) <span class="sc">+</span></span>
+<span id="cb28-12"><a href="lab-3-overview.html#cb28-12" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#624763&quot;</span>, <span class="st">&quot;#B1D3A3&quot;</span>)) <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb28-13"><a href="lab-3-overview.html#cb28-13" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="co">#rotate x-axis labels</span></span></code></pre></div>
+<pre><code>## Warning: Removed 89 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="_main_files/figure-html/plot_sensitivity_compare-1.png" width="672" /></p>
+<p>Preclinical drug response data is fairly noisy, hence the variation we see between
+the two datasets. However, we do see some commonalities in distribution.</p>
+</div>
+<div id="summarize-gene-expression-profiles" class="section level3 hasAnchor">
+<h3>Summarize Gene Expression Profiles<a href="lab-3-overview.html#summarize-gene-expression-profiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We summarize gene expression data for the genes that are common between <strong>GDSC</strong>
+and <strong>CCLE</strong>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="lab-3-overview.html#cb30-1" tabindex="-1"></a>GDSCexpression <span class="ot">&lt;-</span> <span class="fu">summarizeMolecularProfiles</span>(</span>
+<span id="cb30-2"><a href="lab-3-overview.html#cb30-2" tabindex="-1"></a>  common<span class="sc">$</span>GDSC, <span class="fu">cellNames</span>(common<span class="sc">$</span>GDSC),</span>
+<span id="cb30-3"><a href="lab-3-overview.html#cb30-3" tabindex="-1"></a>  <span class="at">mDataType =</span> <span class="st">&quot;rna&quot;</span>, <span class="at">features =</span> commonGenes, <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb30-4"><a href="lab-3-overview.html#cb30-4" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">assay</span>()</span>
+<span id="cb30-5"><a href="lab-3-overview.html#cb30-5" tabindex="-1"></a>CCLEexpression <span class="ot">&lt;-</span> <span class="fu">summarizeMolecularProfiles</span>(</span>
+<span id="cb30-6"><a href="lab-3-overview.html#cb30-6" tabindex="-1"></a>  common<span class="sc">$</span>CCLE, <span class="fu">cellNames</span>(common<span class="sc">$</span>CCLE),</span>
+<span id="cb30-7"><a href="lab-3-overview.html#cb30-7" tabindex="-1"></a>  <span class="at">mDataType =</span> <span class="st">&quot;rna&quot;</span>, <span class="at">features =</span> commonGenes, <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb30-8"><a href="lab-3-overview.html#cb30-8" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">assay</span>() </span>
+<span id="cb30-9"><a href="lab-3-overview.html#cb30-9" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="lab-3-overview.html#cb30-10" tabindex="-1"></a>GDSCexpression <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##                     22RV1  23132-87      5637     639-V     647-V       697
+## ENSG00000000003  5.890740  6.243345 10.018953  9.653157 10.039302  5.215355
+## ENSG00000000005  4.448758  4.335738  4.108065  4.014940  4.250878  4.367339
+## ENSG00000000419 10.427302 11.045576 11.611295 11.604278 11.248686 10.572231
+## ENSG00000000457  5.905884  6.900556  5.684007  5.392485  5.748209  5.934834
+## ENSG00000000460  6.010605  5.433439  5.729120  5.439058  6.453635  6.342021
+## ENSG00000000938  4.410785  4.329849  4.397001  4.176387  4.275824  4.618786
+##                    769-P     786-0   8-MG-BA
+## ENSG00000000003 8.615450  7.304893  7.994002
+## ENSG00000000005 4.722970  4.235424  4.447925
+## ENSG00000000419 9.927782 10.825907 10.759706
+## ENSG00000000457 6.475836  5.087249  4.994176
+## ENSG00000000460 5.999142  5.001772  6.073944
+## ENSG00000000938 5.003250  4.443563  4.797094</code></pre>
+<p>Here, you could do PCA on the profiles to quickly check the data. We will skip this
+step in the interest of time.</p>
+</div>
+</div>
+<div id="correlation-analysis-between-gdsc-and-ccle" class="section level2 hasAnchor">
+<h2>Correlation Analysis Between GDSC and CCLE<a href="lab-3-overview.html#correlation-analysis-between-gdsc-and-ccle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We perform correlation analysis to examine the relationship between gene
+expression, AUC, and IC50 measures across the <strong>GDSC</strong> and <strong>CCLE</strong> datasets
+using <strong>Spearman’s correlation</strong>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="lab-3-overview.html#cb32-1" tabindex="-1"></a><span class="co"># get common cell line names</span></span>
+<span id="cb32-2"><a href="lab-3-overview.html#cb32-2" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">cellNames</span>(common[[<span class="dv">1</span>]])</span>
+<span id="cb32-3"><a href="lab-3-overview.html#cb32-3" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="lab-3-overview.html#cb32-4" tabindex="-1"></a><span class="co"># correlation of gene expression across common cell lines</span></span>
+<span id="cb32-5"><a href="lab-3-overview.html#cb32-5" tabindex="-1"></a>ge.cor <span class="ot">&lt;-</span> <span class="fu">sapply</span>(cc, <span class="cf">function</span>(x, d1, d2) {</span>
+<span id="cb32-6"><a href="lab-3-overview.html#cb32-6" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">cor</span>(</span>
+<span id="cb32-7"><a href="lab-3-overview.html#cb32-7" tabindex="-1"></a>    d1[, x], d2[, x],</span>
+<span id="cb32-8"><a href="lab-3-overview.html#cb32-8" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span></span>
+<span id="cb32-9"><a href="lab-3-overview.html#cb32-9" tabindex="-1"></a>  )</span>
+<span id="cb32-10"><a href="lab-3-overview.html#cb32-10" tabindex="-1"></a>}, <span class="at">d1 =</span> GDSCexpression, <span class="at">d2 =</span> CCLEexpression)</span>
+<span id="cb32-11"><a href="lab-3-overview.html#cb32-11" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="lab-3-overview.html#cb32-12" tabindex="-1"></a>ge.cor</span></code></pre></div>
+<pre><code>##     22RV1  23132-87      5637     639-V     647-V       697     769-P     786-0 
+## 0.8658537 0.8844948 0.8935540 0.9202091 0.9106272 0.8893728 0.8939024 0.8681185 
+##   8-MG-BA 
+## 0.8470383</code></pre>
+<p>We can see that the RNA-Seq expression values are highly correlated across the
+common cell lines.</p>
+<p>Let’s take a look at the correlation of drug response, starting with IC50 values.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="lab-3-overview.html#cb34-1" tabindex="-1"></a><span class="co"># quick look at the CCLE IC50 data</span></span>
+<span id="cb34-2"><a href="lab-3-overview.html#cb34-2" tabindex="-1"></a>CCLE.ic50 <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##                22RV1 23132-87       5637     639-V 647-V       697     769-P
+## PD-0325901 8.0000000       NA 8.00000000 8.0000000    NA 8.0000000 1.4542717
+## 17-AAG     0.3297017       NA 0.07082279 0.1500945    NA 0.4225712 0.1517988
+## Nilotinib  8.0000000       NA 7.47535467 8.0000000    NA 1.9104344 8.0000000
+## PHA-665752 8.0000000       NA 8.00000000 8.0000000    NA 3.2754419 7.1504111
+## lapatinib  7.8473053       NA 2.30776763 8.0000000    NA 0.8494762 1.0574611
+## Nutlin-3   8.0000000       NA 8.00000000 8.0000000    NA 1.8905237 5.5913019
+##                786-0   8-MG-BA
+## PD-0325901 8.0000000 8.0000000
+## 17-AAG     0.2795302 0.2349526
+## Nilotinib  8.0000000        NA
+## PHA-665752 8.0000000 8.0000000
+## lapatinib  7.1780353 5.2266199
+## Nutlin-3   8.0000000 8.0000000</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="lab-3-overview.html#cb36-1" tabindex="-1"></a><span class="co"># correlation of IC50 values across common drugs and cell lines</span></span>
+<span id="cb36-2"><a href="lab-3-overview.html#cb36-2" tabindex="-1"></a>ic50.cor <span class="ot">&lt;-</span> <span class="fu">sapply</span>(cc, <span class="cf">function</span>(x, d1, d2) {</span>
+<span id="cb36-3"><a href="lab-3-overview.html#cb36-3" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">cor</span>(</span>
+<span id="cb36-4"><a href="lab-3-overview.html#cb36-4" tabindex="-1"></a>    d1[, x], d2[, x],</span>
+<span id="cb36-5"><a href="lab-3-overview.html#cb36-5" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span></span>
+<span id="cb36-6"><a href="lab-3-overview.html#cb36-6" tabindex="-1"></a>  )</span>
+<span id="cb36-7"><a href="lab-3-overview.html#cb36-7" tabindex="-1"></a>}, <span class="at">d1 =</span> GDSC.ic50, <span class="at">d2 =</span> CCLE.ic50)</span>
+<span id="cb36-8"><a href="lab-3-overview.html#cb36-8" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="lab-3-overview.html#cb36-9" tabindex="-1"></a>ic50.cor</span></code></pre></div>
+<pre><code>##     22RV1  23132-87      5637     639-V     647-V       697     769-P     786-0 
+## 0.4082483        NA 0.5713800 0.4082483        NA 0.6273461 0.6300619 0.6546537 
+##   8-MG-BA 
+## 0.3664850</code></pre>
+<p>Notice that we have some <code>NA</code> values in the original CCLE IC50 dataset and in the
+correlation results.</p>
+<p>The <code>pairwise.complete.obs</code> argument used in the <code>cor()</code> function ensures that only
+complete observations (i.e. numeric values that are not <code>NA</code>) are included in the
+pairwise correlations.</p>
+<p>Since <code>23132-87</code> and <code>647-V</code> are all <code>NA</code> values, no spearman correlation was
+computed.</p>
+<p>We can quickly compute the correlation for AUC as well.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="lab-3-overview.html#cb38-1" tabindex="-1"></a><span class="co"># correlation of AUC values across common drugs and cell lines</span></span>
+<span id="cb38-2"><a href="lab-3-overview.html#cb38-2" tabindex="-1"></a>auc.cor <span class="ot">&lt;-</span> <span class="fu">sapply</span>(cc, <span class="cf">function</span>(x, d1, d2) {</span>
+<span id="cb38-3"><a href="lab-3-overview.html#cb38-3" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">cor</span>(</span>
+<span id="cb38-4"><a href="lab-3-overview.html#cb38-4" tabindex="-1"></a>    d1[, x], d2[, x],</span>
+<span id="cb38-5"><a href="lab-3-overview.html#cb38-5" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span></span>
+<span id="cb38-6"><a href="lab-3-overview.html#cb38-6" tabindex="-1"></a>  )</span>
+<span id="cb38-7"><a href="lab-3-overview.html#cb38-7" tabindex="-1"></a>}, <span class="at">d1 =</span> GDSC.auc, <span class="at">d2 =</span> CCLE.auc)</span>
+<span id="cb38-8"><a href="lab-3-overview.html#cb38-8" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="lab-3-overview.html#cb38-9" tabindex="-1"></a>auc.cor</span></code></pre></div>
+<pre><code>##     22RV1  23132-87      5637     639-V     647-V       697     769-P     786-0 
+## 0.0000000        NA 0.7748062 0.8214286        NA 0.3750000 0.8571429 0.4638168 
+##   8-MG-BA 
+## 0.5414447</code></pre>
+</div>
+<div id="statistical-comparison" class="section level2 hasAnchor">
+<h2>Statistical Comparison<a href="lab-3-overview.html#statistical-comparison" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We compare the correlations using <strong>Wilcoxon signed-rank tests</strong> to see if there
+are significant differences between the gene expression correlations and the
+drug sensitivity correlations.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="lab-3-overview.html#cb40-1" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">wilcox.test</span>(</span>
+<span id="cb40-2"><a href="lab-3-overview.html#cb40-2" tabindex="-1"></a>  <span class="at">x =</span> ge.cor, <span class="at">y =</span> auc.cor, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">exact =</span> <span class="cn">FALSE</span></span>
+<span id="cb40-3"><a href="lab-3-overview.html#cb40-3" tabindex="-1"></a>)</span>
+<span id="cb40-4"><a href="lab-3-overview.html#cb40-4" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">wilcox.test</span>(</span>
+<span id="cb40-5"><a href="lab-3-overview.html#cb40-5" tabindex="-1"></a>  <span class="at">x =</span> ge.cor, <span class="at">y =</span> ic50.cor, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">exact =</span> <span class="cn">FALSE</span></span>
+<span id="cb40-6"><a href="lab-3-overview.html#cb40-6" tabindex="-1"></a>)</span>
+<span id="cb40-7"><a href="lab-3-overview.html#cb40-7" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="lab-3-overview.html#cb40-8" tabindex="-1"></a>w1</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  ge.cor and auc.cor
+## W = 62, p-value = 0.001496
+## alternative hypothesis: true location shift is not equal to 0
+## 95 percent confidence interval:
+##  0.06309566 0.51857816
+## sample estimates:
+## difference in location 
+##               0.347967</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="lab-3-overview.html#cb42-1" tabindex="-1"></a>w2</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  ge.cor and ic50.cor
+## W = 63, p-value = 0.001024
+## alternative hypothesis: true location shift is not equal to 0
+## 95 percent confidence interval:
+##  0.2407670 0.4857055
+## sample estimates:
+## difference in location 
+##              0.3179657</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="lab-3-overview.html#cb44-1" tabindex="-1"></a><span class="co"># Display p-values</span></span>
+<span id="cb44-2"><a href="lab-3-overview.html#cb44-2" tabindex="-1"></a>ss <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;GE vs. AUC = %.1E</span><span class="sc">\n</span><span class="st">GE vs. IC50 = %.1E&quot;</span>, w1<span class="sc">$</span>p.value, w2<span class="sc">$</span>p.value)</span>
+<span id="cb44-3"><a href="lab-3-overview.html#cb44-3" tabindex="-1"></a><span class="fu">cat</span>(ss)</span></code></pre></div>
+<pre><code>## GE vs. AUC = 1.5E-03
+## GE vs. IC50 = 1.0E-03</code></pre>
+<div id="boxplot-visualization" class="section level3 hasAnchor">
+<h3>Boxplot Visualization<a href="lab-3-overview.html#boxplot-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The results are visualized using boxplots to compare the correlations across
+gene expression, AUC, and IC50.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="lab-3-overview.html#cb46-1" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">list</span>(<span class="st">&quot;GE&quot;</span> <span class="ot">=</span> ge.cor, <span class="st">&quot;AUC&quot;</span> <span class="ot">=</span> auc.cor, <span class="st">&quot;IC50&quot;</span> <span class="ot">=</span> ic50.cor),</span>
+<span id="cb46-2"><a href="lab-3-overview.html#cb46-2" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Concordance between cell lines&quot;</span>,</span>
+<span id="cb46-3"><a href="lab-3-overview.html#cb46-3" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(R[s]),</span>
+<span id="cb46-4"><a href="lab-3-overview.html#cb46-4" tabindex="-1"></a>  <span class="at">sub =</span> ss,</span>
+<span id="cb46-5"><a href="lab-3-overview.html#cb46-5" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb46-6"><a href="lab-3-overview.html#cb46-6" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;lightgrey&quot;</span>,</span>
+<span id="cb46-7"><a href="lab-3-overview.html#cb46-7" tabindex="-1"></a>  <span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb46-8"><a href="lab-3-overview.html#cb46-8" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">&quot;black&quot;</span></span>
+<span id="cb46-9"><a href="lab-3-overview.html#cb46-9" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/boxplot_results-1.png" width="672" /></p>
+</div>
+</div>
+<div id="statistical-analysis-for-drug-response-associations" class="section level2 hasAnchor">
+<h2>Statistical Analysis for Drug Response Associations<a href="lab-3-overview.html#statistical-analysis-for-drug-response-associations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this final section, we will be focusing on computing the association between a
+feature of interest and drug response in order to identify predictive biomarkers.</p>
+<p>Let’s begin by selecting a feature and drug of interest to explore.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="lab-3-overview.html#cb47-1" tabindex="-1"></a>commonGenes <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;ENSG00000000003&quot; &quot;ENSG00000000005&quot; &quot;ENSG00000000419&quot; &quot;ENSG00000000457&quot;
+## [5] &quot;ENSG00000000460&quot; &quot;ENSG00000000938&quot;</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="lab-3-overview.html#cb49-1" tabindex="-1"></a>feature <span class="ot">&lt;-</span> <span class="st">&quot;ENSG00000000003&quot;</span></span>
+<span id="cb49-2"><a href="lab-3-overview.html#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="lab-3-overview.html#cb49-3" tabindex="-1"></a>common<span class="sc">$</span>GDSC<span class="sc">@</span>treatment <span class="sc">|&gt;</span> <span class="fu">rownames</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;PD-0325901&quot; &quot;17-AAG&quot;     &quot;Nilotinib&quot;  &quot;PHA-665752&quot; &quot;lapatinib&quot; 
+##  [6] &quot;Nutlin-3&quot;   &quot;AZD0530&quot;    &quot;Crizotinib&quot; &quot;Sorafenib&quot;  &quot;PD-0332991&quot;
+## [11] &quot;paclitaxel&quot; &quot;AZD6244&quot;    &quot;PLX4720&quot;    &quot;TAE684&quot;     &quot;Erlotinib&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="lab-3-overview.html#cb51-1" tabindex="-1"></a>drug <span class="ot">&lt;-</span> <span class="st">&quot;PD-0325901&quot;</span></span></code></pre></div>
+<p>Next, we need to extract the vector of gene expression for our chosen feature and
+drug response for our chosen drug. Let’s do this for the GDSC dataset.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="lab-3-overview.html#cb52-1" tabindex="-1"></a>Gene <span class="ot">&lt;-</span> GDSCexpression[feature,]</span>
+<span id="cb52-2"><a href="lab-3-overview.html#cb52-2" tabindex="-1"></a>Drug <span class="ot">&lt;-</span> GDSC.auc[drug,]</span>
+<span id="cb52-3"><a href="lab-3-overview.html#cb52-3" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="lab-3-overview.html#cb52-4" tabindex="-1"></a>Gene</span></code></pre></div>
+<pre><code>##     22RV1  23132-87      5637     639-V     647-V       697     769-P     786-0 
+##  5.890740  6.243345 10.018953  9.653157 10.039302  5.215355  8.615450  7.304893 
+##   8-MG-BA 
+##  7.994002</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="lab-3-overview.html#cb54-1" tabindex="-1"></a>Drug</span></code></pre></div>
+<pre><code>##    22RV1 23132-87     5637    639-V    647-V      697    769-P    786-0 
+## 0.029649 0.122911 0.007242 0.279261 0.100351 0.049681 0.179831 0.150231 
+##  8-MG-BA 
+## 0.034754</code></pre>
+<p>Notice that the PSet has already kept the samples ordered across the various profiles.</p>
+<p>Before we compute the associations, we can quickly plot the two variables to visualize
+their relationship.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="lab-3-overview.html#cb56-1" tabindex="-1"></a><span class="co"># create datafarme to plot</span></span>
+<span id="cb56-2"><a href="lab-3-overview.html#cb56-2" tabindex="-1"></a>toPlot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Gene =</span> Gene, <span class="at">Drug =</span> Drug)</span>
+<span id="cb56-3"><a href="lab-3-overview.html#cb56-3" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="lab-3-overview.html#cb56-4" tabindex="-1"></a><span class="fu">ggplot</span>(toPlot, <span class="fu">aes</span>(<span class="at">x =</span> Gene, <span class="at">y =</span> Drug)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb56-5"><a href="lab-3-overview.html#cb56-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Gene (expr)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Drug (AUC)&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot_association-1.png" width="672" /></p>
+<p>From the scatter plot, we see a weak positive correlation. Let’s see if this is
+reflected in our association analyses.</p>
+<div id="concordance-index" class="section level3 hasAnchor">
+<h3>Concordance Index<a href="lab-3-overview.html#concordance-index" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Fist, we will compute the association between the gene expression data and drug response.
+We will use the <code>concordance.index</code> function from the <code>survcomp</code> package.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="lab-3-overview.html#cb57-1" tabindex="-1"></a>ci <span class="ot">&lt;-</span> survcomp<span class="sc">::</span><span class="fu">concordance.index</span>(</span>
+<span id="cb57-2"><a href="lab-3-overview.html#cb57-2" tabindex="-1"></a>  <span class="fu">as.numeric</span>(Drug),                   <span class="co"># drug vector</span></span>
+<span id="cb57-3"><a href="lab-3-overview.html#cb57-3" tabindex="-1"></a>  <span class="at">surv.time =</span> <span class="fu">as.numeric</span>(Gene),       <span class="co"># gene vector</span></span>
+<span id="cb57-4"><a href="lab-3-overview.html#cb57-4" tabindex="-1"></a>  <span class="at">surv.event =</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">length</span>(Gene)),   </span>
+<span id="cb57-5"><a href="lab-3-overview.html#cb57-5" tabindex="-1"></a>  <span class="at">outx =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">&quot;noether&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb57-6"><a href="lab-3-overview.html#cb57-6" tabindex="-1"></a>)</span>
+<span id="cb57-7"><a href="lab-3-overview.html#cb57-7" tabindex="-1"></a></span>
+<span id="cb57-8"><a href="lab-3-overview.html#cb57-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Concordance Index:&quot;</span>, ci<span class="sc">$</span>c.index, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb57-9"><a href="lab-3-overview.html#cb57-9" tabindex="-1"></a>    <span class="st">&quot;P-value:&quot;</span>, ci<span class="sc">$</span>p.value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb57-10"><a href="lab-3-overview.html#cb57-10" tabindex="-1"></a>    <span class="st">&quot;Standard Error:&quot;</span>, ci<span class="sc">$</span>se, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb57-11"><a href="lab-3-overview.html#cb57-11" tabindex="-1"></a>    <span class="st">&quot;Upper CI:&quot;</span>, ci<span class="sc">$</span>upper,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb57-12"><a href="lab-3-overview.html#cb57-12" tabindex="-1"></a>    <span class="st">&quot;Lower CI:&quot;</span>, ci<span class="sc">$</span>lower)</span></code></pre></div>
+<pre><code>## Concordance Index: 0.4166667 
+##  P-value: 0.07592696 
+##  Standard Error: 0.04695301 
+##  Upper CI: 0.5086929 
+##  Lower CI: 0.3246404</code></pre>
+<p>The concordance index tells us there is a weak inverse association between the
+gene expression and the drug response.</p>
+</div>
+<div id="pearsons-correlation-coefficient" class="section level3 hasAnchor">
+<h3>Pearson’s Correlation Coefficient<a href="lab-3-overview.html#pearsons-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the same feature and drug, let’s compute the association again but this
+time using Pearson’s correlation.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="lab-3-overview.html#cb59-1" tabindex="-1"></a>ps <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
+<span id="cb59-2"><a href="lab-3-overview.html#cb59-2" tabindex="-1"></a>  <span class="at">x =</span> Gene,</span>
+<span id="cb59-3"><a href="lab-3-overview.html#cb59-3" tabindex="-1"></a>  <span class="at">y =</span> Drug,</span>
+<span id="cb59-4"><a href="lab-3-overview.html#cb59-4" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb59-5"><a href="lab-3-overview.html#cb59-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span></span>
+<span id="cb59-6"><a href="lab-3-overview.html#cb59-6" tabindex="-1"></a>)</span>
+<span id="cb59-7"><a href="lab-3-overview.html#cb59-7" tabindex="-1"></a></span>
+<span id="cb59-8"><a href="lab-3-overview.html#cb59-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Pearson&#39;s correlation:&quot;</span>, ps<span class="sc">$</span>estimate, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb59-9"><a href="lab-3-overview.html#cb59-9" tabindex="-1"></a>    <span class="st">&quot;P-value:&quot;</span>, ci<span class="sc">$</span>p.value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb59-10"><a href="lab-3-overview.html#cb59-10" tabindex="-1"></a>    <span class="st">&quot;Confidence Interval:&quot;</span>, ps<span class="sc">$</span>conf.int)</span></code></pre></div>
+<pre><code>## Pearson&#39;s correlation: 0.2937677 
+##  P-value: 0.07592696 
+##  Confidence Interval: -0.4601228 0.8015157</code></pre>
+<p>The Pearson’s correlation tells us there is a (very) weak positive linear relationship
+between the gene expression and the drug response.</p>
+<p>Notice the slight difference in interpretation between the concordance index and the
+Pearson’s correlation.</p>
+</div>
+<div id="drug-sensitivity-signatures-pharmacogx" class="section level3 hasAnchor">
+<h3>Drug Sensitivity Signatures (PharmacoGx)<a href="lab-3-overview.html#drug-sensitivity-signatures-pharmacogx" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last method we will explore is a built-in function from the <code>PharmacoGx</code> package
+called <code>drugSensitivitySig</code>. This function takes a <code>PharmacoSet</code> along with a list of
+drugs and features, then computes the association between the feature expression
+and drug response for each pair.</p>
+<p>Let’s first select the first 3 genes and drugs as our features &amp; drugs of interest:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="lab-3-overview.html#cb61-1" tabindex="-1"></a>features <span class="ot">&lt;-</span> commonGenes[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb61-2"><a href="lab-3-overview.html#cb61-2" tabindex="-1"></a>drugs <span class="ot">&lt;-</span> <span class="fu">rownames</span>(common<span class="sc">$</span>GDSC<span class="sc">@</span>treatment)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb61-3"><a href="lab-3-overview.html#cb61-3" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="lab-3-overview.html#cb61-4" tabindex="-1"></a>features</span></code></pre></div>
+<pre><code>## [1] &quot;ENSG00000000003&quot; &quot;ENSG00000000005&quot; &quot;ENSG00000000419&quot;</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="lab-3-overview.html#cb63-1" tabindex="-1"></a>drugs</span></code></pre></div>
+<pre><code>## [1] &quot;PD-0325901&quot; &quot;17-AAG&quot;     &quot;Nilotinib&quot;</code></pre>
+<p>Now we can calculate the drug sensitivity signature using the vector of genes and drugs
+for the GDSC dataset. Note that this gene-drug signature is based on univariable
+analysis.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="lab-3-overview.html#cb65-1" tabindex="-1"></a><span class="co"># gene expression signature</span></span>
+<span id="cb65-2"><a href="lab-3-overview.html#cb65-2" tabindex="-1"></a>sig.rna <span class="ot">&lt;-</span> <span class="fu">drugSensitivitySig</span>(</span>
+<span id="cb65-3"><a href="lab-3-overview.html#cb65-3" tabindex="-1"></a>  <span class="at">object =</span> GDSCsmall,</span>
+<span id="cb65-4"><a href="lab-3-overview.html#cb65-4" tabindex="-1"></a>  <span class="at">mDataType =</span> <span class="st">&quot;rna&quot;</span>,</span>
+<span id="cb65-5"><a href="lab-3-overview.html#cb65-5" tabindex="-1"></a>  <span class="at">drugs =</span> drugs,</span>
+<span id="cb65-6"><a href="lab-3-overview.html#cb65-6" tabindex="-1"></a>  <span class="at">features =</span> features,</span>
+<span id="cb65-7"><a href="lab-3-overview.html#cb65-7" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb65-8"><a href="lab-3-overview.html#cb65-8" tabindex="-1"></a>  <span class="at">molecular.summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb65-9"><a href="lab-3-overview.html#cb65-9" tabindex="-1"></a>  <span class="at">sensitivity.summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb65-10"><a href="lab-3-overview.html#cb65-10" tabindex="-1"></a>  <span class="at">modeling.method =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb65-11"><a href="lab-3-overview.html#cb65-11" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb65-12"><a href="lab-3-overview.html#cb65-12" tabindex="-1"></a>)</span>
+<span id="cb65-13"><a href="lab-3-overview.html#cb65-13" tabindex="-1"></a>sig.rna<span class="sc">@</span>.Data[,,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</span></code></pre></div>
+<pre><code>## , , estimate
+## 
+##                  PD-0325901     17-AAG  Nilotinib
+## ENSG00000000003 -0.18840373 -0.2369481  0.8554590
+## ENSG00000000005 -0.14409315 -0.4756331  0.7875267
+## ENSG00000000419 -0.02890968  0.5466780 -0.8239237
+## 
+## , , pvalue
+## 
+##                 PD-0325901    17-AAG Nilotinib
+## ENSG00000000003  0.8793373 0.8477058 0.3465502
+## ENSG00000000005  0.9079470 0.6844380 0.4227225
+## ENSG00000000419  0.9815930 0.6317843 0.3835609</code></pre>
+<p>The output is a 3D array of genes x drugs x metric. Outputted are the <code>estimate</code> and
+<code>pvalue</code>. Feel free to explore the other array components in <code>sig.rna@.Data</code>.</p>
+<p>This function is a powerful method for investigating the univariate relationship between
+multiple molecular features and drugs.</p>
+<p>Let’s do the same for mutations, we’ll do a quick example using one gene and drug from
+the CCLE dataset.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="lab-3-overview.html#cb67-1" tabindex="-1"></a><span class="co"># mutation signature</span></span>
+<span id="cb67-2"><a href="lab-3-overview.html#cb67-2" tabindex="-1"></a>sig.mut <span class="ot">&lt;-</span> <span class="fu">drugSensitivitySig</span>(</span>
+<span id="cb67-3"><a href="lab-3-overview.html#cb67-3" tabindex="-1"></a>  <span class="at">object =</span> CCLEsmall,</span>
+<span id="cb67-4"><a href="lab-3-overview.html#cb67-4" tabindex="-1"></a>  <span class="at">mDataType =</span> <span class="st">&quot;mutation&quot;</span>,</span>
+<span id="cb67-5"><a href="lab-3-overview.html#cb67-5" tabindex="-1"></a>  <span class="at">drugs =</span> <span class="st">&quot;PD-0325901&quot;</span>,</span>
+<span id="cb67-6"><a href="lab-3-overview.html#cb67-6" tabindex="-1"></a>  <span class="at">features =</span> <span class="st">&quot;BRAF&quot;</span>,</span>
+<span id="cb67-7"><a href="lab-3-overview.html#cb67-7" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb67-8"><a href="lab-3-overview.html#cb67-8" tabindex="-1"></a>  <span class="at">molecular.summary.stat =</span> <span class="st">&quot;and&quot;</span>,</span>
+<span id="cb67-9"><a href="lab-3-overview.html#cb67-9" tabindex="-1"></a>  <span class="at">sensitivity.summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb67-10"><a href="lab-3-overview.html#cb67-10" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb67-11"><a href="lab-3-overview.html#cb67-11" tabindex="-1"></a>)</span>
+<span id="cb67-12"><a href="lab-3-overview.html#cb67-12" tabindex="-1"></a>sig.mut<span class="sc">@</span>.Data[,,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)]</span></code></pre></div>
+<pre><code>##     estimate       pvalue 
+## 8.251857e-01 1.612881e-09</code></pre>
+</div>
+</div>
+<div id="univariate-vs-multivariate-analysis" class="section level2 hasAnchor">
+<h2>Univariate vs Multivariate Analysis<a href="lab-3-overview.html#univariate-vs-multivariate-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the final section of this lab, we will explore univariate vs multivariate linear
+modeling. Let’s start with a simple univariate linear model using the same Gene and
+Drug vector from earlier.</p>
+<div id="univariate-analysis" class="section level3 hasAnchor">
+<h3>Univariate Analysis<a href="lab-3-overview.html#univariate-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall <code>Gene</code> is the RNA expression vector of <code>ENSG00000000005</code> and <code>Drug</code> is the drug
+response vector (AUC) for <code>PD-0325901</code> in the GDSC dataset.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="lab-3-overview.html#cb69-1" tabindex="-1"></a><span class="fu">lm</span>(Drug <span class="sc">~</span> Gene) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Drug ~ Gene)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.12867 -0.04835 -0.01884  0.05239  0.14848 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) -0.004639   0.139300  -0.033    0.974
+## Gene         0.014028   0.017253   0.813    0.443
+## 
+## Residual standard error: 0.08965 on 7 degrees of freedom
+## Multiple R-squared:  0.0863, Adjusted R-squared:  -0.04423 
+## F-statistic: 0.6612 on 1 and 7 DF,  p-value: 0.4429</code></pre>
+<p>Let’s break down this output:</p>
+<p><em>Residuals</em>: the difference between the predicted y (drug response) values and the
+actual y values. A larger range suggests the model may not be a good fit of the data.</p>
+<p><em>Coefficients</em>: the parameters of the model.
+- <code>Estimate</code> can be considered the effect size. Specifically, it is the one-unit
+change in the y variable (drug response) per one-unit change in the x variable (gene
+expression).
+The estimate from our drug~gene association is <code>0.014028</code>.
+- <code>Pr(&gt;|t|)</code> is the corresponding p-value for each estimate.
+The p-value from our drug~gene association test is <code>0.443</code>.</p>
+<p>Note: If any of the coefficients had met the p-value &lt; 0.05 significance threshold, you would
+have seen <code>*</code> beside the estimate (unfortunately, this association does not meet this
+threshold).</p>
+<p>Let’s see if we can make a multi-variate model with better performance.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="lab-3-overview.html#cb71-1" tabindex="-1"></a><span class="co"># get another gene vector</span></span>
+<span id="cb71-2"><a href="lab-3-overview.html#cb71-2" tabindex="-1"></a>commonGenes[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;ENSG00000000005&quot;</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="lab-3-overview.html#cb73-1" tabindex="-1"></a>Gene2 <span class="ot">&lt;-</span> GDSCexpression[commonGenes[<span class="dv">2</span>],]</span>
+<span id="cb73-2"><a href="lab-3-overview.html#cb73-2" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="lab-3-overview.html#cb73-3" tabindex="-1"></a><span class="co"># multi-variate model</span></span>
+<span id="cb73-4"><a href="lab-3-overview.html#cb73-4" tabindex="-1"></a><span class="fu">lm</span>(Drug <span class="sc">~</span> Gene <span class="sc">+</span> Gene2) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Drug ~ Gene + Gene2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.13292 -0.04715 -0.02147  0.04840  0.14047 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  0.15618    0.84445   0.185    0.859
+## Gene         0.01251    0.02017   0.620    0.558
+## Gene2       -0.03441    0.17780  -0.194    0.853
+## 
+## Residual standard error: 0.09653 on 6 degrees of freedom
+## Multiple R-squared:  0.09197,    Adjusted R-squared:  -0.2107 
+## F-statistic: 0.3038 on 2 and 6 DF,  p-value: 0.7487</code></pre>
+<p>The second gene feature we are adding to our model is <code>ENSG00000000005</code>.</p>
+<p>Take a look at the output, comparing it to the previous model we ran.
+Do you think that adding an additional gene has improved model performance?</p>
+</div>
+</div>
+<div id="individual-practice" class="section level2 hasAnchor">
+<h2>Individual Practice<a href="lab-3-overview.html#individual-practice" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the remainder of the lab, please explore the associations between other features
+and drug response. Try using the CCLE pset too!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/cbw-dev/PGX-2024/blob/main/030-module-3.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

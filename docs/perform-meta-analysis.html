@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Perform Meta-Analysis | NAME OF WORKSHOP YEAR</title>
+  <meta name="description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Perform Meta-Analysis | NAME OF WORKSHOP YEAR" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://cbw-dev.github.io/bookdown-template/img/bioinformatics_logo.png" />
+  <meta property="og:description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="github-repo" content="cbw-dev/bookdown-template" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Perform Meta-Analysis | NAME OF WORKSHOP YEAR" />
+  
+  <meta name="twitter:description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="twitter:image" content="https://cbw-dev.github.io/bookdown-template/img/bioinformatics_logo.png" />
+
+<meta name="author" content="Faculty: INSTRUCTOR AND TA NAMES" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="effect-size-calculation.html"/>
+<link rel="next" href="subgroup-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://bioinformaticsdotca.github.io/">
+ <img src="img/bioinformatics_logo.png" width="90%" alt="bioinformatics.ca logo" style="display:block; margin-left:auto; margin-right:auto; margin-top:15px;">
+ </a>
+<li><center><strong><a href="./"><br>Pharmacogenomics Data Analysis<br><br></a></strong></center></li>
+<a href="./">
+ <img src="img/pgx.png" width="70%" alt="Pharmacogenomics Data Analysis logo" style="display:block; margin-left:auto; margin-right:auto; ">
+ </a>
+<br>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop Info</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-work"><i class="fa fa-check"></i>Pre-work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-and-compute-setup.html"><a href="data-and-compute-setup.html"><i class="fa fa-check"></i>Data and Compute Setup</a></li>
+<li class="part"><span><b>II Modules</b></span></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><i class="fa fa-check"></i>Module 1: Intro to Pharmacogenomics in the Context of Cancer</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lecture"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lab"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html"><i class="fa fa-check"></i>Module 2: Data Preparation for Pharmacogenomic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lecture-1"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lab-1"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><i class="fa fa-check"></i>Module 3: Pharmacogenomics for Biomarker Discover - Basic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lecture-2"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lab-2"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><i class="fa fa-check"></i>Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lecture-3"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lab-3"><i class="fa fa-check"></i>Lab</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#instructors-names-and-contact-information"><i class="fa fa-check"></i>Instructor(s) name(s) and contact information</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#introduction"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html"><i class="fa fa-check"></i>Data Acquisition and Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html#extracting-required-vectors-for-biomarker-analysis"><i class="fa fa-check"></i>Extracting required vectors for biomarker analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html#gene-expression-data"><i class="fa fa-check"></i>Gene Expression Data</a></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html#drug-response-data"><i class="fa fa-check"></i>Drug Response Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html#gene-expression-exploratory-data-analysis-eda"><i class="fa fa-check"></i>Gene Expression Exploratory Data Analysis (EDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="effect-size-calculation.html"><a href="effect-size-calculation.html"><i class="fa fa-check"></i>Effect Size Calculation</a></li>
+<li class="chapter" data-level="" data-path="perform-meta-analysis.html"><a href="perform-meta-analysis.html"><i class="fa fa-check"></i>Perform Meta-Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="perform-meta-analysis.html"><a href="perform-meta-analysis.html#visualization-with-forest-plots"><i class="fa fa-check"></i>Visualization with Forest Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="perform-meta-analysis.html"><a href="perform-meta-analysis.html#forest-function-from-meta-package"><i class="fa fa-check"></i>forest function from meta package</a></li>
+<li class="chapter" data-level="" data-path="perform-meta-analysis.html"><a href="perform-meta-analysis.html#using-ggplot2"><i class="fa fa-check"></i>Using ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html"><i class="fa fa-check"></i>Subgroup Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#data-preparation"><i class="fa fa-check"></i>Data Preparation</a></li>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#statistical-analysis-to-measure-drug-response-associations"><i class="fa fa-check"></i>Statistical Analysis to measure Drug Response Associations</a>
+<ul>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#function-for-computing-concordance-index"><i class="fa fa-check"></i>Function for computing concordance index</a></li>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#visualizing-feature-drug-associations"><i class="fa fa-check"></i>Visualizing feature-drug associations</a></li>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#identifying-candidate-biomarkers"><i class="fa fa-check"></i>Identifying candidate biomarkers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="interactive-exercise.html"><a href="interactive-exercise.html"><i class="fa fa-check"></i>Interactive Exercise</a></li>
+<li class="divider"></li>
+<h1 id="sponsors">Sponsors</h1>
+<center>
+<a href="https://oicr.on.ca/"><img src="img/sponsors/oicr.png" width=25% style="display:inline-block;" style="padding-bottom: 20px" alt="Ontario Institute for Cancer Research logo.">
+<a href="https://www.hpcforhealth.ca/"><img src="img/sponsors/hpc4health.png" width=60% style="display:inline-block;" style="padding-bottom: 20px "alt="HPC4Health logo.">
+
+<br><br>
+
+<a href="https://genomecanada.ca/"><img src="img/sponsors/genomecanada.png" height="70" style="display:inline-block;"  style="padding-bottom: 20px" alt="Genome Canada logo.">
+<a href="https://www.ontariogenomics.ca/"><img src="img/sponsors/ontariogenomics.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Ontario Genomics logo.">
+
+<br><br>
+
+<a href="https://computationalgenomics.ca/"><img src="img/sponsors/c3g.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Canadian Centre for Computational Genomics logo.">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NAME OF WORKSHOP YEAR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="perform-meta-analysis" class="section level1 hasAnchor">
+<h1>Perform Meta-Analysis<a href="perform-meta-analysis.html#perform-meta-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Now we can combine the effect sizes from <code>GDSCsmall</code> and <code>CCLEsmall</code> to perform a
+meta-analysis.</p>
+<p>Recall from the lecture that we need three variables for our meta-analysis:
+- Effect Size (also called Treatment Effect or TE)
+- Standard Error
+- Dataset Labels (just for plotting purposes)</p>
+<p>Let’s extract all of this information from our outputs above and put it into a
+dataframe.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="perform-meta-analysis.html#cb34-1" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb34-2"><a href="perform-meta-analysis.html#cb34-2" tabindex="-1"></a>  <span class="at">Concordance.Index =</span> <span class="fu">c</span>(GDSC_ci<span class="sc">$</span>c.index, CCLE_ci<span class="sc">$</span>c.index),</span>
+<span id="cb34-3"><a href="perform-meta-analysis.html#cb34-3" tabindex="-1"></a>  <span class="at">Standard.Error =</span> <span class="fu">c</span>(GDSC_ci<span class="sc">$</span>se, CCLE_ci<span class="sc">$</span>se),</span>
+<span id="cb34-4"><a href="perform-meta-analysis.html#cb34-4" tabindex="-1"></a>  <span class="at">Upper.CI =</span> <span class="fu">c</span>(GDSC_ci<span class="sc">$</span>upper, CCLE_ci<span class="sc">$</span>upper),</span>
+<span id="cb34-5"><a href="perform-meta-analysis.html#cb34-5" tabindex="-1"></a>  <span class="at">Lower.CI =</span> <span class="fu">c</span>(GDSC_ci<span class="sc">$</span>lower, CCLE_ci<span class="sc">$</span>lower),</span>
+<span id="cb34-6"><a href="perform-meta-analysis.html#cb34-6" tabindex="-1"></a>  <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">&quot;GDSC&quot;</span>, <span class="st">&quot;CCLE&quot;</span>)</span>
+<span id="cb34-7"><a href="perform-meta-analysis.html#cb34-7" tabindex="-1"></a>)</span>
+<span id="cb34-8"><a href="perform-meta-analysis.html#cb34-8" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="perform-meta-analysis.html#cb34-9" tabindex="-1"></a>combined</span></code></pre></div>
+<pre><code>##   Concordance.Index Standard.Error  Upper.CI  Lower.CI Dataset
+## 1         0.5777778     0.04499657 0.6659694 0.4895861    GDSC
+## 2         0.5352986     0.01459290 0.5639002 0.5066971    CCLE</code></pre>
+<p>Now we can use the <code>metagen</code> function from the <code>meta</code> package to perform
+the meta-analysis.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="perform-meta-analysis.html#cb36-1" tabindex="-1"></a>meta.result <span class="ot">&lt;-</span> <span class="fu">metagen</span>(<span class="at">data =</span> combined,</span>
+<span id="cb36-2"><a href="perform-meta-analysis.html#cb36-2" tabindex="-1"></a>  <span class="at">TE =</span> Concordance.Index,</span>
+<span id="cb36-3"><a href="perform-meta-analysis.html#cb36-3" tabindex="-1"></a>  <span class="at">seTE =</span> Standard.Error,</span>
+<span id="cb36-4"><a href="perform-meta-analysis.html#cb36-4" tabindex="-1"></a>  <span class="at">studlab =</span> combined<span class="sc">$</span>Dataset</span>
+<span id="cb36-5"><a href="perform-meta-analysis.html#cb36-5" tabindex="-1"></a>)</span>
+<span id="cb36-6"><a href="perform-meta-analysis.html#cb36-6" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="perform-meta-analysis.html#cb36-7" tabindex="-1"></a>meta.result</span></code></pre></div>
+<pre><code>## Number of studies: k = 2
+## 
+##                                       95%-CI     z p-value
+## Common effect model  0.5393 [0.5121; 0.5665] 38.85       0
+## Random effects model 0.5393 [0.5121; 0.5665] 38.85       0
+## 
+## Quantifying heterogeneity:
+##  tau^2 = 0; tau = 0; I^2 = 0.0%; H = 1.00
+## 
+## Test of heterogeneity:
+##     Q d.f. p-value
+##  0.81    1  0.3692
+## 
+## Details of meta-analysis methods:
+## - Inverse variance method
+## - Restricted maximum-likelihood estimator for tau^2
+## - Calculation of I^2 based on Q</code></pre>
+<div id="visualization-with-forest-plots" class="section level2 hasAnchor">
+<h2>Visualization with Forest Plots<a href="perform-meta-analysis.html#visualization-with-forest-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="forest-function-from-meta-package" class="section level3 hasAnchor">
+<h3>forest function from meta package<a href="perform-meta-analysis.html#forest-function-from-meta-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can use the built in <code>forest</code> function from the <code>meta</code> package to quickly create
+a forest plot using the output of the <code>metagen</code> function:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="perform-meta-analysis.html#cb38-1" tabindex="-1"></a><span class="co"># set your file path</span></span>
+<span id="cb38-2"><a href="perform-meta-analysis.html#cb38-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;forest_plot.png&quot;</span></span>
+<span id="cb38-3"><a href="perform-meta-analysis.html#cb38-3" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="perform-meta-analysis.html#cb38-4" tabindex="-1"></a><span class="co"># generate forest plot</span></span>
+<span id="cb38-5"><a href="perform-meta-analysis.html#cb38-5" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> file_path, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">res =</span> <span class="dv">600</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span>
+<span id="cb38-6"><a href="perform-meta-analysis.html#cb38-6" tabindex="-1"></a><span class="fu">forest</span>(meta.result)</span>
+<span id="cb38-7"><a href="perform-meta-analysis.html#cb38-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<p>The forest plot has been saved to your device at your specified file path. We have
+also attached the plot below:</p>
+<div class="figure">
+<img src="forest_plot.png" alt="**PharmacoSet** class structure" width="3000" />
+<p class="caption">
+(#fig:core_set_class)<strong>PharmacoSet</strong> class structure
+</p>
+</div>
+</div>
+<div id="using-ggplot2" class="section level3 hasAnchor">
+<h3>Using ggplot2<a href="perform-meta-analysis.html#using-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also visualize this data usign the <code>ggplot2</code> package. While this will not
+return a full forest plot, we can get a closer look at the relationship between the
+effect sizes of each individual dataset and the meta-estimate.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="perform-meta-analysis.html#cb40-1" tabindex="-1"></a><span class="fu">ggplot</span>(combined, <span class="fu">aes</span>(<span class="at">x =</span> Concordance.Index, <span class="at">y =</span> Dataset)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="perform-meta-analysis.html#cb40-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="perform-meta-analysis.html#cb40-3" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> Lower.CI, <span class="at">xmax =</span> Upper.CI), <span class="at">height =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="perform-meta-analysis.html#cb40-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> meta.result<span class="sc">$</span>TE.random, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="perform-meta-analysis.html#cb40-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb40-6"><a href="perform-meta-analysis.html#cb40-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Meta-Analysis of GeneX Expression and Drug Response&quot;</span>,</span>
+<span id="cb40-7"><a href="perform-meta-analysis.html#cb40-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Effect Size&quot;</span>,</span>
+<span id="cb40-8"><a href="perform-meta-analysis.html#cb40-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Study&quot;</span></span>
+<span id="cb40-9"><a href="perform-meta-analysis.html#cb40-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-10"><a href="perform-meta-analysis.html#cb40-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/ggplot_forest_plot-1.png" width="672" /></p>
+<p>In the plot above, we have each data point representing the individual dataset effect
+sizes, the error bars represents the confidence interval, and the vertical line
+representing the meta-analysis treatment estimate.</p>
+<p>We can very clearly see that the red line is closer to the CCLE data point compared
+to the GDSC data point. This is reflective of the CCLE having a greater weight due
+to a lower variance among other considerations.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="effect-size-calculation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="subgroup-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/cbw-dev/PGX-2024/blob/main/040-module-4.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

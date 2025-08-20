@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 2: Data Preparation for Pharmacogenomic Analysis | Pharmacogenomics Data Analysis 2024</title>
+  <meta name="description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 2: Data Preparation for Pharmacogenomic Analysis | Pharmacogenomics Data Analysis 2024" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bioinformaticsdotca.github.io/PGX_2024/img/bioinformatics_logo.png" />
+  <meta property="og:description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="github-repo" content="bioinformaticsdotca/PGX_2024" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 2: Data Preparation for Pharmacogenomic Analysis | Pharmacogenomics Data Analysis 2024" />
+  
+  <meta name="twitter:description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="twitter:image" content="https://bioinformaticsdotca.github.io/PGX_2024/img/bioinformatics_logo.png" />
+
+<meta name="author" content="Faculty: Benjamin Haibe-Kains, Jermiah Joseph, Nikta Feizi, Julia Nguyen, and Nia Hughes" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"/>
+<link rel="next" href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://bioinformaticsdotca.github.io/">
+ <img src="img/bioinformatics_logo.png" width="90%" alt="bioinformatics.ca logo" style="display:block; margin-left:auto; margin-right:auto; margin-top:15px;">
+ </a>
+<li><center><strong><a href="./"><br>Pharmacogenomics Data Analysis<br><br></a></strong></center></li>
+<a href="./">
+ <img src="img/pgx.png" width="70%" alt="Pharmacogenomics Data Analysis logo" style="display:block; margin-left:auto; margin-right:auto; ">
+ </a>
+<br>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop Info</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#class-photo"><i class="fa fa-check"></i>Class Photo</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-work"><i class="fa fa-check"></i>Pre-work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-and-compute-setup.html"><a href="data-and-compute-setup.html"><i class="fa fa-check"></i>Data and Compute Setup</a></li>
+<li class="part"><span><b>II Modules</b></span></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><i class="fa fa-check"></i>Module 1: Intro to Pharmacogenomics in the Context of Cancer</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lecture"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lab"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#getting-started"><i class="fa fa-check"></i>Getting Started</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html"><i class="fa fa-check"></i>Module 2: Data Preparation for Pharmacogenomic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lecture-1"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lab-1"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#overview-1"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#setup"><i class="fa fa-check"></i>Setup</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#understanding-the-pharmacoset-data-structure"><i class="fa fa-check"></i>Understanding the <code>PharmacoSet</code> Data Structure</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#molecular-profiles-1"><i class="fa fa-check"></i>Molecular Profiles</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#treatment-response"><i class="fa fa-check"></i>Treatment Response</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#subsetting-a-pharmacoset"><i class="fa fa-check"></i>Subsetting a <code>PharmacoSet</code></a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#computing-over-a-treatmentresponseexperiment"><i class="fa fa-check"></i>Computing Over a <code>TreatmentResponseExperiment</code></a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#quality-control-of-pharmacogenomic-datasets"><i class="fa fa-check"></i>Quality Control of Pharmacogenomic Datasets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><i class="fa fa-check"></i>Module 3: Pharmacogenomics for Biomarker Discover - Basic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lecture-2"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lab-2"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#instructors-names-and-contact-information-1"><i class="fa fa-check"></i>Instructor(s) Name(s) and Contact Information</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#pharmacogx-package-overview"><i class="fa fa-check"></i>PharmacoGx Package Overview</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><i class="fa fa-check"></i>Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lecture-3"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lab-3"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#overview-2"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#data-acquisition-and-preparation"><i class="fa fa-check"></i>Data Acquisition and Preparation</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<h1 id="sponsors">Sponsors</h1>
+<center>
+<a href="https://genomecanada.ca/"><img src="img/sponsors/genomecanada.png" height="70" style="display:inline-block;"  style="padding-bottom: 20px" alt="Genome Canada logo.">
+<a href="https://www.ontariogenomics.ca/"><img src="img/sponsors/ontariogenomics.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Ontario Genomics logo.">
+<br><br>
+<a href="https://oicr.on.ca/"><img src="img/sponsors/oicr.png" width=25% style="display:inline-block;" style="padding-bottom: 20px" alt="Ontario Institute for Cancer Research logo.">
+<a href="https://www.hpcforhealth.ca/"><img src="img/sponsors/hpc4health.png" width=60% style="display:inline-block;" style="padding-bottom: 20px "alt="HPC4Health logo.">
+<br><br>
+<a href="https://computationalgenomics.ca/"><img src="img/sponsors/c3g.png" style="display:inline-block;" width=35% style="padding-bottom: 20px" alt="Canadian Centre for Computational Genomcis logo.">
+
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li></center>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pharmacogenomics Data Analysis 2024</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="module-2-data-preparation-for-pharmacogenomic-analysis" class="section level1 hasAnchor">
+<h1>Module 2: Data Preparation for Pharmacogenomic Analysis<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#module-2-data-preparation-for-pharmacogenomic-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lecture-1" class="section level2 hasAnchor">
+<h2>Lecture<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lecture-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/hpoijfpSAZ0?si=XmeqIOn0i_JRDXJj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<p><br></p>
+<iframe src="https://drive.google.com/file/d/13hEXKfqoDlQp6L-PAzH--GCkcDQhzmkh/preview" width="640" height="480" allow="autoplay">
+</iframe>
+</div>
+<div id="lab-1" class="section level2 hasAnchor">
+<h2>Lab<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lab-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="overview-1" class="section level3 hasAnchor">
+<h3>Overview<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="instructors-name-and-contact-information" class="section level4 hasAnchor">
+<h4>Instructor(s) Name and Contact Information<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#instructors-name-and-contact-information" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Jermiah J. Joseph <a href="mailto:jermiah.joseph@uhn.ca" class="email">jermiah.joseph@uhn.ca</a></li>
+<li>Almas Khan <a href="mailto:almas.khan@uhn.ca" class="email">almas.khan@uhn.ca</a></li>
+<li>Julia Nguyen <a href="mailto:julia.nguyen@uhn.ca" class="email">julia.nguyen@uhn.ca</a></li>
+</ul>
+</div>
+<div id="learning-goals-1" class="section level4 hasAnchor">
+<h4>Learning Goals<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#learning-goals-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Understand the data structure of a <code>PharmacoSet</code></li>
+<li>Learn how to access features and metadata from a PharmacoSet</li>
+<li>Learn how to plot batch effects using PCA and run correction method (SVA)</li>
+<li>Learn how to filter out outliers and missing values</li>
+</ul>
+</div>
+<div id="learning-objectives-1" class="section level4 hasAnchor">
+<h4>Learning Objectives<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Describe the use cases for <em><a href="https://bioconductor.org/packages/3.20/PharmacoGx">PharmacoGx</a></em> in Pharmacogenomics</li>
+<li>Understand the structure of the <code>CoreSet</code> and <code>PharmacoSet</code> classes to facilitate their use in subsequent analyses</li>
+<li>Download/load a <code>PharmacoSet</code> using <em><a href="https://bioconductor.org/packages/3.20/PharmacoGx">PharmacoGx</a></em> or <a href="https://orcestra.ca">orcestra.ca</a></li>
+<li>Subset and filter a <code>PharmacoSet</code> by samples and/or treatments</li>
+<li>Access the molecular features, dose-response and metadata contained within the <code>PharmacoSet</code></li>
+<li>Perform quality control on a <code>PharmacoSet</code> by identifying and removing outliers and missing values</li>
+<li>Perform batch correction on a <code>PharmacoSet</code> using the <code>sva</code> package</li>
+</ul>
+</div>
+</div>
+<div id="setup" class="section level3 hasAnchor">
+<h3>Setup<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="use-cases-for-pharmacogx" class="section level4 hasAnchor">
+<h4>Use Cases for <em>PharmacoGx</em><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#use-cases-for-pharmacogx" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><em>Downloading Data from <a href="https://orcestra.ca">orcestra.ca</a></em></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-1" tabindex="-1"></a>available <span class="ot">&lt;-</span> PharmacoGx<span class="sc">::</span><span class="fu">availablePSets</span>() <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-2" tabindex="-1"></a>  data.table<span class="sc">::</span><span class="fu">as.data.table</span>()</span>
+<span id="cb24-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(available))</span>
+<span id="cb24-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Dataset Name&quot; &quot;Date Created&quot; &quot;PSet Name&quot;    &quot;version&quot;      &quot;type&quot;        </span></span>
+<span id="cb24-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-6" tabindex="-1"></a><span class="co">#&gt; [6] &quot;publication&quot;  &quot;DOI&quot;          &quot;Download&quot;</span></span>
+<span id="cb24-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-7" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-8" tabindex="-1"></a><span class="fu">print</span>(available[, <span class="fu">c</span>(<span class="st">&quot;Dataset Name&quot;</span>, <span class="st">&quot;PSet Name&quot;</span>, <span class="st">&quot;version&quot;</span>)])</span>
+<span id="cb24-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-9" tabindex="-1"></a><span class="co">#&gt;     Dataset Name         PSet Name      version</span></span>
+<span id="cb24-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-10" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;            &lt;char&gt;       &lt;char&gt;</span></span>
+<span id="cb24-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-11" tabindex="-1"></a><span class="co">#&gt;  1:         GDSC GDSC_2020(v2-8.2) 2020(v2-8.2)</span></span>
+<span id="cb24-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-12" tabindex="-1"></a><span class="co">#&gt;  2:         FIMM         FIMM_2016         2016</span></span>
+<span id="cb24-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-13" tabindex="-1"></a><span class="co">#&gt;  3:        Tavor        Tavor_2020         2020</span></span>
+<span id="cb24-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-14" tabindex="-1"></a><span class="co">#&gt;  4:        NCI60        NCI60_2021         2021</span></span>
+<span id="cb24-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-15" tabindex="-1"></a><span class="co">#&gt;  5:    UHNBreast    UHNBreast_2019         2019</span></span>
+<span id="cb24-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-16" tabindex="-1"></a><span class="co">#&gt;  6:         GDSC GDSC_2020(v1-8.2) 2020(v1-8.2)</span></span>
+<span id="cb24-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-17" tabindex="-1"></a><span class="co">#&gt;  7:        PRISM        PRISM_2020         2020</span></span>
+<span id="cb24-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-18" tabindex="-1"></a><span class="co">#&gt;  8:      BeatAML      BeatAML_2018         2018</span></span>
+<span id="cb24-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-19" tabindex="-1"></a><span class="co">#&gt;  9:         gCSI         gCSI_2019         2019</span></span>
+<span id="cb24-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-20" tabindex="-1"></a><span class="co">#&gt; 10:       CTRPv2       CTRPv2_2015         2015</span></span>
+<span id="cb24-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-21" tabindex="-1"></a><span class="co">#&gt; 11:         GRAY         GRAY_2017         2017</span></span>
+<span id="cb24-22"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-22" tabindex="-1"></a><span class="co">#&gt; 12:         CCLE         CCLE_2015         2015</span></span>
+<span id="cb24-23"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-23" tabindex="-1"></a><span class="co">#&gt; 13:         PDTX         PDTX_2019         2019</span></span>
+<span id="cb24-24"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-24" tabindex="-1"></a><span class="co">#&gt; 14:          GBM          GBM_scr2         2021</span></span>
+<span id="cb24-25"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-25" tabindex="-1"></a><span class="co">#&gt; 15:          GBM          GBM_scr3         2021</span></span>
+<span id="cb24-26"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-26" tabindex="-1"></a><span class="co">#&gt; 16:   NCISarcoma   NCISarcoma_2015         2015</span></span>
+<span id="cb24-27"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb24-27" tabindex="-1"></a><span class="co">#&gt; 17:        TCL38             TCL38         2015</span></span></code></pre></div>
+<p>The following function from <a href="https://bioconductor.org/packages/3.19/PharmacoGx"><em>PharmacoGx</em></a> can be used to download any of the available PSets from <a href="https://orcestra.ca">orcestra.ca</a>.</p>
+<p>The command to do so is:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-1" tabindex="-1"></a>PharmacoGx<span class="sc">::</span><span class="fu">downloadPSet</span>(</span>
+<span id="cb25-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-2" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">&quot;CCLE_2015&quot;</span>,</span>
+<span id="cb25-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-3" tabindex="-1"></a>  <span class="at">saveDir =</span> <span class="st">&quot;../psets&quot;</span>, <span class="co"># change this directory as you see fit</span></span>
+<span id="cb25-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-4" tabindex="-1"></a>  <span class="at">timeout =</span> <span class="dv">3600</span>,</span>
+<span id="cb25-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-5" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb25-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-6" tabindex="-1"></a>)</span>
+<span id="cb25-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-8" tabindex="-1"></a><span class="co"># Note: this may take a while to download as the files are stored in</span></span>
+<span id="cb25-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb25-9" tabindex="-1"></a><span class="co"># Zenodo and are quite large</span></span></code></pre></div>
+<p>For convenience and in the interest of time, we have created a <code>PharmacoSet</code> to be used in this tutorial. We will be interacting with this dataset for the remainder of the tutorial.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-1" tabindex="-1"></a>pset <span class="ot">&lt;-</span> CBWWorkshop2024<span class="sc">::</span>dummy_pset</span>
+<span id="cb26-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-2" tabindex="-1"></a>pset</span>
+<span id="cb26-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-3" tabindex="-1"></a><span class="co">#&gt; &lt;PharmacoSet&gt;</span></span>
+<span id="cb26-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-4" tabindex="-1"></a><span class="co">#&gt; Name: dummy_pset </span></span>
+<span id="cb26-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-5" tabindex="-1"></a><span class="co">#&gt; Date Created: Tue Oct 15 23:31:41 2024 </span></span>
+<span id="cb26-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-6" tabindex="-1"></a><span class="co">#&gt; Number of samples:  50 </span></span>
+<span id="cb26-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-7" tabindex="-1"></a><span class="co">#&gt; Molecular profiles: &lt;MultiAssayExperiment&gt; </span></span>
+<span id="cb26-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-8" tabindex="-1"></a><span class="co">#&gt;    ExperimentList class object of length 2: </span></span>
+<span id="cb26-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-9" tabindex="-1"></a><span class="co">#&gt;     [1] rnaseq.tpm : SummarizedExperiment with 100 rows and 50 columns </span></span>
+<span id="cb26-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-10" tabindex="-1"></a><span class="co">#&gt;     [2] rnaseq.tpm.batch : SummarizedExperiment with 100 rows and 50 columns </span></span>
+<span id="cb26-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-11" tabindex="-1"></a><span class="co">#&gt; Treatment response: &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb26-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-12" tabindex="-1"></a><span class="co">#&gt;    dim:  4847 52 </span></span>
+<span id="cb26-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-13" tabindex="-1"></a><span class="co">#&gt;    assays(1): sensitivity </span></span>
+<span id="cb26-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-14" tabindex="-1"></a><span class="co">#&gt;    rownames(4847): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 1000:Nelarabine:1 4000:Ifosfamide:1 </span></span>
+<span id="cb26-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-15" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb26-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-16" tabindex="-1"></a><span class="co">#&gt;    colnames(52): 786-O:1 A-498:1 A-549:1 ... UACC-257:1 UACC-62:1 UO-31:1 </span></span>
+<span id="cb26-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-17" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb26-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb26-18" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span></code></pre></div>
+</div>
+</div>
+<div id="understanding-the-pharmacoset-data-structure" class="section level3 hasAnchor">
+<h3>Understanding the <code>PharmacoSet</code> Data Structure<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#understanding-the-pharmacoset-data-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>PharmacoSet</code> class is a container for pharmacogenomic data.</p>
+<p>This pharmacogenomic data is typically generated from high-throughput screening experiments where cell lines are treated with a panel of drugs at multiple doses and the response is measured using a molecular assay.</p>
+<p>Pharmacogenomic data is located in a <code>PharmacoSet</code> within its slots, which are accessed using the <code>@</code> operator.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb27-1" tabindex="-1"></a><span class="fu">slotNames</span>(pset)</span>
+<span id="cb27-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb27-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;treatmentResponse&quot; &quot;annotation&quot;        &quot;molecularProfiles&quot;</span></span>
+<span id="cb27-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb27-3" tabindex="-1"></a><span class="co">#&gt; [4] &quot;sample&quot;            &quot;treatment&quot;         &quot;datasetType&quot;      </span></span>
+<span id="cb27-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb27-4" tabindex="-1"></a><span class="co">#&gt; [7] &quot;perturbation&quot;      &quot;curation&quot;</span></span></code></pre></div>
+<p><img src="img/coreset-class.png" alt="PharmacoSet class structure" />
+### Metadata</p>
+<p>Metadata for cell-lines (<code>samples</code>) and drugs (<code>treatments</code>) are stored in the <code>sample</code> and <code>treatment</code> slots, respectively.</p>
+<p>These are data frames with rows corresponding to samples or treatments and columns corresponding to metadata fields. The metadata fields are typically a combination of data from the original data source, and curated data from external sources such as <a href="https://web.expasy.org/cellosaurus/">Cellosaurus</a>,<a href="https://go.drugbank.com/">DrugBank</a>, and <a href="https://pubchem.ncbi.nlm.nih.gov/">PubChem</a>.</p>
+<div id="view-the-sample-slot" class="section level4 hasAnchor">
+<h4>View the <code>sample</code> slot<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#view-the-sample-slot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can access the <code>sampleNames</code> of the <code>PharmacoSet</code>:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-1" tabindex="-1"></a>PharmacoGx<span class="sc">::</span><span class="fu">sampleNames</span>(pset)</span>
+<span id="cb28-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;NCI-H23&quot;     &quot;HOP-62&quot;      &quot;SNB-75&quot;      &quot;HL-60(TB)&quot;   &quot;A-549&quot;      </span></span>
+<span id="cb28-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-3" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;SF268&quot;       &quot;SNB-19&quot;      &quot;SF295&quot;       &quot;OVCAR-5&quot;     &quot;U-251MG&quot;    </span></span>
+<span id="cb28-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-4" tabindex="-1"></a><span class="co">#&gt; [11] &quot;MCF-7&quot;       &quot;MDA-MB-231&quot;  &quot;MDA-MB-435&quot;  &quot;BT-549&quot;      &quot;SK-MEL-5&quot;   </span></span>
+<span id="cb28-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-5" tabindex="-1"></a><span class="co">#&gt; [16] &quot;MOLT-4&quot;      &quot;DU145&quot;       &quot;NCI-ADR-RES&quot; &quot;OVCAR-3&quot;     &quot;COLO 205&quot;   </span></span>
+<span id="cb28-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-6" tabindex="-1"></a><span class="co">#&gt; [21] &quot;SK-OV-3&quot;     &quot;CCRF-CEM&quot;    &quot;SR&quot;          &quot;IGROV-1&quot;     &quot;SW620&quot;      </span></span>
+<span id="cb28-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-7" tabindex="-1"></a><span class="co">#&gt; [26] &quot;Hs 578T&quot;     &quot;HCT 116&quot;     &quot;UACC-62&quot;     &quot;EKVX&quot;        &quot;HCT 15&quot;     </span></span>
+<span id="cb28-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-8" tabindex="-1"></a><span class="co">#&gt; [31] &quot;OVCAR-8&quot;     &quot;UACC-257&quot;    &quot;SF539&quot;       &quot;UO-31&quot;       &quot;M14&quot;        </span></span>
+<span id="cb28-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-9" tabindex="-1"></a><span class="co">#&gt; [36] &quot;KM12&quot;        &quot;T-47D&quot;       &quot;Malme-3M&quot;    &quot;Caki-1&quot;      &quot;A-498&quot;      </span></span>
+<span id="cb28-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-10" tabindex="-1"></a><span class="co">#&gt; [41] &quot;SK-MEL-28&quot;   &quot;RPMI-8226&quot;   &quot;NCI-H460&quot;    &quot;NCI-H322M&quot;   &quot;NCI-H226&quot;   </span></span>
+<span id="cb28-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb28-11" tabindex="-1"></a><span class="co">#&gt; [46] &quot;K-562&quot;       &quot;786-O&quot;       &quot;SK-MEL-2&quot;    &quot;HCC2998&quot;     &quot;NCI-H522&quot;</span></span></code></pre></div>
+<p>To get all the metadata associated with the samples, we can access the <code>sample</code> slot:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-1" tabindex="-1"></a>pset<span class="sc">@</span>sample <span class="sc">|&gt;</span> <span class="fu">str</span>()</span>
+<span id="cb29-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-2" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    50 obs. of  7 variables:</span></span>
+<span id="cb29-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-3" tabindex="-1"></a><span class="co">#&gt;  $ sampleid            : chr  &quot;NCI-H23&quot; &quot;HOP-62&quot; &quot;SNB-75&quot; &quot;HL-60(TB)&quot; ...</span></span>
+<span id="cb29-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-4" tabindex="-1"></a><span class="co">#&gt;  $ tissueid            : chr  &quot;Lung&quot; &quot;Lung&quot; &quot;CNS/Brain&quot; &quot;Myeloid&quot; ...</span></span>
+<span id="cb29-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-5" tabindex="-1"></a><span class="co">#&gt;  $ cellosaurus_disease : chr  &quot;Lung adenocarcinoma&quot; &quot;Lung adenocarcinoma&quot; &quot;Glioblastoma&quot; &quot;Acute myeloid leukemia&quot; ...</span></span>
+<span id="cb29-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-6" tabindex="-1"></a><span class="co">#&gt;  $ cellosaurus_id      : chr  &quot;CVCL_1547&quot; &quot;CVCL_1285&quot; &quot;CVCL_1706&quot; &quot;CVCL_A794&quot; ...</span></span>
+<span id="cb29-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-7" tabindex="-1"></a><span class="co">#&gt;  $ NCI_ALMANAC.sampleid: chr  &quot;NCI-H23&quot; &quot;HOP-62&quot; &quot;SNB-75&quot; &quot;HL-60(TB)&quot; ...</span></span>
+<span id="cb29-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-8" tabindex="-1"></a><span class="co">#&gt;  $ NCI_ALMANAC.disease : chr  &quot;Non-Small Cell Lung Cancer&quot; &quot;Non-Small Cell Lung Cancer&quot; &quot;CNS Cancer&quot; &quot;Leukemia&quot; ...</span></span>
+<span id="cb29-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb29-9" tabindex="-1"></a><span class="co">#&gt;  $ pharmacodb_cid      : chr  &quot;NCIH23_1085_2019&quot; &quot;HOP62_561_2019&quot; &quot;SNB75_1430_2019&quot; &quot;HL-60(TB)6502021_&quot; ...</span></span></code></pre></div>
+<p>We can see from the <code>sample</code> slot that there are 50 samples in this <code>PharmacoSet</code>.</p>
+</div>
+<div id="view-the-treatment-slot" class="section level4 hasAnchor">
+<h4>View the <code>treatment</code> slot<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#view-the-treatment-slot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Similar to the <code>sample</code>, we can access the <code>treatmentNames</code> of the <code>PharmacoSet</code>:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb30-1" tabindex="-1"></a>PharmacoGx<span class="sc">::</span><span class="fu">treatmentNames</span>(pset) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb30-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb30-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ixabepilone&quot; &quot;Clofarabine&quot; &quot;Dasatinib&quot;   &quot;Vincristine&quot; &quot;Imiquimod&quot;  </span></span>
+<span id="cb30-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb30-3" tabindex="-1"></a><span class="co">#&gt; [6] &quot;Paclitaxel&quot;</span></span></code></pre></div>
+<p>To get all the metadata associated with the treatments, we can access the <code>treatment</code> slot:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb31-1" tabindex="-1"></a>pset<span class="sc">@</span>treatment <span class="sc">|&gt;</span> <span class="fu">str</span>()</span>
+<span id="cb31-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb31-2" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    22 obs. of  3 variables:</span></span>
+<span id="cb31-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb31-3" tabindex="-1"></a><span class="co">#&gt;  $ treatmentid: chr  &quot;Ixabepilone&quot; &quot;Clofarabine&quot; &quot;Dasatinib&quot; &quot;Vincristine&quot; ...</span></span>
+<span id="cb31-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb31-4" tabindex="-1"></a><span class="co">#&gt;  $ cid        : int  6445540 119182 3062316 5978 57469 36314 13342 54611422 2141 176871 ...</span></span>
+<span id="cb31-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb31-5" tabindex="-1"></a><span class="co">#&gt;  $ inchikey   : chr  &quot;FABUFPQFXZVHFB-PVYNADRNSA-N&quot; &quot;WDDPHFBMKLOVOX-UHFFFAOYSA-N&quot; &quot;ZBNZXTGUTAYRHI-UHFFFAOYSA-N&quot; &quot;&quot; ...</span></span></code></pre></div>
+<p>There are also 22 treatments used.</p>
+</div>
+</div>
+<div id="molecular-profiles-1" class="section level3 hasAnchor">
+<h3>Molecular Profiles<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#molecular-profiles-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <em><a href="https://bioconductor.org/packages/3.20/PharmacoGx">PharmacoGx</a></em>, molecular profiles refer to any data that is measured on the samples in the <code>PharmacoSet</code>. This can include gene expression, copy number, mutation, or any other type of data that can be measured on a sample.</p>
+<p>Each Molecular Data Type (<code>mDataType</code>) is stored in a <code>SummarizedExperiment</code>. All the <code>SummarizedExperiment</code> objects are stored in a container called a <code>MultiAssayExperiment</code> which can be accessed through the <code>molecularProfiles</code> slot.</p>
+<div id="multiassayexperiment-and-summarizedexperiment" class="section level4 hasAnchor">
+<h4><code>MultiAssayExperiment</code> and <code>SummarizedExperiment</code><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#multiassayexperiment-and-summarizedexperiment" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="img/multiassayexperiment_summarizedexperiment_schematics.png" alt="Summarized Experiment and Multi Assay Experiment classes" />
+#### View the <code>molecularProfiles</code> Slot</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-1" tabindex="-1"></a>pset<span class="sc">@</span>molecularProfiles</span>
+<span id="cb32-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-2" tabindex="-1"></a><span class="co">#&gt; A MultiAssayExperiment object of 2 listed</span></span>
+<span id="cb32-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-3" tabindex="-1"></a><span class="co">#&gt;  experiments with user-defined names and respective classes.</span></span>
+<span id="cb32-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-4" tabindex="-1"></a><span class="co">#&gt;  Containing an ExperimentList class object of length 2:</span></span>
+<span id="cb32-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-5" tabindex="-1"></a><span class="co">#&gt;  [1] rnaseq.tpm: SummarizedExperiment with 100 rows and 50 columns</span></span>
+<span id="cb32-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-6" tabindex="-1"></a><span class="co">#&gt;  [2] rnaseq.tpm.batch: SummarizedExperiment with 100 rows and 50 columns</span></span>
+<span id="cb32-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-7" tabindex="-1"></a><span class="co">#&gt; Functionality:</span></span>
+<span id="cb32-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-8" tabindex="-1"></a><span class="co">#&gt;  experiments() - obtain the ExperimentList instance</span></span>
+<span id="cb32-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-9" tabindex="-1"></a><span class="co">#&gt;  colData() - the primary/phenotype DataFrame</span></span>
+<span id="cb32-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-10" tabindex="-1"></a><span class="co">#&gt;  sampleMap() - the sample coordination DataFrame</span></span>
+<span id="cb32-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-11" tabindex="-1"></a><span class="co">#&gt;  `$`, `[`, `[[` - extract colData columns, subset, or experiment</span></span>
+<span id="cb32-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-12" tabindex="-1"></a><span class="co">#&gt;  *Format() - convert into a long or wide DataFrame</span></span>
+<span id="cb32-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-13" tabindex="-1"></a><span class="co">#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</span></span>
+<span id="cb32-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb32-14" tabindex="-1"></a><span class="co">#&gt;  exportClass() - save data to flat files</span></span></code></pre></div>
+</div>
+</div>
+<div id="treatment-response" class="section level3 hasAnchor">
+<h3>Treatment Response<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#treatment-response" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The treatment response data was traditionally stored in a <code>list</code>. To accelerate analysis, we have developed a new class called the <code>TreatmentResponseExperiment</code> (TRE) which has been specifically designed to handle high dimensional biological stimulus-response data.</p>
+<div id="view-the-treatmentresponse-slot" class="section level4 hasAnchor">
+<h4>View the <code>treatmentResponse</code> slot<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#view-the-treatmentresponse-slot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-1" tabindex="-1"></a>pset<span class="sc">@</span>treatmentResponse</span>
+<span id="cb33-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-2" tabindex="-1"></a><span class="co">#&gt; &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb33-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-3" tabindex="-1"></a><span class="co">#&gt;    dim:  4847 52 </span></span>
+<span id="cb33-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-4" tabindex="-1"></a><span class="co">#&gt;    assays(1): sensitivity </span></span>
+<span id="cb33-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-5" tabindex="-1"></a><span class="co">#&gt;    rownames(4847): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 1000:Nelarabine:1 4000:Ifosfamide:1 </span></span>
+<span id="cb33-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-6" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb33-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-7" tabindex="-1"></a><span class="co">#&gt;    colnames(52): 786-O:1 A-498:1 A-549:1 ... UACC-257:1 UACC-62:1 UO-31:1 </span></span>
+<span id="cb33-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-8" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb33-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb33-9" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span></code></pre></div>
+<p>To view all the methods available for the <code>TreatmentResponseExperiment</code> class, we can use the <code>methods</code> function:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-1" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;TreatmentResponseExperiment&quot;</span>)</span>
+<span id="cb34-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-2" tabindex="-1"></a><span class="co">#&gt;  [1] [                   [[                  [[&lt;-               </span></span>
+<span id="cb34-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-3" tabindex="-1"></a><span class="co">#&gt;  [4] $                   $&lt;-                 aggregate          </span></span>
+<span id="cb34-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-4" tabindex="-1"></a><span class="co">#&gt;  [7] assay               assay&lt;-             assayCols          </span></span>
+<span id="cb34-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-5" tabindex="-1"></a><span class="co">#&gt; [10] assayIndex          assayKeys           assayNames         </span></span>
+<span id="cb34-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-6" tabindex="-1"></a><span class="co">#&gt; [13] assays              assays&lt;-            buildComboProfiles </span></span>
+<span id="cb34-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-7" tabindex="-1"></a><span class="co">#&gt; [16] coerce              colData             colData&lt;-          </span></span>
+<span id="cb34-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-8" tabindex="-1"></a><span class="co">#&gt; [19] colIDs              colMeta             colnames           </span></span>
+<span id="cb34-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-9" tabindex="-1"></a><span class="co">#&gt; [22] computeZIPdelta     dim                 dimnames           </span></span>
+<span id="cb34-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-10" tabindex="-1"></a><span class="co">#&gt; [25] endoaggregate       getIntern           idCols             </span></span>
+<span id="cb34-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-11" tabindex="-1"></a><span class="co">#&gt; [28] mergeAssays         metadata            metadata&lt;-         </span></span>
+<span id="cb34-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-12" tabindex="-1"></a><span class="co">#&gt; [31] names               reindex             rowData            </span></span>
+<span id="cb34-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-13" tabindex="-1"></a><span class="co">#&gt; [34] rowData&lt;-           rowIDs              rowMeta            </span></span>
+<span id="cb34-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-14" tabindex="-1"></a><span class="co">#&gt; [37] rownames            show                subset             </span></span>
+<span id="cb34-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-15" tabindex="-1"></a><span class="co">#&gt; [40] treatmentResponse&lt;- updateObject       </span></span>
+<span id="cb34-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb34-16" tabindex="-1"></a><span class="co">#&gt; see &#39;?methods&#39; for accessing help and source code</span></span></code></pre></div>
+</div>
+</div>
+<div id="subsetting-a-pharmacoset" class="section level3 hasAnchor">
+<h3>Subsetting a <code>PharmacoSet</code><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#subsetting-a-pharmacoset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="subset-by-samplenames-andor-treatmentnames" class="section level4 hasAnchor">
+<h4>Subset by <code>sampleNames</code> and/or <code>treatmentNames</code><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#subset-by-samplenames-andor-treatmentnames" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>When subsetting a <code>PharmacoSet</code> object by <code>sample</code> names, both the <code>MultiAssayExperiment</code> and <code>TreatmentResponseExperiment</code> objects will be subsetted so all their internal <code>Experiments</code> only contain data for the samples of interest.</p>
+<p>However, when subsetting by <code>treatment</code> names, only the <code>TRE</code> object will be subsetted.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-1" tabindex="-1"></a>PharmacoGx<span class="sc">::</span><span class="fu">subsetBySample</span>(</span>
+<span id="cb35-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-2" tabindex="-1"></a>  pset,</span>
+<span id="cb35-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-3" tabindex="-1"></a>  <span class="at">sample =</span> PharmacoGx<span class="sc">::</span><span class="fu">sampleNames</span>(pset)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb35-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-4" tabindex="-1"></a>)</span>
+<span id="cb35-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-5" tabindex="-1"></a><span class="co">#&gt; &lt;PharmacoSet&gt;</span></span>
+<span id="cb35-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-6" tabindex="-1"></a><span class="co">#&gt; Name: dummy_pset </span></span>
+<span id="cb35-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-7" tabindex="-1"></a><span class="co">#&gt; Date Created: Tue Oct 15 23:31:41 2024 </span></span>
+<span id="cb35-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-8" tabindex="-1"></a><span class="co">#&gt; Number of samples:  5 </span></span>
+<span id="cb35-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-9" tabindex="-1"></a><span class="co">#&gt; Molecular profiles: &lt;MultiAssayExperiment&gt; </span></span>
+<span id="cb35-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-10" tabindex="-1"></a><span class="co">#&gt;    ExperimentList class object of length 2: </span></span>
+<span id="cb35-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-11" tabindex="-1"></a><span class="co">#&gt;     [1] rnaseq.tpm : SummarizedExperiment with 100 rows and 5 columns </span></span>
+<span id="cb35-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-12" tabindex="-1"></a><span class="co">#&gt;     [2] rnaseq.tpm.batch : SummarizedExperiment with 100 rows and 5 columns </span></span>
+<span id="cb35-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-13" tabindex="-1"></a><span class="co">#&gt; Treatment response: &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb35-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-14" tabindex="-1"></a><span class="co">#&gt;    dim:  4440 4 </span></span>
+<span id="cb35-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-15" tabindex="-1"></a><span class="co">#&gt;    assays(1): sensitivity </span></span>
+<span id="cb35-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-16" tabindex="-1"></a><span class="co">#&gt;    rownames(4440): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 1000:Nelarabine:1 4000:Ifosfamide:1 </span></span>
+<span id="cb35-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-17" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb35-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-18" tabindex="-1"></a><span class="co">#&gt;    colnames(4): A-549:1 HOP-62:1 NCI-H23:1 SNB-75:1 </span></span>
+<span id="cb35-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-19" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb35-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-20" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span>
+<span id="cb35-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-21" tabindex="-1"></a></span>
+<span id="cb35-22"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-22" tabindex="-1"></a>PharmacoGx<span class="sc">::</span><span class="fu">subsetByTreatment</span>(</span>
+<span id="cb35-23"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-23" tabindex="-1"></a>  pset,</span>
+<span id="cb35-24"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-24" tabindex="-1"></a>  <span class="at">treatment =</span> PharmacoGx<span class="sc">::</span><span class="fu">treatmentNames</span>(pset)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb35-25"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-25" tabindex="-1"></a>)</span>
+<span id="cb35-26"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-26" tabindex="-1"></a><span class="co">#&gt; &lt;PharmacoSet&gt;</span></span>
+<span id="cb35-27"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-27" tabindex="-1"></a><span class="co">#&gt; Name: dummy_pset </span></span>
+<span id="cb35-28"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-28" tabindex="-1"></a><span class="co">#&gt; Date Created: Tue Oct 15 23:31:41 2024 </span></span>
+<span id="cb35-29"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-29" tabindex="-1"></a><span class="co">#&gt; Number of samples:  50 </span></span>
+<span id="cb35-30"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-30" tabindex="-1"></a><span class="co">#&gt; Molecular profiles: &lt;MultiAssayExperiment&gt; </span></span>
+<span id="cb35-31"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-31" tabindex="-1"></a><span class="co">#&gt;    ExperimentList class object of length 2: </span></span>
+<span id="cb35-32"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-32" tabindex="-1"></a><span class="co">#&gt;     [1] rnaseq.tpm : SummarizedExperiment with 100 rows and 50 columns </span></span>
+<span id="cb35-33"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-33" tabindex="-1"></a><span class="co">#&gt;     [2] rnaseq.tpm.batch : SummarizedExperiment with 100 rows and 50 columns </span></span>
+<span id="cb35-34"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-34" tabindex="-1"></a><span class="co">#&gt; Treatment response: &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb35-35"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-35" tabindex="-1"></a><span class="co">#&gt;    dim:  883 51 </span></span>
+<span id="cb35-36"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-36" tabindex="-1"></a><span class="co">#&gt;    assays(1): sensitivity </span></span>
+<span id="cb35-37"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-37" tabindex="-1"></a><span class="co">#&gt;    rownames(883): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 7:Clofarabine:1 10:Clofarabine:1 </span></span>
+<span id="cb35-38"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-38" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb35-39"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-39" tabindex="-1"></a><span class="co">#&gt;    colnames(51): 786-O:1 A-498:1 A-549:1 ... UACC-257:1 UACC-62:1 UO-31:1 </span></span>
+<span id="cb35-40"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-40" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb35-41"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb35-41" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span></code></pre></div>
+</div>
+<div id="subsetting-using-sample-and-treatment-metadata" class="section level4 hasAnchor">
+<h4>Subsetting Using <code>sample</code> and <code>treatment</code> Metadata<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#subsetting-using-sample-and-treatment-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The utility of the <code>metadata</code> slots in the <code>PharmacoSet</code> class.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-1" tabindex="-1"></a><span class="fu">unique</span>(pset<span class="sc">@</span>sample<span class="sc">$</span>tissueid)</span>
+<span id="cb36-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Lung&quot;                 &quot;CNS/Brain&quot;            &quot;Myeloid&quot;             </span></span>
+<span id="cb36-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-3" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;Ovary/Fallopian Tube&quot; &quot;Breast&quot;               &quot;Skin&quot;                </span></span>
+<span id="cb36-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-4" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;Lymphoid&quot;             &quot;Prostate&quot;             &quot;Bowel&quot;               </span></span>
+<span id="cb36-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-5" tabindex="-1"></a><span class="co">#&gt; [10] &quot;Kidney&quot;               &quot;Pleura&quot;</span></span>
+<span id="cb36-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-6" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-7" tabindex="-1"></a>tissues_of_interest <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Kidney&quot;</span>)</span>
+<span id="cb36-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-8" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-9" tabindex="-1"></a>(samples_of_interest <span class="ot">&lt;-</span> pset<span class="sc">@</span>sample[</span>
+<span id="cb36-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-10" tabindex="-1"></a>  pset<span class="sc">@</span>sample<span class="sc">$</span>tissueid <span class="sc">%in%</span> tissues_of_interest,</span>
+<span id="cb36-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-11" tabindex="-1"></a>  <span class="st">&quot;sampleid&quot;</span></span>
+<span id="cb36-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-12" tabindex="-1"></a>]</span>
+<span id="cb36-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-13" tabindex="-1"></a>)</span>
+<span id="cb36-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;UO-31&quot;  &quot;Caki-1&quot; &quot;A-498&quot;  &quot;786-O&quot;</span></span>
+<span id="cb36-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-15" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-16" tabindex="-1"></a>PharmacoGx<span class="sc">::</span><span class="fu">subsetBySample</span>(</span>
+<span id="cb36-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-17" tabindex="-1"></a>  pset,</span>
+<span id="cb36-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-18" tabindex="-1"></a>  samples_of_interest</span>
+<span id="cb36-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-19" tabindex="-1"></a>)</span>
+<span id="cb36-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-20" tabindex="-1"></a><span class="co">#&gt; &lt;PharmacoSet&gt;</span></span>
+<span id="cb36-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-21" tabindex="-1"></a><span class="co">#&gt; Name: dummy_pset </span></span>
+<span id="cb36-22"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-22" tabindex="-1"></a><span class="co">#&gt; Date Created: Tue Oct 15 23:31:41 2024 </span></span>
+<span id="cb36-23"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-23" tabindex="-1"></a><span class="co">#&gt; Number of samples:  4 </span></span>
+<span id="cb36-24"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-24" tabindex="-1"></a><span class="co">#&gt; Molecular profiles: &lt;MultiAssayExperiment&gt; </span></span>
+<span id="cb36-25"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-25" tabindex="-1"></a><span class="co">#&gt;    ExperimentList class object of length 2: </span></span>
+<span id="cb36-26"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-26" tabindex="-1"></a><span class="co">#&gt;     [1] rnaseq.tpm : SummarizedExperiment with 100 rows and 4 columns </span></span>
+<span id="cb36-27"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-27" tabindex="-1"></a><span class="co">#&gt;     [2] rnaseq.tpm.batch : SummarizedExperiment with 100 rows and 4 columns </span></span>
+<span id="cb36-28"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-28" tabindex="-1"></a><span class="co">#&gt; Treatment response: &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb36-29"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-29" tabindex="-1"></a><span class="co">#&gt;    dim:  4285 4 </span></span>
+<span id="cb36-30"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-30" tabindex="-1"></a><span class="co">#&gt;    assays(1): sensitivity </span></span>
+<span id="cb36-31"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-31" tabindex="-1"></a><span class="co">#&gt;    rownames(4285): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 1000:Nelarabine:1 4000:Ifosfamide:1 </span></span>
+<span id="cb36-32"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-32" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb36-33"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-33" tabindex="-1"></a><span class="co">#&gt;    colnames(4): 786-O:1 A-498:1 Caki-1:1 UO-31:1 </span></span>
+<span id="cb36-34"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-34" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb36-35"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb36-35" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span></code></pre></div>
+<p>A concise way to subset by <code>sample</code> in one step:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-1" tabindex="-1"></a>PharmacoGx<span class="sc">::</span><span class="fu">subsetBySample</span>(</span>
+<span id="cb37-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-2" tabindex="-1"></a>  pset,</span>
+<span id="cb37-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-3" tabindex="-1"></a>  <span class="at">sample =</span> pset<span class="sc">@</span>sample[</span>
+<span id="cb37-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-4" tabindex="-1"></a>    pset<span class="sc">@</span>sample<span class="sc">$</span>tissueid <span class="sc">==</span> <span class="st">&quot;Kidney&quot;</span>,</span>
+<span id="cb37-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-5" tabindex="-1"></a>    <span class="st">&quot;sampleid&quot;</span></span>
+<span id="cb37-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-6" tabindex="-1"></a>  ]</span>
+<span id="cb37-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-7" tabindex="-1"></a>)</span>
+<span id="cb37-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-8" tabindex="-1"></a><span class="co">#&gt; &lt;PharmacoSet&gt;</span></span>
+<span id="cb37-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-9" tabindex="-1"></a><span class="co">#&gt; Name: dummy_pset </span></span>
+<span id="cb37-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-10" tabindex="-1"></a><span class="co">#&gt; Date Created: Tue Oct 15 23:31:41 2024 </span></span>
+<span id="cb37-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-11" tabindex="-1"></a><span class="co">#&gt; Number of samples:  4 </span></span>
+<span id="cb37-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-12" tabindex="-1"></a><span class="co">#&gt; Molecular profiles: &lt;MultiAssayExperiment&gt; </span></span>
+<span id="cb37-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-13" tabindex="-1"></a><span class="co">#&gt;    ExperimentList class object of length 2: </span></span>
+<span id="cb37-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-14" tabindex="-1"></a><span class="co">#&gt;     [1] rnaseq.tpm : SummarizedExperiment with 100 rows and 4 columns </span></span>
+<span id="cb37-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-15" tabindex="-1"></a><span class="co">#&gt;     [2] rnaseq.tpm.batch : SummarizedExperiment with 100 rows and 4 columns </span></span>
+<span id="cb37-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-16" tabindex="-1"></a><span class="co">#&gt; Treatment response: &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb37-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-17" tabindex="-1"></a><span class="co">#&gt;    dim:  4285 4 </span></span>
+<span id="cb37-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-18" tabindex="-1"></a><span class="co">#&gt;    assays(1): sensitivity </span></span>
+<span id="cb37-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-19" tabindex="-1"></a><span class="co">#&gt;    rownames(4285): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 1000:Nelarabine:1 4000:Ifosfamide:1 </span></span>
+<span id="cb37-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-20" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb37-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-21" tabindex="-1"></a><span class="co">#&gt;    colnames(4): 786-O:1 A-498:1 Caki-1:1 UO-31:1 </span></span>
+<span id="cb37-22"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-22" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb37-23"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb37-23" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span></code></pre></div>
+</div>
+</div>
+<div id="computing-over-a-treatmentresponseexperiment" class="section level3 hasAnchor">
+<h3>Computing Over a <code>TreatmentResponseExperiment</code><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#computing-over-a-treatmentresponseexperiment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>TreatmentResponseExperiment</code> class has been designed to facilitate more than just storing data efficiently. Once the data is curated and stored safely inside our object, we are ready to start answering questions.</p>
+<p>First, let’s extract the <code>TRE</code> to work with:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-1" tabindex="-1"></a>tre <span class="ot">&lt;-</span> pset<span class="sc">@</span>treatmentResponse</span>
+<span id="cb38-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-2" tabindex="-1"></a><span class="fu">show</span>(tre)</span>
+<span id="cb38-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-3" tabindex="-1"></a><span class="co">#&gt; &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb38-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-4" tabindex="-1"></a><span class="co">#&gt;    dim:  4847 52 </span></span>
+<span id="cb38-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-5" tabindex="-1"></a><span class="co">#&gt;    assays(1): sensitivity </span></span>
+<span id="cb38-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-6" tabindex="-1"></a><span class="co">#&gt;    rownames(4847): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 1000:Nelarabine:1 4000:Ifosfamide:1 </span></span>
+<span id="cb38-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-7" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb38-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-8" tabindex="-1"></a><span class="co">#&gt;    colnames(52): 786-O:1 A-498:1 A-549:1 ... UACC-257:1 UACC-62:1 UO-31:1 </span></span>
+<span id="cb38-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-9" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb38-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb38-10" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span></code></pre></div>
+<div id="aggregating-over-the-treatmentresponseexperiment" class="section level4 hasAnchor">
+<h4>Aggregating Over the <code>TreatmentResponseExperiment</code><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#aggregating-over-the-treatmentresponseexperiment" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>aggregate</code> function is a powerful tool that allows us to summarize the data in a <code>TreatmentResponseExperiment</code> object.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-1" tabindex="-1"></a>tre <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-2" tabindex="-1"></a>  <span class="fu">aggregate</span>(</span>
+<span id="cb39-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-3" tabindex="-1"></a>    <span class="at">assay =</span> <span class="st">&quot;sensitivity&quot;</span>,</span>
+<span id="cb39-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-4" tabindex="-1"></a>    <span class="at">N =</span> .N,</span>
+<span id="cb39-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-5" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;treatmentid&quot;</span>, <span class="st">&quot;treatmentdose&quot;</span>, <span class="st">&quot;sampleid&quot;</span>, <span class="st">&quot;bio_rep&quot;</span>)</span>
+<span id="cb39-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-6" tabindex="-1"></a>  )</span>
+<span id="cb39-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-7" tabindex="-1"></a><span class="co">#&gt;       treatmentid treatmentdose sampleid bio_rep     N</span></span>
+<span id="cb39-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-8" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;         &lt;num&gt;   &lt;char&gt;   &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb39-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-9" tabindex="-1"></a><span class="co">#&gt;    1: Ixabepilone         1e-07    786-O       1     1</span></span>
+<span id="cb39-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-10" tabindex="-1"></a><span class="co">#&gt;    2: Ixabepilone         1e-07    A-498       1     1</span></span>
+<span id="cb39-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-11" tabindex="-1"></a><span class="co">#&gt;    3: Ixabepilone         1e-07    A-549       1     1</span></span>
+<span id="cb39-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-12" tabindex="-1"></a><span class="co">#&gt;    4: Ixabepilone         1e-07   BT-549       1     1</span></span>
+<span id="cb39-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-13" tabindex="-1"></a><span class="co">#&gt;    5: Ixabepilone         1e-07 COLO 205       1     1</span></span>
+<span id="cb39-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-14" tabindex="-1"></a><span class="co">#&gt;   ---                                                 </span></span>
+<span id="cb39-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-15" tabindex="-1"></a><span class="co">#&gt; 9036:  Ifosfamide         4e+03    T-47D       1     1</span></span>
+<span id="cb39-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-16" tabindex="-1"></a><span class="co">#&gt; 9037:  Ifosfamide         4e+03  U-251MG       1     1</span></span>
+<span id="cb39-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-17" tabindex="-1"></a><span class="co">#&gt; 9038:  Ifosfamide         4e+03 UACC-257       1     1</span></span>
+<span id="cb39-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-18" tabindex="-1"></a><span class="co">#&gt; 9039:  Ifosfamide         4e+03  UACC-62       1     1</span></span>
+<span id="cb39-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb39-19" tabindex="-1"></a><span class="co">#&gt; 9040:  Ifosfamide         4e+03    UO-31       1     1</span></span></code></pre></div>
+<p>You can also use the <code>subset</code> function to subset the <code>TreatmentResponseExperiment</code> object before performing <code>aggregate</code>.</p>
+<p>Additionally, you can even <code>subset</code> over the result of an <code>aggregate</code> operation.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-1" tabindex="-1"></a>tre <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-2" tabindex="-1"></a>  <span class="fu">subset</span>(treatmentid <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Doxorubicin&quot;</span>, <span class="st">&quot;Ixabepilone&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-3" tabindex="-1"></a>  <span class="fu">aggregate</span>(</span>
+<span id="cb40-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-4" tabindex="-1"></a>    <span class="at">assay =</span> <span class="st">&quot;sensitivity&quot;</span>,</span>
+<span id="cb40-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-5" tabindex="-1"></a>    <span class="at">N =</span> .N,</span>
+<span id="cb40-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-6" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;treatmentid&quot;</span>, <span class="st">&quot;treatmentdose&quot;</span>, <span class="st">&quot;sampleid&quot;</span>, <span class="st">&quot;bio_rep&quot;</span>)</span>
+<span id="cb40-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-7" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb40-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-8" tabindex="-1"></a>  <span class="fu">subset</span>(N <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> sampleid <span class="sc">==</span> <span class="st">&quot;A-498&quot;</span>)</span>
+<span id="cb40-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-9" tabindex="-1"></a><span class="co">#&gt;     treatmentid treatmentdose sampleid bio_rep     N</span></span>
+<span id="cb40-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-10" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt;         &lt;num&gt;   &lt;char&gt;   &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb40-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-11" tabindex="-1"></a><span class="co">#&gt;  1: Ixabepilone         3e-05    A-498       1     2</span></span>
+<span id="cb40-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-12" tabindex="-1"></a><span class="co">#&gt;  2: Doxorubicin         5e-05    A-498       1   102</span></span>
+<span id="cb40-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-13" tabindex="-1"></a><span class="co">#&gt;  3: Ixabepilone         3e-04    A-498       1     2</span></span>
+<span id="cb40-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-14" tabindex="-1"></a><span class="co">#&gt;  4: Doxorubicin         5e-04    A-498       1   102</span></span>
+<span id="cb40-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-15" tabindex="-1"></a><span class="co">#&gt;  5: Ixabepilone         3e-03    A-498       1    10</span></span>
+<span id="cb40-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-16" tabindex="-1"></a><span class="co">#&gt;  6: Doxorubicin         5e-03    A-498       1   122</span></span>
+<span id="cb40-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-17" tabindex="-1"></a><span class="co">#&gt;  7: Ixabepilone         3e-02    A-498       1     8</span></span>
+<span id="cb40-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-18" tabindex="-1"></a><span class="co">#&gt;  8: Doxorubicin         5e-02    A-498       1   122</span></span>
+<span id="cb40-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-19" tabindex="-1"></a><span class="co">#&gt;  9: Ixabepilone         3e-01    A-498       1     8</span></span>
+<span id="cb40-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-20" tabindex="-1"></a><span class="co">#&gt; 10: Doxorubicin         5e-01    A-498       1   122</span></span>
+<span id="cb40-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb40-21" tabindex="-1"></a><span class="co">#&gt; 11: Doxorubicin         5e+00    A-498       1   102</span></span></code></pre></div>
+<div id="plotting-the-number-of-replicates" class="section level5 hasAnchor">
+<h5>Plotting the Number of Replicates<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#plotting-the-number-of-replicates" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>The last two examples have shown that there are technical replicates in the data.
+We can visualize the number of replicates using a histogram.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-1" tabindex="-1"></a>tre <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-2" tabindex="-1"></a>  <span class="fu">aggregate</span>(</span>
+<span id="cb41-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-3" tabindex="-1"></a>    <span class="at">assay =</span> <span class="st">&quot;sensitivity&quot;</span>,</span>
+<span id="cb41-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-4" tabindex="-1"></a>    <span class="at">N =</span> .N,</span>
+<span id="cb41-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-5" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;treatmentid&quot;</span>, <span class="st">&quot;treatmentdose&quot;</span>, <span class="st">&quot;sampleid&quot;</span>, <span class="st">&quot;bio_rep&quot;</span>)</span>
+<span id="cb41-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-6" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb41-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-7" tabindex="-1"></a>  <span class="fu">with</span>(</span>
+<span id="cb41-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-8" tabindex="-1"></a>    <span class="at">expr =</span> <span class="fu">hist</span>(</span>
+<span id="cb41-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-9" tabindex="-1"></a>      N,</span>
+<span id="cb41-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-10" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">&quot;Histogram of Number of Replicates&quot;</span>,</span>
+<span id="cb41-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-11" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">&quot;Number of Replicates&quot;</span></span>
+<span id="cb41-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-12" tabindex="-1"></a>    )</span>
+<span id="cb41-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb41-13" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/tre_aggregate-1.png" width="672" /></p>
+</div>
+<div id="summarize-over-technical-replicates" class="section level5 hasAnchor">
+<h5>Summarize Over Technical Replicates<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#summarize-over-technical-replicates" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Depending on the experiment design, you will need to choose how you want to proceed with the data.</p>
+<p>One common approach is to summarize the technical replicates into a single value, this can be done by taking the mean, median, or any other summary statistic.</p>
+</div>
+</div>
+<div id="endoaggregate" class="section level4 hasAnchor">
+<h4><code>Endoaggregate</code><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#endoaggregate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In the interest of computation time and resources, we want to summarize the technical replicates into a single value and store that result <strong>inside</strong> the <code>TreatmentResponseExperiment</code>.</p>
+<p>For this, we have developed the <code>endoaggregate</code> method.</p>
+<p>This method will perform similar to the <code>aggregate</code> method, but will return a <code>TreatmentResponseExperiment</code> object with the summarized data as another assay.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-1" tabindex="-1"></a>new_tre <span class="ot">&lt;-</span> tre <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-2" tabindex="-1"></a>  <span class="fu">endoaggregate</span>(</span>
+<span id="cb42-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-3" tabindex="-1"></a>    <span class="at">N =</span> .N,</span>
+<span id="cb42-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-4" tabindex="-1"></a>    <span class="at">assay =</span> <span class="st">&quot;sensitivity&quot;</span>,</span>
+<span id="cb42-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-5" tabindex="-1"></a>    <span class="at">target =</span> <span class="st">&quot;tech_rep_counts&quot;</span>,</span>
+<span id="cb42-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-6" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;treatmentid&quot;</span>, <span class="st">&quot;treatmentdose&quot;</span>, <span class="st">&quot;sampleid&quot;</span>, <span class="st">&quot;bio_rep&quot;</span>)</span>
+<span id="cb42-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-7" tabindex="-1"></a>  )</span>
+<span id="cb42-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-8" tabindex="-1"></a><span class="fu">show</span>(new_tre)</span>
+<span id="cb42-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-9" tabindex="-1"></a><span class="co">#&gt; &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb42-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-10" tabindex="-1"></a><span class="co">#&gt;    dim:  4847 52 </span></span>
+<span id="cb42-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-11" tabindex="-1"></a><span class="co">#&gt;    assays(2): sensitivity tech_rep_counts </span></span>
+<span id="cb42-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-12" tabindex="-1"></a><span class="co">#&gt;    rownames(4847): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 1000:Nelarabine:1 4000:Ifosfamide:1 </span></span>
+<span id="cb42-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-13" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb42-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-14" tabindex="-1"></a><span class="co">#&gt;    colnames(52): 786-O:1 A-498:1 A-549:1 ... UACC-257:1 UACC-62:1 UO-31:1 </span></span>
+<span id="cb42-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-15" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb42-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-16" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span>
+<span id="cb42-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-17" tabindex="-1"></a><span class="fu">head</span>(new_tre<span class="sc">$</span>tech_rep_counts[<span class="fu">order</span>(<span class="sc">-</span>N)])</span>
+<span id="cb42-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-18" tabindex="-1"></a><span class="co">#&gt;    treatmentdose treatmentid    sampleid bio_rep     N</span></span>
+<span id="cb42-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-19" tabindex="-1"></a><span class="co">#&gt;            &lt;num&gt;      &lt;char&gt;      &lt;char&gt;   &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb42-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-20" tabindex="-1"></a><span class="co">#&gt; 1:         0.005 Doxorubicin     HCT 116       1   153</span></span>
+<span id="cb42-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-21" tabindex="-1"></a><span class="co">#&gt; 2:         0.050 Doxorubicin     HCT 116       1   153</span></span>
+<span id="cb42-22"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-22" tabindex="-1"></a><span class="co">#&gt; 3:         0.500 Doxorubicin     HCT 116       1   153</span></span>
+<span id="cb42-23"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-23" tabindex="-1"></a><span class="co">#&gt; 4:         0.005 Doxorubicin NCI-ADR-RES       1   132</span></span>
+<span id="cb42-24"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-24" tabindex="-1"></a><span class="co">#&gt; 5:         0.050 Doxorubicin NCI-ADR-RES       1   132</span></span>
+<span id="cb42-25"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb42-25" tabindex="-1"></a><span class="co">#&gt; 6:         0.500 Doxorubicin NCI-ADR-RES       1   132</span></span></code></pre></div>
+<p>Let’s use this method to summarize the technical replicates by taking the mean of the <code>viability</code> values for each unique combination of <code>treatmentid</code>, <code>treatmentdose</code>, <code>sampleid</code>, and <code>bio_rep</code>.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-1" tabindex="-1"></a>tre_avged <span class="ot">&lt;-</span> tre <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-2" tabindex="-1"></a>  <span class="fu">endoaggregate</span>(</span>
+<span id="cb43-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-3" tabindex="-1"></a>    <span class="at">viability =</span> <span class="fu">mean</span>(viability),</span>
+<span id="cb43-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-4" tabindex="-1"></a>    <span class="at">assay =</span> <span class="st">&quot;sensitivity&quot;</span>,</span>
+<span id="cb43-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-5" tabindex="-1"></a>    <span class="at">target =</span> <span class="st">&quot;mean_sensitivity&quot;</span>,</span>
+<span id="cb43-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-6" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;treatmentid&quot;</span>, <span class="st">&quot;treatmentdose&quot;</span>, <span class="st">&quot;sampleid&quot;</span>, <span class="st">&quot;bio_rep&quot;</span>)</span>
+<span id="cb43-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-7" tabindex="-1"></a>  )</span>
+<span id="cb43-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-8" tabindex="-1"></a><span class="fu">str</span>(tre_avged<span class="sc">$</span>mean_sensitivity)</span>
+<span id="cb43-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-9" tabindex="-1"></a><span class="co">#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   9040 obs. of  5 variables:</span></span>
+<span id="cb43-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-10" tabindex="-1"></a><span class="co">#&gt;  $ treatmentdose: num  1e-07 1e-07 1e-07 1e-07 1e-07 1e-07 1e-07 1e-07 1e-07 1e-07 ...</span></span>
+<span id="cb43-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-11" tabindex="-1"></a><span class="co">#&gt;  $ treatmentid  : chr  &quot;Ixabepilone&quot; &quot;Ixabepilone&quot; &quot;Ixabepilone&quot; &quot;Ixabepilone&quot; ...</span></span>
+<span id="cb43-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-12" tabindex="-1"></a><span class="co">#&gt;  $ sampleid     : chr  &quot;786-O&quot; &quot;A-498&quot; &quot;A-549&quot; &quot;BT-549&quot; ...</span></span>
+<span id="cb43-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-13" tabindex="-1"></a><span class="co">#&gt;  $ bio_rep      : int  1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb43-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-14" tabindex="-1"></a><span class="co">#&gt;  $ viability    : num  98 99.7 99.3 96 103.7 ...</span></span>
+<span id="cb43-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-15" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;sorted&quot;)= chr [1:4] &quot;treatmentdose&quot; &quot;treatmentid&quot; &quot;sampleid&quot; &quot;bio_rep&quot;</span></span>
+<span id="cb43-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb43-16" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
+<div id="computing-profiles" class="section level5 hasAnchor">
+<h5>Computing Profiles<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#computing-profiles" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-1" tabindex="-1"></a>tre_profiled <span class="ot">&lt;-</span> tre_avged <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-2" tabindex="-1"></a>  <span class="fu">endoaggregate</span>(</span>
+<span id="cb44-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-3" tabindex="-1"></a>    {</span>
+<span id="cb44-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-4" tabindex="-1"></a>      fit <span class="ot">&lt;-</span> PharmacoGx<span class="sc">::</span><span class="fu">logLogisticRegression</span>(treatmentdose, viability)</span>
+<span id="cb44-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-5" tabindex="-1"></a>      IC50 <span class="ot">&lt;-</span> PharmacoGx<span class="sc">::</span><span class="fu">computeIC50</span>(treatmentdose, <span class="at">Hill_fit =</span> fit)</span>
+<span id="cb44-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-6" tabindex="-1"></a>      AAC <span class="ot">&lt;-</span> PharmacoGx<span class="sc">::</span><span class="fu">computeAUC</span>(treatmentdose, <span class="at">Hill_fit =</span> fit, <span class="at">area.type =</span> <span class="st">&quot;Fitted&quot;</span>)</span>
+<span id="cb44-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-7" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb44-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-8" tabindex="-1"></a>        <span class="at">HS =</span> fit[[<span class="st">&quot;HS&quot;</span>]], <span class="at">E_inf =</span> fit[[<span class="st">&quot;E_inf&quot;</span>]] <span class="sc">/</span> <span class="dv">100</span>, <span class="at">EC50 =</span> fit[[<span class="st">&quot;EC50&quot;</span>]],</span>
+<span id="cb44-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-9" tabindex="-1"></a>        <span class="at">Rsq =</span> <span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">attributes</span>(fit))),</span>
+<span id="cb44-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-10" tabindex="-1"></a>        <span class="at">AAC =</span> AAC,</span>
+<span id="cb44-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-11" tabindex="-1"></a>        <span class="at">IC50 =</span> IC50</span>
+<span id="cb44-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-12" tabindex="-1"></a>      )</span>
+<span id="cb44-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-13" tabindex="-1"></a>    },</span>
+<span id="cb44-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-14" tabindex="-1"></a>    <span class="at">assay =</span> <span class="st">&quot;mean_sensitivity&quot;</span>,</span>
+<span id="cb44-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-15" tabindex="-1"></a>    <span class="at">subset =</span> treatmentid <span class="sc">%in%</span> <span class="fu">rowData</span>(tre_avged)[, <span class="fu">unique</span>(treatmentid)][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>],</span>
+<span id="cb44-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-16" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;treatmentid&quot;</span>, <span class="st">&quot;sampleid&quot;</span>, <span class="st">&quot;bio_rep&quot;</span>),</span>
+<span id="cb44-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-17" tabindex="-1"></a>    <span class="at">enlist =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb44-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-18" tabindex="-1"></a>    <span class="at">target =</span> <span class="st">&quot;profiles&quot;</span></span>
+<span id="cb44-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb44-19" tabindex="-1"></a>  )</span></code></pre></div>
+<p>If we didn’t subset the <code>TRE</code> this computation will have taken a while since it is a computationally intensive operation and run on a single thread.</p>
+<p>Under the hood, the <code>CoreGx</code> package performs the aggregation. To speed up computation, it provides an <code>nthread</code> parameter to parallelize the computation.</p>
+<p>To determine a safe, and optimal number of threads to use, we can use the <code>CoreGx::optimizeCoreGx</code> function which will tell us a safe number of threads.</p>
+<div class="callout-blue">
+<span class="callout-icon"><i class="fas fa-circle-info" aria-hidden="true"></i></span>
+<div class="callout-content">
+<div class="callout-title-static" style="margin-bottom: 0.5em;">
+<p>Note</p>
+</div>
+<p>The following two code chunks will not be evaluated in this vignette as it may take some time.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb45-1" tabindex="-1"></a>CoreGx<span class="sc">::</span><span class="fu">optimizeCoreGx</span>(tre_avged)</span></code></pre></div>
+<p>Depending on your device, this number may vary. Let’s use a conservative number of threads for this example.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-1" tabindex="-1"></a>THREADS <span class="ot">&lt;-</span> <span class="dv">6</span> <span class="co"># github runners provide 2c</span></span>
+<span id="cb46-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-2" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-3" tabindex="-1"></a>tre_profiled <span class="ot">&lt;-</span> tre_avged <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-4" tabindex="-1"></a>  <span class="fu">endoaggregate</span>(</span>
+<span id="cb46-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-5" tabindex="-1"></a>    {</span>
+<span id="cb46-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-6" tabindex="-1"></a>      fit <span class="ot">&lt;-</span> PharmacoGx<span class="sc">::</span><span class="fu">logLogisticRegression</span>(treatmentdose, viability)</span>
+<span id="cb46-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-7" tabindex="-1"></a>      IC50 <span class="ot">&lt;-</span> PharmacoGx<span class="sc">::</span><span class="fu">computeIC50</span>(treatmentdose, <span class="at">Hill_fit =</span> fit)</span>
+<span id="cb46-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-8" tabindex="-1"></a>      AAC <span class="ot">&lt;-</span> PharmacoGx<span class="sc">::</span><span class="fu">computeAUC</span>(treatmentdose, <span class="at">Hill_fit =</span> fit, <span class="at">area.type =</span> <span class="st">&quot;Fitted&quot;</span>)</span>
+<span id="cb46-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-9" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb46-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-10" tabindex="-1"></a>        <span class="at">HS =</span> fit[[<span class="st">&quot;HS&quot;</span>]], <span class="at">E_inf =</span> fit[[<span class="st">&quot;E_inf&quot;</span>]] <span class="sc">/</span> <span class="dv">100</span>, <span class="at">EC50 =</span> fit[[<span class="st">&quot;EC50&quot;</span>]],</span>
+<span id="cb46-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-11" tabindex="-1"></a>        <span class="at">Rsq =</span> <span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">attributes</span>(fit))),</span>
+<span id="cb46-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-12" tabindex="-1"></a>        <span class="at">AAC =</span> AAC,</span>
+<span id="cb46-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-13" tabindex="-1"></a>        <span class="at">IC50 =</span> IC50,</span>
+<span id="cb46-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-14" tabindex="-1"></a>        <span class="at">mindose =</span> <span class="fu">min</span>(treatmentdose),</span>
+<span id="cb46-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-15" tabindex="-1"></a>        <span class="at">maxdose =</span> <span class="fu">max</span>(treatmentdose),</span>
+<span id="cb46-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-16" tabindex="-1"></a>        <span class="at">numdose =</span> <span class="fu">length</span>(<span class="fu">unique</span>(treatmentdose)),</span>
+<span id="cb46-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-17" tabindex="-1"></a>        <span class="at">minviability =</span> <span class="fu">min</span>(viability),</span>
+<span id="cb46-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-18" tabindex="-1"></a>        <span class="at">maxviability =</span> <span class="fu">max</span>(viability)</span>
+<span id="cb46-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-19" tabindex="-1"></a>      )</span>
+<span id="cb46-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-20" tabindex="-1"></a>    },</span>
+<span id="cb46-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-21" tabindex="-1"></a>    <span class="at">assay =</span> <span class="st">&quot;mean_sensitivity&quot;</span>,</span>
+<span id="cb46-22"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-22" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;treatmentid&quot;</span>, <span class="st">&quot;sampleid&quot;</span>, <span class="st">&quot;bio_rep&quot;</span>),</span>
+<span id="cb46-23"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-23" tabindex="-1"></a>    <span class="at">enlist =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb46-24"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-24" tabindex="-1"></a>    <span class="at">target =</span> <span class="st">&quot;profiles&quot;</span>,</span>
+<span id="cb46-25"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-25" tabindex="-1"></a>    <span class="at">nthread =</span> THREADS</span>
+<span id="cb46-26"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb46-26" tabindex="-1"></a>  )</span></code></pre></div>
+<p>Let’s look at the profiles we have computed:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-1" tabindex="-1"></a><span class="fu">show</span>(tre_profiled)</span>
+<span id="cb47-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-2" tabindex="-1"></a><span class="co">#&gt; &lt;TreatmentResponseExperiment&gt; </span></span>
+<span id="cb47-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-3" tabindex="-1"></a><span class="co">#&gt;    dim:  4847 52 </span></span>
+<span id="cb47-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-4" tabindex="-1"></a><span class="co">#&gt;    assays(3): sensitivity mean_sensitivity profiles </span></span>
+<span id="cb47-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-5" tabindex="-1"></a><span class="co">#&gt;    rownames(4847): 1e-07:Ixabepilone:1 1e-06:Ixabepilone:1 ... 1000:Nelarabine:1 4000:Ifosfamide:1 </span></span>
+<span id="cb47-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-6" tabindex="-1"></a><span class="co">#&gt;    rowData(4): treatmentdose treatmentid tech_rep CONC1 </span></span>
+<span id="cb47-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-7" tabindex="-1"></a><span class="co">#&gt;    colnames(52): 786-O:1 A-498:1 A-549:1 ... UACC-257:1 UACC-62:1 UO-31:1 </span></span>
+<span id="cb47-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-8" tabindex="-1"></a><span class="co">#&gt;    colData(3): sampleid bio_rep PANEL </span></span>
+<span id="cb47-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-9" tabindex="-1"></a><span class="co">#&gt;    metadata(0): none</span></span>
+<span id="cb47-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-10" tabindex="-1"></a></span>
+<span id="cb47-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-11" tabindex="-1"></a>tre_profiled<span class="sc">$</span>profiles</span>
+<span id="cb47-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-12" tabindex="-1"></a><span class="co">#&gt; Key: &lt;treatmentid, sampleid, bio_rep&gt;</span></span>
+<span id="cb47-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-13" tabindex="-1"></a><span class="co">#&gt;      treatmentid sampleid bio_rep    HS      E_inf  EC50       Rsq       AAC</span></span>
+<span id="cb47-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-14" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;   &lt;char&gt;   &lt;int&gt; &lt;num&gt;      &lt;num&gt; &lt;num&gt;     &lt;num&gt;     &lt;num&gt;</span></span>
+<span id="cb47-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-15" tabindex="-1"></a><span class="co">#&gt;   1: Ixabepilone    786-O       1     1 0.22057530  0.03 0.9794689 12.531587</span></span>
+<span id="cb47-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-16" tabindex="-1"></a><span class="co">#&gt;   2: Ixabepilone    A-498       1     1 0.31290066  0.03 0.9789242 11.047180</span></span>
+<span id="cb47-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-17" tabindex="-1"></a><span class="co">#&gt;   3: Ixabepilone    A-549       1     1 0.14355321  0.03 0.9457645 13.769947</span></span>
+<span id="cb47-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-18" tabindex="-1"></a><span class="co">#&gt;   4: Ixabepilone   BT-549       1     1 0.20976649  0.03 0.9608561 12.705370</span></span>
+<span id="cb47-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-19" tabindex="-1"></a><span class="co">#&gt;   5: Ixabepilone CCRF-CEM       1     1 0.02700157  0.03 0.8583904 25.321277</span></span>
+<span id="cb47-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-20" tabindex="-1"></a><span class="co">#&gt;  ---                                                                        </span></span>
+<span id="cb47-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-21" tabindex="-1"></a><span class="co">#&gt; 147: Vinblastine    T-47D       1     1 0.54684798  0.05 0.3701465  5.404228</span></span>
+<span id="cb47-22"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-22" tabindex="-1"></a><span class="co">#&gt; 148: Vinblastine  U-251MG       1     1 0.23576667  0.01 0.5443226 19.888382</span></span>
+<span id="cb47-23"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-23" tabindex="-1"></a><span class="co">#&gt; 149: Vinblastine UACC-257       1     1 0.50895401  0.05 0.3843545  5.856146</span></span>
+<span id="cb47-24"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-24" tabindex="-1"></a><span class="co">#&gt; 150: Vinblastine  UACC-62       1     1 0.31347623  0.01 0.5809319 17.866071</span></span>
+<span id="cb47-25"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-25" tabindex="-1"></a><span class="co">#&gt; 151: Vinblastine    UO-31       1     1 0.68541114  0.10 0.6336420  2.367176</span></span>
+<span id="cb47-26"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-26" tabindex="-1"></a><span class="co">#&gt;            IC50</span></span>
+<span id="cb47-27"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-27" tabindex="-1"></a><span class="co">#&gt;           &lt;num&gt;</span></span>
+<span id="cb47-28"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-28" tabindex="-1"></a><span class="co">#&gt;   1: 0.05368172</span></span>
+<span id="cb47-29"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-29" tabindex="-1"></a><span class="co">#&gt;   2: 0.08017131</span></span>
+<span id="cb47-30"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-30" tabindex="-1"></a><span class="co">#&gt;   3: 0.04208202</span></span>
+<span id="cb47-31"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-31" tabindex="-1"></a><span class="co">#&gt;   4: 0.05168252</span></span>
+<span id="cb47-32"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-32" tabindex="-1"></a><span class="co">#&gt;   5: 0.03171258</span></span>
+<span id="cb47-33"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-33" tabindex="-1"></a><span class="co">#&gt;  ---           </span></span>
+<span id="cb47-34"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-34" tabindex="-1"></a><span class="co">#&gt; 147:         NA</span></span>
+<span id="cb47-35"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-35" tabindex="-1"></a><span class="co">#&gt; 148: 0.01892267</span></span>
+<span id="cb47-36"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-36" tabindex="-1"></a><span class="co">#&gt; 149:         NA</span></span>
+<span id="cb47-37"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-37" tabindex="-1"></a><span class="co">#&gt; 150: 0.02680624</span></span>
+<span id="cb47-38"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb47-38" tabindex="-1"></a><span class="co">#&gt; 151:         NA</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="quality-control-of-pharmacogenomic-datasets" class="section level3 hasAnchor">
+<h3>Quality Control of Pharmacogenomic Datasets<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#quality-control-of-pharmacogenomic-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For the remainder of the lab, we will go over some quick case scenarios that require
+quality control. We will load in new molecular profile.</p>
+<div id="checking-for-missing-values" class="section level4 hasAnchor">
+<h4>Checking for Missing Values<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#checking-for-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-1" tabindex="-1"></a><span class="co"># get molecular profile</span></span>
+<span id="cb48-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-2" tabindex="-1"></a>tpm_matrix <span class="ot">&lt;-</span> pset<span class="sc">@</span>molecularProfiles[[<span class="st">&quot;rnaseq.tpm.batch&quot;</span>]] <span class="sc">|&gt;</span> <span class="fu">assay</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb48-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-3" tabindex="-1"></a>tpm_matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb48-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-4" tabindex="-1"></a><span class="co">#&gt;            NCI-H23    HOP-62     SNB-75 HL-60(TB)     A-549</span></span>
+<span id="cb48-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-5" tabindex="-1"></a><span class="co">#&gt; GENE001 90.5370190  75.59677 104.525210  42.18450  9.391661</span></span>
+<span id="cb48-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-6" tabindex="-1"></a><span class="co">#&gt; GENE002 75.5065358  22.05942         NA        NA 82.203007</span></span>
+<span id="cb48-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-7" tabindex="-1"></a><span class="co">#&gt; GENE003 85.2218882 103.63729   8.646855  86.64833 42.742828</span></span>
+<span id="cb48-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-8" tabindex="-1"></a><span class="co">#&gt; GENE004  0.0749728  89.58816  19.705347  45.51081 75.588726</span></span>
+<span id="cb48-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-9" tabindex="-1"></a><span class="co">#&gt; GENE005 57.0379889  80.19416  92.440089  53.37649 66.238551</span></span>
+<span id="cb48-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-10" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-11" tabindex="-1"></a><span class="co"># get metadata</span></span>
+<span id="cb48-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-12" tabindex="-1"></a>meta <span class="ot">&lt;-</span> pset<span class="sc">@</span>molecularProfiles[[<span class="st">&quot;rnaseq.tpm.batch&quot;</span>]] <span class="sc">|&gt;</span> <span class="fu">colData</span>()</span>
+<span id="cb48-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-13" tabindex="-1"></a>meta <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb48-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-14" tabindex="-1"></a><span class="co">#&gt; DataFrame with 6 rows and 2 columns</span></span>
+<span id="cb48-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-15" tabindex="-1"></a><span class="co">#&gt;              sampleid   batchid</span></span>
+<span id="cb48-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-16" tabindex="-1"></a><span class="co">#&gt;           &lt;character&gt; &lt;numeric&gt;</span></span>
+<span id="cb48-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-17" tabindex="-1"></a><span class="co">#&gt; NCI-H23       NCI-H23         1</span></span>
+<span id="cb48-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-18" tabindex="-1"></a><span class="co">#&gt; HOP-62         HOP-62         1</span></span>
+<span id="cb48-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-19" tabindex="-1"></a><span class="co">#&gt; SNB-75         SNB-75         1</span></span>
+<span id="cb48-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-20" tabindex="-1"></a><span class="co">#&gt; HL-60(TB)   HL-60(TB)         2</span></span>
+<span id="cb48-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-21" tabindex="-1"></a><span class="co">#&gt; A-549           A-549         2</span></span>
+<span id="cb48-22"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb48-22" tabindex="-1"></a><span class="co">#&gt; SF268           SF268         2</span></span></code></pre></div>
+<p>For this exercise, we purposely put in a gene with many missing values. Let’s look for this gene.</p>
+<p>The code below will quantify the number of <code>NA</code> values in each row (gene).</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb49-1" tabindex="-1"></a><span class="fu">apply</span>(tpm_matrix, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))) <span class="sc">|&gt;</span> <span class="fu">head</span>() </span>
+<span id="cb49-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb49-2" tabindex="-1"></a><span class="co">#&gt; GENE001 GENE002 GENE003 GENE004 GENE005 GENE006 </span></span>
+<span id="cb49-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb49-3" tabindex="-1"></a><span class="co">#&gt;       0      25       0       0       0       0</span></span>
+<span id="cb49-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb49-4" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb49-5" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb49-6" tabindex="-1"></a><span class="co"># tre_profiled$profiles</span></span>
+<span id="cb49-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb49-7" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb49-8" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: add code to make box plots for AAC and IC50 per drug</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb50-1" tabindex="-1"></a><span class="co"># print only genes with NA values</span></span>
+<span id="cb50-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb50-2" tabindex="-1"></a>sum_NA <span class="ot">&lt;-</span> <span class="fu">apply</span>(tpm_matrix, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb50-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb50-3" tabindex="-1"></a>sum_NA[sum_NA <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb50-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb50-4" tabindex="-1"></a><span class="co">#&gt; GENE002 </span></span>
+<span id="cb50-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb50-5" tabindex="-1"></a><span class="co">#&gt;      25</span></span></code></pre></div>
+<p>We see that <code>GENE002</code> has 25 <code>NA</code> values. It is important to consider the proportion of <code>NA</code> values relative to the number of observations. We can quickly calculate the proportion:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb51-1" tabindex="-1"></a>num_NA <span class="ot">&lt;-</span> sum_NA[sum_NA <span class="sc">&gt;</span> <span class="dv">0</span>] <span class="sc">|&gt;</span> <span class="fu">unname</span>()</span>
+<span id="cb51-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb51-2" tabindex="-1"></a>num_observations <span class="ot">&lt;-</span> <span class="fu">ncol</span>(tpm_matrix)</span>
+<span id="cb51-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb51-3" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb51-4" tabindex="-1"></a><span class="co"># get proportion</span></span>
+<span id="cb51-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb51-5" tabindex="-1"></a>num_NA <span class="sc">/</span> num_observations</span>
+<span id="cb51-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb51-6" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
+<p>Now we know that 50% of samples have an <code>NA</code> value rather than an expression level for <code>GENE002</code>. This can be indicative of some technical issue. Let’s remove this gene from downstream analysis.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb52-1" tabindex="-1"></a>tpm_matrix <span class="ot">&lt;-</span> tpm_matrix[<span class="sc">-</span><span class="fu">which</span>(<span class="fu">rownames</span>(tpm_matrix) <span class="sc">==</span> <span class="st">&quot;GENE002&quot;</span>), ]</span>
+<span id="cb52-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb52-2" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">is.na</span>(tpm_matrix))</span>
+<span id="cb52-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb52-3" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>In the last line of code, we check if there were any remaining <code>NA</code> values. Since there are none, we can move on to visualizing our data.</p>
+</div>
+<div id="principal-component-analysis-for-outlier-removal" class="section level4 hasAnchor">
+<h4>Principal Component Analysis for Outlier Removal<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#principal-component-analysis-for-outlier-removal" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let’s quickly take a look at our expression matrix again.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb53-1" tabindex="-1"></a>tpm_matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb53-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb53-2" tabindex="-1"></a><span class="co">#&gt;            NCI-H23    HOP-62     SNB-75 HL-60(TB)     A-549</span></span>
+<span id="cb53-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb53-3" tabindex="-1"></a><span class="co">#&gt; GENE001 90.5370190  75.59677 104.525210  42.18450  9.391661</span></span>
+<span id="cb53-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb53-4" tabindex="-1"></a><span class="co">#&gt; GENE003 85.2218882 103.63729   8.646855  86.64833 42.742828</span></span>
+<span id="cb53-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb53-5" tabindex="-1"></a><span class="co">#&gt; GENE004  0.0749728  89.58816  19.705347  45.51081 75.588726</span></span>
+<span id="cb53-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb53-6" tabindex="-1"></a><span class="co">#&gt; GENE005 57.0379889  80.19416  92.440089  53.37649 66.238551</span></span>
+<span id="cb53-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb53-7" tabindex="-1"></a><span class="co">#&gt; GENE006 26.4142662  74.16214  88.222117  96.38433 44.452740</span></span></code></pre></div>
+<p>The expression matrix is currently formatted such that the features (genes) are the rows and the samples (cells) are the columns.</p>
+<p>Since we want to do PCA to visualize the <em>samples</em>, we need to transpose the matrix so that the attributes of the samples (genes) are the columns instead.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-1" tabindex="-1"></a>t_tpm_matrix <span class="ot">&lt;-</span> tpm_matrix <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-2" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">|&gt;</span></span>
+<span id="cb54-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-3" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb54-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-4" tabindex="-1"></a>t_tpm_matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb54-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-5" tabindex="-1"></a><span class="co">#&gt;              GENE001    GENE003    GENE004  GENE005  GENE006</span></span>
+<span id="cb54-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-6" tabindex="-1"></a><span class="co">#&gt; NCI-H23    90.537019  85.221888  0.0749728 57.03799 26.41427</span></span>
+<span id="cb54-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-7" tabindex="-1"></a><span class="co">#&gt; HOP-62     75.596766 103.637293 89.5881605 80.19416 74.16214</span></span>
+<span id="cb54-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-8" tabindex="-1"></a><span class="co">#&gt; SNB-75    104.525210   8.646855 19.7053470 92.44009 88.22212</span></span>
+<span id="cb54-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-9" tabindex="-1"></a><span class="co">#&gt; HL-60(TB)  42.184495  86.648331 45.5108051 53.37649 96.38433</span></span>
+<span id="cb54-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb54-10" tabindex="-1"></a><span class="co">#&gt; A-549       9.391661  42.742828 75.5887260 66.23855 44.45274</span></span></code></pre></div>
+<p>Once the expression matrix is in the correct format, we can perform PCA using the
+<code>prcomp</code> function.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-1" tabindex="-1"></a>org_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(t_tpm_matrix)<span class="sc">$</span>x <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb55-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-2" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(org_pca))</span>
+<span id="cb55-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-4" tabindex="-1"></a><span class="co">#&gt; [1] 50 50</span></span>
+<span id="cb55-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-5" tabindex="-1"></a></span>
+<span id="cb55-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-6" tabindex="-1"></a>org_pca[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb55-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-7" tabindex="-1"></a><span class="co">#&gt;                  PC1       PC2       PC3        PC4       PC5</span></span>
+<span id="cb55-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-8" tabindex="-1"></a><span class="co">#&gt; NCI-H23   -44.039730 -45.92050  63.97547  -9.390331  42.39060</span></span>
+<span id="cb55-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-9" tabindex="-1"></a><span class="co">#&gt; HOP-62     -9.862044  10.97767 -90.24025  40.301276 -27.50330</span></span>
+<span id="cb55-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-10" tabindex="-1"></a><span class="co">#&gt; SNB-75     16.981835 -43.81072 -16.12549  -1.423588 -42.08150</span></span>
+<span id="cb55-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-11" tabindex="-1"></a><span class="co">#&gt; HL-60(TB)  83.651364  10.58870  59.28436 -24.431547   6.36504</span></span>
+<span id="cb55-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb55-12" tabindex="-1"></a><span class="co">#&gt; A-549       8.510913  84.27694  59.59322  -9.085760  29.08710</span></span></code></pre></div>
+<p>To visualize the data, we plot the first two principal components (PCs).</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-1" tabindex="-1"></a><span class="co"># add batch labels</span></span>
+<span id="cb56-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-2" tabindex="-1"></a>org_pca<span class="sc">$</span>Batch <span class="ot">&lt;-</span> meta<span class="sc">$</span>batchid[<span class="fu">match</span>(<span class="fu">rownames</span>(org_pca), meta<span class="sc">$</span>sampleid)] <span class="sc">|&gt;</span> <span class="fu">as.factor</span>()</span>
+<span id="cb56-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-3" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-4" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb56-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-5" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(org_pca) <span class="sc">+</span></span>
+<span id="cb56-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> Batch), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb56-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-7" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#624763&quot;</span>, <span class="st">&quot;#B1D3A3&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb56-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb56-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-9" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Before Batch Correction&quot;</span>)</span>
+<span id="cb56-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb56-10" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot_PCs_batch-1.png" width="672" /></p>
+<p>There is a very obvious outlier in our data. We can quantitatively identify this outlier by identifying samples that lie beyond a threshold of <code>1.5 * IQR</code> of the first and fourth quartiles.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-1" tabindex="-1"></a><span class="co"># extract PC scores for given PC</span></span>
+<span id="cb57-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-2" tabindex="-1"></a>scores <span class="ot">&lt;-</span> org_pca[[<span class="st">&quot;PC1&quot;</span>]]</span>
+<span id="cb57-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-3" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-4" tabindex="-1"></a><span class="co"># compute IQR of given PC</span></span>
+<span id="cb57-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-5" tabindex="-1"></a>iqr <span class="ot">&lt;-</span> <span class="fu">IQR</span>(scores)</span>
+<span id="cb57-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-6" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-7" tabindex="-1"></a><span class="co"># compute upper and lower thresholds</span></span>
+<span id="cb57-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-8" tabindex="-1"></a>upp_thres <span class="ot">&lt;-</span> <span class="fu">quantile</span>(scores, <span class="fl">0.75</span>) <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr</span>
+<span id="cb57-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-9" tabindex="-1"></a>low_thres <span class="ot">&lt;-</span> <span class="fu">quantile</span>(scores, <span class="fl">0.25</span>) <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr</span>
+<span id="cb57-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-10" tabindex="-1"></a></span>
+<span id="cb57-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-11" tabindex="-1"></a><span class="co"># print samples with values beyond threshold</span></span>
+<span id="cb57-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-12" tabindex="-1"></a>outlier <span class="ot">&lt;-</span> <span class="fu">rownames</span>(org_pca)[<span class="fu">which</span>(scores <span class="sc">&lt;</span> low_thres <span class="sc">|</span> scores <span class="sc">&gt;</span> upp_thres)]</span>
+<span id="cb57-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-13" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Outlier for PC1:&quot;</span>, outlier) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb57-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb57-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Outlier for PC1: T-47D&quot;</span></span></code></pre></div>
+<p>Let’s remove <code>T-47D</code> and re-plot our data.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-1" tabindex="-1"></a><span class="co"># remove outlier</span></span>
+<span id="cb58-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-2" tabindex="-1"></a>outlier <span class="ot">&lt;-</span> <span class="st">&quot;T-47D&quot;</span></span>
+<span id="cb58-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-3" tabindex="-1"></a>tpm_matrix[[outlier]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb58-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-4" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-5" tabindex="-1"></a><span class="co"># redo PCA and plotting</span></span>
+<span id="cb58-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-6" tabindex="-1"></a>org_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">t</span>(tpm_matrix))<span class="sc">$</span>x <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb58-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-7" tabindex="-1"></a>org_pca<span class="sc">$</span>Batch <span class="ot">&lt;-</span> meta<span class="sc">$</span>batchid[<span class="fu">match</span>(<span class="fu">rownames</span>(org_pca), meta<span class="sc">$</span>sampleid)] <span class="sc">|&gt;</span> <span class="fu">as.factor</span>()</span>
+<span id="cb58-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-8" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-9" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(org_pca) <span class="sc">+</span></span>
+<span id="cb58-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-10" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> Batch), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb58-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-11" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#624763&quot;</span>, <span class="st">&quot;#B1D3A3&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb58-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-12" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb58-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-13" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Before Batch Correction&quot;</span>)</span>
+<span id="cb58-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-14" tabindex="-1"></a></span>
+<span id="cb58-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb58-15" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="_main_files/figure-html/rm_outliers-1.png" width="672" /></p>
+<p>Now that the outlier is removed, we have a better visualization of the data. It is very evident that the data points (samples) tend to cluster by batch. This is indicative of a potential batch effect.</p>
+</div>
+<div id="adjusting-for-known-batches" class="section level4 hasAnchor">
+<h4>Adjusting for Known Batches<a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#adjusting-for-known-batches" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>When we have a known batch, we can adjust for it directly. One method is to use the <code>ComBat()</code> function from the <code>sva</code> package.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-1" tabindex="-1"></a><span class="co"># adjust for known batch</span></span>
+<span id="cb59-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-2" tabindex="-1"></a>adj_tpm_matrix <span class="ot">&lt;-</span> <span class="fu">ComBat</span>(</span>
+<span id="cb59-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-3" tabindex="-1"></a>  <span class="at">dat =</span> tpm_matrix,</span>
+<span id="cb59-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-4" tabindex="-1"></a>  <span class="at">batch =</span> <span class="fu">as.factor</span>(meta<span class="sc">$</span>batchid[<span class="fu">match</span>(<span class="fu">colnames</span>(tpm_matrix), meta<span class="sc">$</span>sampleid)]),</span>
+<span id="cb59-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-5" tabindex="-1"></a>  <span class="at">par.prior =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb59-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-6" tabindex="-1"></a>  <span class="at">prior.plots =</span> <span class="cn">FALSE</span></span>
+<span id="cb59-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-7" tabindex="-1"></a>)</span>
+<span id="cb59-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-8" tabindex="-1"></a><span class="co">#&gt; Found2batches</span></span>
+<span id="cb59-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-9" tabindex="-1"></a><span class="co">#&gt; Adjusting for0covariate(s) or covariate level(s)</span></span>
+<span id="cb59-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-10" tabindex="-1"></a><span class="co">#&gt; Standardizing Data across genes</span></span>
+<span id="cb59-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-11" tabindex="-1"></a><span class="co">#&gt; Fitting L/S model and finding priors</span></span>
+<span id="cb59-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-12" tabindex="-1"></a><span class="co">#&gt; Finding parametric adjustments</span></span>
+<span id="cb59-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-13" tabindex="-1"></a><span class="co">#&gt; Adjusting the Data</span></span>
+<span id="cb59-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-14" tabindex="-1"></a></span>
+<span id="cb59-15"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-15" tabindex="-1"></a>adj_tpm_matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb59-16"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-16" tabindex="-1"></a><span class="co">#&gt;           NCI-H23   HOP-62    SNB-75 HL-60(TB)     A-549</span></span>
+<span id="cb59-17"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-17" tabindex="-1"></a><span class="co">#&gt; GENE001 81.991219 68.65465 94.477925  46.14868  9.844954</span></span>
+<span id="cb59-18"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-18" tabindex="-1"></a><span class="co">#&gt; GENE003 78.009018 94.55152  9.221893  94.18421 46.353576</span></span>
+<span id="cb59-19"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-19" tabindex="-1"></a><span class="co">#&gt; GENE004  2.112512 81.72158 19.570898  48.84136 82.434411</span></span>
+<span id="cb59-20"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-20" tabindex="-1"></a><span class="co">#&gt; GENE005 53.126927 73.84929 84.808130  57.36965 71.508314</span></span>
+<span id="cb59-21"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb59-21" tabindex="-1"></a><span class="co">#&gt; GENE006 25.252026 67.80845 80.339726 106.46140 48.702080</span></span></code></pre></div>
+<p>We can now perform PCA and visualize on our adjusted TPM counts matrix. We will compare the results to the original PCA visualization.</p>
+<p>Don’t forget to transpose the adjusted counts matrix!</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-1" tabindex="-1"></a><span class="co"># perform PCA on adjusted matrix</span></span>
+<span id="cb60-2"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-2" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-3" tabindex="-1"></a>adj_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">t</span>(adj_tpm_matrix))<span class="sc">$</span>x <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb60-4"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-4" tabindex="-1"></a>adj_pca<span class="sc">$</span>Batch <span class="ot">&lt;-</span> meta<span class="sc">$</span>batchid[<span class="fu">match</span>(<span class="fu">rownames</span>(adj_pca), meta<span class="sc">$</span>sampleid)] <span class="sc">|&gt;</span> <span class="fu">as.factor</span>()</span>
+<span id="cb60-5"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-5" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-6" tabindex="-1"></a><span class="co"># create scatter plot</span></span>
+<span id="cb60-7"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-7" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(adj_pca) <span class="sc">+</span></span>
+<span id="cb60-8"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> Batch), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb60-9"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-9" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#624763&quot;</span>, <span class="st">&quot;#B1D3A3&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb60-10"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-10" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb60-11"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-11" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;After Batch Correction&quot;</span>)</span>
+<span id="cb60-12"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-12" tabindex="-1"></a></span>
+<span id="cb60-13"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-13" tabindex="-1"></a><span class="co"># plot both plots side by side for comparison</span></span>
+<span id="cb60-14"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#cb60-14" tabindex="-1"></a><span class="fu">ggarrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pca_adj_batch-1.png" width="672" /></p>
+<p>For downstream pharmacogenomic analysis (or any other bioinformatic analysis), the batch-corrected expression matrix should be used.</p>
+<p>For downstream pharmacogenomic analysis (or any other bioinformatic analysis), the batch-corrected expression matrix should be used.</p>
+<div class="callout-green">
+<span class="callout-icon"><i class="fas fa-circle-check" aria-hidden="true"></i></span>
+<div class="callout-content">
+<div class="callout-title-static" style="margin-bottom: 0.5em;">
+<p>Lab Completed!</p>
+</div>
+<p>Congratulations! You have completed Lab 2!</p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/bioinformaticsdotca/PGX_2024/blob/main/020-module-2.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

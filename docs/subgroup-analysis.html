@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Subgroup Analysis | NAME OF WORKSHOP YEAR</title>
+  <meta name="description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Subgroup Analysis | NAME OF WORKSHOP YEAR" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://cbw-dev.github.io/bookdown-template/img/bioinformatics_logo.png" />
+  <meta property="og:description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="github-repo" content="cbw-dev/bookdown-template" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Subgroup Analysis | NAME OF WORKSHOP YEAR" />
+  
+  <meta name="twitter:description" content="Workshop website for the YEAR WORKSHOP Canadian Bioinformatics Workshop" />
+  <meta name="twitter:image" content="https://cbw-dev.github.io/bookdown-template/img/bioinformatics_logo.png" />
+
+<meta name="author" content="Faculty: INSTRUCTOR AND TA NAMES" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="perform-meta-analysis.html"/>
+<link rel="next" href="interactive-exercise.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://bioinformaticsdotca.github.io/">
+ <img src="img/bioinformatics_logo.png" width="90%" alt="bioinformatics.ca logo" style="display:block; margin-left:auto; margin-right:auto; margin-top:15px;">
+ </a>
+<li><center><strong><a href="./"><br>Pharmacogenomics Data Analysis<br><br></a></strong></center></li>
+<a href="./">
+ <img src="img/pgx.png" width="70%" alt="Pharmacogenomics Data Analysis logo" style="display:block; margin-left:auto; margin-right:auto; ">
+ </a>
+<br>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop Info</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-work"><i class="fa fa-check"></i>Pre-work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-and-compute-setup.html"><a href="data-and-compute-setup.html"><i class="fa fa-check"></i>Data and Compute Setup</a></li>
+<li class="part"><span><b>II Modules</b></span></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><i class="fa fa-check"></i>Module 1: Intro to Pharmacogenomics in the Context of Cancer</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lecture"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lab"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html"><i class="fa fa-check"></i>Module 2: Data Preparation for Pharmacogenomic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lecture-1"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lab-1"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><i class="fa fa-check"></i>Module 3: Pharmacogenomics for Biomarker Discover - Basic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lecture-2"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lab-2"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><i class="fa fa-check"></i>Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lecture-3"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lab-3"><i class="fa fa-check"></i>Lab</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#instructors-names-and-contact-information"><i class="fa fa-check"></i>Instructor(s) name(s) and contact information</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#introduction"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html"><i class="fa fa-check"></i>Data Acquisition and Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html#extracting-required-vectors-for-biomarker-analysis"><i class="fa fa-check"></i>Extracting required vectors for biomarker analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html#gene-expression-data"><i class="fa fa-check"></i>Gene Expression Data</a></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html#drug-response-data"><i class="fa fa-check"></i>Drug Response Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html#gene-expression-exploratory-data-analysis-eda"><i class="fa fa-check"></i>Gene Expression Exploratory Data Analysis (EDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="effect-size-calculation.html"><a href="effect-size-calculation.html"><i class="fa fa-check"></i>Effect Size Calculation</a></li>
+<li class="chapter" data-level="" data-path="perform-meta-analysis.html"><a href="perform-meta-analysis.html"><i class="fa fa-check"></i>Perform Meta-Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="perform-meta-analysis.html"><a href="perform-meta-analysis.html#visualization-with-forest-plots"><i class="fa fa-check"></i>Visualization with Forest Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="perform-meta-analysis.html"><a href="perform-meta-analysis.html#forest-function-from-meta-package"><i class="fa fa-check"></i>forest function from meta package</a></li>
+<li class="chapter" data-level="" data-path="perform-meta-analysis.html"><a href="perform-meta-analysis.html#using-ggplot2"><i class="fa fa-check"></i>Using ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html"><i class="fa fa-check"></i>Subgroup Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#data-preparation"><i class="fa fa-check"></i>Data Preparation</a></li>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#statistical-analysis-to-measure-drug-response-associations"><i class="fa fa-check"></i>Statistical Analysis to measure Drug Response Associations</a>
+<ul>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#function-for-computing-concordance-index"><i class="fa fa-check"></i>Function for computing concordance index</a></li>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#visualizing-feature-drug-associations"><i class="fa fa-check"></i>Visualizing feature-drug associations</a></li>
+<li class="chapter" data-level="" data-path="subgroup-analysis.html"><a href="subgroup-analysis.html#identifying-candidate-biomarkers"><i class="fa fa-check"></i>Identifying candidate biomarkers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="interactive-exercise.html"><a href="interactive-exercise.html"><i class="fa fa-check"></i>Interactive Exercise</a></li>
+<li class="divider"></li>
+<h1 id="sponsors">Sponsors</h1>
+<center>
+<a href="https://oicr.on.ca/"><img src="img/sponsors/oicr.png" width=25% style="display:inline-block;" style="padding-bottom: 20px" alt="Ontario Institute for Cancer Research logo.">
+<a href="https://www.hpcforhealth.ca/"><img src="img/sponsors/hpc4health.png" width=60% style="display:inline-block;" style="padding-bottom: 20px "alt="HPC4Health logo.">
+
+<br><br>
+
+<a href="https://genomecanada.ca/"><img src="img/sponsors/genomecanada.png" height="70" style="display:inline-block;"  style="padding-bottom: 20px" alt="Genome Canada logo.">
+<a href="https://www.ontariogenomics.ca/"><img src="img/sponsors/ontariogenomics.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Ontario Genomics logo.">
+
+<br><br>
+
+<a href="https://computationalgenomics.ca/"><img src="img/sponsors/c3g.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Canadian Centre for Computational Genomics logo.">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NAME OF WORKSHOP YEAR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="subgroup-analysis" class="section level1 hasAnchor">
+<h1>Subgroup Analysis<a href="subgroup-analysis.html#subgroup-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We will now conduct a tissue-subgroup analysis using a subset of the <code>CCLEsmall</code> dataset,
+using all the steps that we have learned from this workshop.</p>
+<p>We will be looking at the response of RNA-Seq data on AUC drug response. We will take
+a discovery approach, looking for any associations in our rich dataset.</p>
+<div id="data-preparation" class="section level2 hasAnchor">
+<h2>Data Preparation<a href="subgroup-analysis.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s start by loading in and looking at our data.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="subgroup-analysis.html#cb41-1" tabindex="-1"></a><span class="co"># load in expression data</span></span>
+<span id="cb41-2"><a href="subgroup-analysis.html#cb41-2" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="fu">summarizeMolecularProfiles</span>(CCLEsmall, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>) <span class="sc">|&gt;</span> <span class="fu">assay</span>()</span>
+<span id="cb41-3"><a href="subgroup-analysis.html#cb41-3" tabindex="-1"></a>expr[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##                    1321N1      143B     22RV1  23132-87   253J-BV
+## ENSG00000181019 10.907043  9.773744  8.907329 13.961104 12.258347
+## ENSG00000157764  7.072053  6.553047  7.237172  7.462726  7.190695
+## ENSG00000000003  4.052251 10.542824  7.951917  8.079243 10.079808
+## ENSG00000000005  3.430694  3.585748  3.524705  3.580134  3.651864
+## ENSG00000000419 13.477683 12.891333 12.043700 12.200771 12.133981</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="subgroup-analysis.html#cb43-1" tabindex="-1"></a><span class="co"># load in drug response data</span></span>
+<span id="cb43-2"><a href="subgroup-analysis.html#cb43-2" tabindex="-1"></a>auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(</span>
+<span id="cb43-3"><a href="subgroup-analysis.html#cb43-3" tabindex="-1"></a>  CCLEsmall,</span>
+<span id="cb43-4"><a href="subgroup-analysis.html#cb43-4" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb43-5"><a href="subgroup-analysis.html#cb43-5" tabindex="-1"></a>  <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb43-6"><a href="subgroup-analysis.html#cb43-6" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb43-7"><a href="subgroup-analysis.html#cb43-7" tabindex="-1"></a>)</span>
+<span id="cb43-8"><a href="subgroup-analysis.html#cb43-8" tabindex="-1"></a>auc[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##               1321N1 143B    22RV1 23132-87 253J-BV
+## PD-0325901 0.1148875   NA 0.385000       NA      NA
+## 17-AAG     0.4177000   NA 0.372460       NA      NA
+## AEW541     0.0873750   NA 0.220500       NA      NA
+## Nilotinib         NA   NA 0.000000       NA      NA
+## PHA-665752 0.0333750   NA 0.094375       NA      NA</code></pre>
+<p>We have our RNA-Seq expression and drug response matrix in the feature~sample format.</p>
+<p>Next, let’s load in the metadata for the cell lines.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="subgroup-analysis.html#cb45-1" tabindex="-1"></a><span class="co"># load in metadata</span></span>
+<span id="cb45-2"><a href="subgroup-analysis.html#cb45-2" tabindex="-1"></a>meta <span class="ot">&lt;-</span> CCLEsmall<span class="sc">@</span>molecularProfiles[[<span class="st">&quot;rna&quot;</span>]] <span class="sc">|&gt;</span> <span class="fu">colData</span>()</span>
+<span id="cb45-3"><a href="subgroup-analysis.html#cb45-3" tabindex="-1"></a><span class="fu">colnames</span>(meta)</span></code></pre></div>
+<pre><code>##  [1] &quot;samplename&quot;                &quot;filename&quot;                 
+##  [3] &quot;chiptype&quot;                  &quot;hybridization.date&quot;       
+##  [5] &quot;hybridization.hour&quot;        &quot;file.day&quot;                 
+##  [7] &quot;file.hour&quot;                 &quot;batch&quot;                    
+##  [9] &quot;sampleid&quot;                  &quot;CCLE.name&quot;                
+## [11] &quot;Cell.line.primary.name&quot;    &quot;Cell.line.aliases&quot;        
+## [13] &quot;Gender&quot;                    &quot;Site.Primary&quot;             
+## [15] &quot;Histology&quot;                 &quot;Hist.Subtype1&quot;            
+## [17] &quot;Notes&quot;                     &quot;Source&quot;                   
+## [19] &quot;Expression.arrays&quot;         &quot;SNP.arrays&quot;               
+## [21] &quot;Oncomap&quot;                   &quot;Hybrid.Capture.Sequencing&quot;
+## [23] &quot;batchid&quot;                   &quot;rownames&quot;</code></pre>
+<p>Since we want to do a tissue subgroup analysis, we need to identify the variable
+that gives us the tissue type for each cell line.</p>
+<p>We also need to find the variable that maps to the column names of our <code>expr</code> matrix.
+Then, we make sure that all our samples are present in this metadata</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="subgroup-analysis.html#cb47-1" tabindex="-1"></a><span class="co"># show needed column names</span></span>
+<span id="cb47-2"><a href="subgroup-analysis.html#cb47-2" tabindex="-1"></a>meta[,<span class="fu">c</span>(<span class="st">&#39;Cell.line.primary.name&#39;</span>, <span class="st">&#39;Site.Primary&#39;</span>)] <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## DataFrame with 6 rows and 2 columns
+##                                              Cell.line.primary.name
+##                                                         &lt;character&gt;
+## NIECE_P_NCLE_RNA3_HG-U133_PLUS_2_B06_296024                  1321N1
+## MAKER_P_NCLE_RNA7_HG-U133_PLUS_2_F09_454702                    143B
+## NIECE_P_NCLE_RNA3_HG-U133_PLUS_2_F06_296120                   22Rv1
+## WATCH_P_NCLE_RNA8_HG-U133_PLUS_2_E11_474718                23132/87
+## CRAZY_P_NCLE_RNA10_HG-U133_PLUS_2_A05_569490                253J-BV
+## CRAZY_P_NCLE_RNA10_HG-U133_PLUS_2_A03_569510                   253J
+##                                                        Site.Primary
+##                                                         &lt;character&gt;
+## NIECE_P_NCLE_RNA3_HG-U133_PLUS_2_B06_296024  central_nervous_system
+## MAKER_P_NCLE_RNA7_HG-U133_PLUS_2_F09_454702                    bone
+## NIECE_P_NCLE_RNA3_HG-U133_PLUS_2_F06_296120                prostate
+## WATCH_P_NCLE_RNA8_HG-U133_PLUS_2_E11_474718                 stomach
+## CRAZY_P_NCLE_RNA10_HG-U133_PLUS_2_A05_569490          urinary_tract
+## CRAZY_P_NCLE_RNA10_HG-U133_PLUS_2_A03_569510          urinary_tract</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="subgroup-analysis.html#cb49-1" tabindex="-1"></a><span class="co"># check for cell lines included in metadata</span></span>
+<span id="cb49-2"><a href="subgroup-analysis.html#cb49-2" tabindex="-1"></a><span class="fu">colnames</span>(expr) <span class="sc">%in%</span> meta<span class="sc">$</span>Cell.line.primary.name <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+##   125   936</code></pre>
+<p>Notice we have some cell lines not included in the metadata. We will want to remove
+these samples from our analysis as we cannot give them a tissue label.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="subgroup-analysis.html#cb51-1" tabindex="-1"></a><span class="co"># identify cell lines with both expression and metadata</span></span>
+<span id="cb51-2"><a href="subgroup-analysis.html#cb51-2" tabindex="-1"></a>commonCells <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">colnames</span>(expr), meta<span class="sc">$</span>Cell.line.primary.name)</span>
+<span id="cb51-3"><a href="subgroup-analysis.html#cb51-3" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Number of common cell lines:&quot;</span>, <span class="fu">length</span>(commonCells))</span></code></pre></div>
+<pre><code>## [1] &quot;Number of common cell lines: 936&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="subgroup-analysis.html#cb53-1" tabindex="-1"></a><span class="co"># check that all these cell lines also have drug response data</span></span>
+<span id="cb53-2"><a href="subgroup-analysis.html#cb53-2" tabindex="-1"></a>commonCells <span class="sc">%in%</span> <span class="fu">colnames</span>(auc) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div>
+<pre><code>## 
+## TRUE 
+##  936</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="subgroup-analysis.html#cb55-1" tabindex="-1"></a><span class="co"># subset metadata to only include these samples</span></span>
+<span id="cb55-2"><a href="subgroup-analysis.html#cb55-2" tabindex="-1"></a>meta <span class="ot">&lt;-</span> meta[meta<span class="sc">$</span>Cell.line.primary.name <span class="sc">%in%</span> commonCells,]</span>
+<span id="cb55-3"><a href="subgroup-analysis.html#cb55-3" tabindex="-1"></a><span class="fu">dim</span>(meta)</span></code></pre></div>
+<pre><code>## [1] 936  24</code></pre>
+<p>There were 936 cell lines with all RNA-Seq expression, drug response, and metadata.
+We only keep the metadata for these cell lines.</p>
+<p>Next, let’s take a look at the tissue types available within the samples we have.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="subgroup-analysis.html#cb57-1" tabindex="-1"></a>meta<span class="sc">$</span>Site.Primary <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div>
+<pre><code>## 
+##                  autonomic_ganglia                      biliary_tract 
+##                                 15                                  7 
+##                               bone                             breast 
+##                                 26                                 56 
+##             central_nervous_system                        endometrium 
+##                                 59                                 24 
+## haematopoietic_and_lymphoid_tissue                             kidney 
+##                                168                                 32 
+##                    large_intestine                              liver 
+##                                 52                                 26 
+##                               lung                         oesophagus 
+##                                175                                 26 
+##                              ovary                           pancreas 
+##                                 47                                 38 
+##                             pleura                           prostate 
+##                                 10                                  5 
+##                     salivary_gland                               skin 
+##                                  1                                 55 
+##                        soft_tissue                            stomach 
+##                                 20                                 31 
+##                            thyroid          upper_aerodigestive_tract 
+##                                 11                                 29 
+##                      urinary_tract 
+##                                 23</code></pre>
+<p>We have a large range of different tissue types represented in our CCLE dataset.
+Let’s select <code>haematopoietic_and_lymphoid_tissue</code> and <code>lung</code> tissues as they have
+the largest sample sizes.</p>
+<p>Let’s subset our PSets for each of these tissue types.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="subgroup-analysis.html#cb59-1" tabindex="-1"></a><span class="co"># get cell lines from each tissue</span></span>
+<span id="cb59-2"><a href="subgroup-analysis.html#cb59-2" tabindex="-1"></a>lymp_cells <span class="ot">&lt;-</span> meta<span class="sc">$</span>Cell.line.primary.name[meta<span class="sc">$</span>Site.Primary <span class="sc">==</span> <span class="st">&quot;haematopoietic_and_lymphoid_tissue&quot;</span>]</span>
+<span id="cb59-3"><a href="subgroup-analysis.html#cb59-3" tabindex="-1"></a>lung_cells <span class="ot">&lt;-</span> meta<span class="sc">$</span>Cell.line.primary.name[meta<span class="sc">$</span>Site.Primary <span class="sc">==</span> <span class="st">&quot;lung&quot;</span>]</span>
+<span id="cb59-4"><a href="subgroup-analysis.html#cb59-4" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="subgroup-analysis.html#cb59-5" tabindex="-1"></a><span class="co"># subset psets to only include cells within each tissue group</span></span>
+<span id="cb59-6"><a href="subgroup-analysis.html#cb59-6" tabindex="-1"></a>lymp_pset <span class="ot">&lt;-</span> <span class="fu">subsetTo</span>(CCLEsmall, <span class="at">cells =</span> lymp_cells)</span>
+<span id="cb59-7"><a href="subgroup-analysis.html#cb59-7" tabindex="-1"></a>lung_pset <span class="ot">&lt;-</span> <span class="fu">subsetTo</span>(CCLEsmall, <span class="at">cells =</span> lung_cells)</span>
+<span id="cb59-8"><a href="subgroup-analysis.html#cb59-8" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="subgroup-analysis.html#cb59-9" tabindex="-1"></a><span class="co"># quickly check dimensions of the assays in our subsetted psets</span></span>
+<span id="cb59-10"><a href="subgroup-analysis.html#cb59-10" tabindex="-1"></a><span class="fu">assay</span>(<span class="fu">summarizeMolecularProfiles</span>(lymp_pset, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>)) <span class="sc">|&gt;</span> <span class="fu">dim</span>()</span></code></pre></div>
+<pre><code>## [1]  50 168</code></pre>
+<p>All our molecular profiles and drug response data within each tissue-specific pset
+is now subsetted to only include the cell lines that are in the respective tissue.</p>
+</div>
+<div id="statistical-analysis-to-measure-drug-response-associations" class="section level2 hasAnchor">
+<h2>Statistical Analysis to measure Drug Response Associations<a href="subgroup-analysis.html#statistical-analysis-to-measure-drug-response-associations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s say we want to discover a gene (biomarker) that is predictive of response to
+the drug <code>lapatinib</code>. To do that, we will compute the association between the
+expression of each gene to the lapatinib drug response.</p>
+<p>First, let’s get our assays:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="subgroup-analysis.html#cb61-1" tabindex="-1"></a><span class="co"># extract the expression assays</span></span>
+<span id="cb61-2"><a href="subgroup-analysis.html#cb61-2" tabindex="-1"></a>lymp_expr <span class="ot">&lt;-</span> <span class="fu">assay</span>(<span class="fu">summarizeMolecularProfiles</span>(lymp_pset, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>))</span>
+<span id="cb61-3"><a href="subgroup-analysis.html#cb61-3" tabindex="-1"></a>lung_expr <span class="ot">&lt;-</span> <span class="fu">assay</span>(<span class="fu">summarizeMolecularProfiles</span>(lung_pset, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>))</span>
+<span id="cb61-4"><a href="subgroup-analysis.html#cb61-4" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="subgroup-analysis.html#cb61-5" tabindex="-1"></a><span class="co"># extract the drug response assays</span></span>
+<span id="cb61-6"><a href="subgroup-analysis.html#cb61-6" tabindex="-1"></a>lymp_auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(lymp_pset, <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb61-7"><a href="subgroup-analysis.html#cb61-7" tabindex="-1"></a>                    <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb61-8"><a href="subgroup-analysis.html#cb61-8" tabindex="-1"></a>lung_auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(lung_pset, <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb61-9"><a href="subgroup-analysis.html#cb61-9" tabindex="-1"></a>                    <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb61-10"><a href="subgroup-analysis.html#cb61-10" tabindex="-1"></a></span>
+<span id="cb61-11"><a href="subgroup-analysis.html#cb61-11" tabindex="-1"></a><span class="co"># extract just the drug response vector for lapatinib</span></span>
+<span id="cb61-12"><a href="subgroup-analysis.html#cb61-12" tabindex="-1"></a>drug <span class="ot">&lt;-</span> <span class="st">&quot;lapatinib&quot;</span></span>
+<span id="cb61-13"><a href="subgroup-analysis.html#cb61-13" tabindex="-1"></a></span>
+<span id="cb61-14"><a href="subgroup-analysis.html#cb61-14" tabindex="-1"></a>lymp_auc <span class="ot">&lt;-</span> lymp_auc[drug,]</span>
+<span id="cb61-15"><a href="subgroup-analysis.html#cb61-15" tabindex="-1"></a>lung_auc <span class="ot">&lt;-</span> lung_auc[drug,]</span>
+<span id="cb61-16"><a href="subgroup-analysis.html#cb61-16" tabindex="-1"></a></span>
+<span id="cb61-17"><a href="subgroup-analysis.html#cb61-17" tabindex="-1"></a></span>
+<span id="cb61-18"><a href="subgroup-analysis.html#cb61-18" tabindex="-1"></a><span class="co"># quickly view the data</span></span>
+<span id="cb61-19"><a href="subgroup-analysis.html#cb61-19" tabindex="-1"></a>lymp_expr[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##                       697   ALL-SIL   AML-193     AMO-1     BCP-1
+## ENSG00000181019  6.609914  7.032188  7.637502  9.810762 10.006768
+## ENSG00000157764  7.754090  7.138147  7.228066  8.115521  7.197811
+## ENSG00000000003  4.509136  4.072092  3.937972  5.118464  3.846667
+## ENSG00000000005  3.736073  3.661470  3.770592  3.803109  3.660946
+## ENSG00000000419 11.718635 11.769529 12.287833 12.586162 11.837654</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="subgroup-analysis.html#cb63-1" tabindex="-1"></a>lymp_auc[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##       697   ALL-SIL   AML-193     AMO-1     BCP-1 
+## 0.0453250 0.0767875        NA 0.0663875        NA</code></pre>
+<p>The PSet has already ensured that the cell line order between the RNA-Seq expression
+matrix and the drug response vector is the same. Don’t forget to always check when
+working with your own data.</p>
+<p>Now we will have to compute the association between each gene to lapatinib. We can
+use a for loop to quickly do this:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="subgroup-analysis.html#cb65-1" tabindex="-1"></a><span class="co"># create data frame to hold results</span></span>
+<span id="cb65-2"><a href="subgroup-analysis.html#cb65-2" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">7</span>))</span>
+<span id="cb65-3"><a href="subgroup-analysis.html#cb65-3" tabindex="-1"></a><span class="fu">colnames</span>(results) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;gene&quot;</span>, <span class="st">&quot;drug&quot;</span>, <span class="st">&quot;ci&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;upper&quot;</span>, <span class="st">&quot;lower&quot;</span>)</span>
+<span id="cb65-4"><a href="subgroup-analysis.html#cb65-4" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="subgroup-analysis.html#cb65-5" tabindex="-1"></a><span class="co"># get the number of genes (features)</span></span>
+<span id="cb65-6"><a href="subgroup-analysis.html#cb65-6" tabindex="-1"></a>num_genes <span class="ot">&lt;-</span> <span class="fu">nrow</span>(lymp_expr)</span>
+<span id="cb65-7"><a href="subgroup-analysis.html#cb65-7" tabindex="-1"></a></span>
+<span id="cb65-8"><a href="subgroup-analysis.html#cb65-8" tabindex="-1"></a><span class="co"># loop through every gene to compute concordance index to drug responses</span></span>
+<span id="cb65-9"><a href="subgroup-analysis.html#cb65-9" tabindex="-1"></a><span class="cf">for</span> (gene <span class="cf">in</span> <span class="fu">rownames</span>(lymp_expr)) {</span>
+<span id="cb65-10"><a href="subgroup-analysis.html#cb65-10" tabindex="-1"></a>  </span>
+<span id="cb65-11"><a href="subgroup-analysis.html#cb65-11" tabindex="-1"></a>  <span class="co"># compute concordance index</span></span>
+<span id="cb65-12"><a href="subgroup-analysis.html#cb65-12" tabindex="-1"></a>  ci <span class="ot">&lt;-</span> survcomp<span class="sc">::</span><span class="fu">concordance.index</span>(</span>
+<span id="cb65-13"><a href="subgroup-analysis.html#cb65-13" tabindex="-1"></a>            <span class="fu">as.numeric</span>(lymp_auc),                   <span class="co"># drug vector</span></span>
+<span id="cb65-14"><a href="subgroup-analysis.html#cb65-14" tabindex="-1"></a>            <span class="at">surv.time =</span> <span class="fu">as.numeric</span>(lymp_expr[gene,]),       <span class="co"># gene vector</span></span>
+<span id="cb65-15"><a href="subgroup-analysis.html#cb65-15" tabindex="-1"></a>            <span class="at">surv.event =</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">length</span>(lymp_expr[gene,])),   </span>
+<span id="cb65-16"><a href="subgroup-analysis.html#cb65-16" tabindex="-1"></a>            <span class="at">outx =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">&quot;noether&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb65-17"><a href="subgroup-analysis.html#cb65-17" tabindex="-1"></a>          )</span>
+<span id="cb65-18"><a href="subgroup-analysis.html#cb65-18" tabindex="-1"></a>  </span>
+<span id="cb65-19"><a href="subgroup-analysis.html#cb65-19" tabindex="-1"></a>  <span class="co"># extract summary statistics</span></span>
+<span id="cb65-20"><a href="subgroup-analysis.html#cb65-20" tabindex="-1"></a>  gene_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(gene, drug, </span>
+<span id="cb65-21"><a href="subgroup-analysis.html#cb65-21" tabindex="-1"></a>                            <span class="at">ci =</span> ci<span class="sc">$</span>c.index,</span>
+<span id="cb65-22"><a href="subgroup-analysis.html#cb65-22" tabindex="-1"></a>                            <span class="at">pvalue =</span> ci<span class="sc">$</span>p.value,</span>
+<span id="cb65-23"><a href="subgroup-analysis.html#cb65-23" tabindex="-1"></a>                            <span class="at">se =</span> ci<span class="sc">$</span>se,</span>
+<span id="cb65-24"><a href="subgroup-analysis.html#cb65-24" tabindex="-1"></a>                            <span class="at">upper =</span> ci<span class="sc">$</span>upper,</span>
+<span id="cb65-25"><a href="subgroup-analysis.html#cb65-25" tabindex="-1"></a>                            <span class="at">lower =</span> ci<span class="sc">$</span>lower)</span>
+<span id="cb65-26"><a href="subgroup-analysis.html#cb65-26" tabindex="-1"></a>  </span>
+<span id="cb65-27"><a href="subgroup-analysis.html#cb65-27" tabindex="-1"></a>  <span class="co"># merge with results dataframe</span></span>
+<span id="cb65-28"><a href="subgroup-analysis.html#cb65-28" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(results, gene_result)</span>
+<span id="cb65-29"><a href="subgroup-analysis.html#cb65-29" tabindex="-1"></a>}</span>
+<span id="cb65-30"><a href="subgroup-analysis.html#cb65-30" tabindex="-1"></a></span>
+<span id="cb65-31"><a href="subgroup-analysis.html#cb65-31" tabindex="-1"></a><span class="co"># filtering and multiple test correction</span></span>
+<span id="cb65-32"><a href="subgroup-analysis.html#cb65-32" tabindex="-1"></a>results <span class="ot">&lt;-</span> results[<span class="fu">complete.cases</span>(results<span class="sc">$</span>pvalue),]</span>
+<span id="cb65-33"><a href="subgroup-analysis.html#cb65-33" tabindex="-1"></a>results<span class="sc">$</span>FDR <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(results<span class="sc">$</span>pvalue, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>, <span class="at">n =</span> <span class="fu">length</span>(results<span class="sc">$</span>pvalue))</span>
+<span id="cb65-34"><a href="subgroup-analysis.html#cb65-34" tabindex="-1"></a></span>
+<span id="cb65-35"><a href="subgroup-analysis.html#cb65-35" tabindex="-1"></a>results <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##              gene      drug        ci     pvalue         se     upper     lower
+## 1 ENSG00000181019 lapatinib 0.5497723 0.30681314 0.04870411 0.6452306 0.4543140
+## 2 ENSG00000157764 lapatinib 0.5191932 0.72503712 0.05456734 0.6261432 0.4122432
+## 3 ENSG00000000003 lapatinib 0.4528302 0.38826533 0.05467268 0.5599867 0.3456737
+## 4 ENSG00000000005 lapatinib 0.4547820 0.37310423 0.05076826 0.5542860 0.3552781
+## 5 ENSG00000000419 lapatinib 0.4925179 0.86910085 0.04540095 0.5815021 0.4035337
+## 6 ENSG00000000457 lapatinib 0.6005205 0.06179093 0.05381779 0.7060014 0.4950396
+##         FDR
+## 1 0.8522587
+## 2 0.9062964
+## 3 0.8688491
+## 4 0.8688491
+## 5 0.9516488
+## 6 0.7079522</code></pre>
+<p>Notice at the end we also computed the false discovery rate (FDR) which is a method
+for multiple test correction.</p>
+<p>We would have to repeat this code for every tissue type. Although we are only working
+with two, imagine we wanted to do more tissue types in the future.</p>
+<div id="function-for-computing-concordance-index" class="section level3 hasAnchor">
+<h3>Function for computing concordance index<a href="subgroup-analysis.html#function-for-computing-concordance-index" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To simply this, we can turn the code above into a function such that we just
+have to input the expression matrix and drug response vector to get our result
+without having to change the rest of the code.</p>
+<p>Below is a function named <code>compute_CI</code> which takes two arguments:
+- <code>expr</code>: an expression matrix with features as rows and samples as columns
+- <code>drug_vector</code>: a vector of drug response in the same order as the samples in expr
+- <code>drug</code>: string name of drug (just for putting in the results dataframe)</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="subgroup-analysis.html#cb67-1" tabindex="-1"></a>compute_CI <span class="ot">&lt;-</span> <span class="cf">function</span>(expr, drug_vector, drug) {</span>
+<span id="cb67-2"><a href="subgroup-analysis.html#cb67-2" tabindex="-1"></a>  </span>
+<span id="cb67-3"><a href="subgroup-analysis.html#cb67-3" tabindex="-1"></a>  </span>
+<span id="cb67-4"><a href="subgroup-analysis.html#cb67-4" tabindex="-1"></a>  <span class="co"># create data frame to hold results</span></span>
+<span id="cb67-5"><a href="subgroup-analysis.html#cb67-5" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">7</span>))</span>
+<span id="cb67-6"><a href="subgroup-analysis.html#cb67-6" tabindex="-1"></a>  <span class="fu">colnames</span>(results) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;gene&quot;</span>, <span class="st">&quot;drug&quot;</span>, <span class="st">&quot;ci&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;upper&quot;</span>, <span class="st">&quot;lower&quot;</span>)</span>
+<span id="cb67-7"><a href="subgroup-analysis.html#cb67-7" tabindex="-1"></a>  </span>
+<span id="cb67-8"><a href="subgroup-analysis.html#cb67-8" tabindex="-1"></a>  <span class="co"># get the number of genes (features)</span></span>
+<span id="cb67-9"><a href="subgroup-analysis.html#cb67-9" tabindex="-1"></a>  num_genes <span class="ot">&lt;-</span> <span class="fu">nrow</span>(expr)</span>
+<span id="cb67-10"><a href="subgroup-analysis.html#cb67-10" tabindex="-1"></a>  </span>
+<span id="cb67-11"><a href="subgroup-analysis.html#cb67-11" tabindex="-1"></a>  <span class="co"># loop through every gene to compute concordance index to drug responses</span></span>
+<span id="cb67-12"><a href="subgroup-analysis.html#cb67-12" tabindex="-1"></a>  <span class="cf">for</span> (gene <span class="cf">in</span> <span class="fu">rownames</span>(expr)) {</span>
+<span id="cb67-13"><a href="subgroup-analysis.html#cb67-13" tabindex="-1"></a>    </span>
+<span id="cb67-14"><a href="subgroup-analysis.html#cb67-14" tabindex="-1"></a>    <span class="co"># compute concordance index</span></span>
+<span id="cb67-15"><a href="subgroup-analysis.html#cb67-15" tabindex="-1"></a>    ci <span class="ot">&lt;-</span> survcomp<span class="sc">::</span><span class="fu">concordance.index</span>(</span>
+<span id="cb67-16"><a href="subgroup-analysis.html#cb67-16" tabindex="-1"></a>              <span class="fu">as.numeric</span>(drug_vector),                   <span class="co"># drug vector</span></span>
+<span id="cb67-17"><a href="subgroup-analysis.html#cb67-17" tabindex="-1"></a>              <span class="at">surv.time =</span> <span class="fu">as.numeric</span>(expr[gene,]),       <span class="co"># gene vector</span></span>
+<span id="cb67-18"><a href="subgroup-analysis.html#cb67-18" tabindex="-1"></a>              <span class="at">surv.event =</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">length</span>(expr[gene,])),   </span>
+<span id="cb67-19"><a href="subgroup-analysis.html#cb67-19" tabindex="-1"></a>              <span class="at">outx =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">&quot;noether&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb67-20"><a href="subgroup-analysis.html#cb67-20" tabindex="-1"></a>            )</span>
+<span id="cb67-21"><a href="subgroup-analysis.html#cb67-21" tabindex="-1"></a>    </span>
+<span id="cb67-22"><a href="subgroup-analysis.html#cb67-22" tabindex="-1"></a>    <span class="co"># extract summary statistics</span></span>
+<span id="cb67-23"><a href="subgroup-analysis.html#cb67-23" tabindex="-1"></a>    gene_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(gene, drug, </span>
+<span id="cb67-24"><a href="subgroup-analysis.html#cb67-24" tabindex="-1"></a>                              <span class="at">ci =</span> ci<span class="sc">$</span>c.index,</span>
+<span id="cb67-25"><a href="subgroup-analysis.html#cb67-25" tabindex="-1"></a>                              <span class="at">pvalue =</span> ci<span class="sc">$</span>p.value,</span>
+<span id="cb67-26"><a href="subgroup-analysis.html#cb67-26" tabindex="-1"></a>                              <span class="at">se =</span> ci<span class="sc">$</span>se,</span>
+<span id="cb67-27"><a href="subgroup-analysis.html#cb67-27" tabindex="-1"></a>                              <span class="at">upper =</span> ci<span class="sc">$</span>upper,</span>
+<span id="cb67-28"><a href="subgroup-analysis.html#cb67-28" tabindex="-1"></a>                              <span class="at">lower =</span> ci<span class="sc">$</span>lower)</span>
+<span id="cb67-29"><a href="subgroup-analysis.html#cb67-29" tabindex="-1"></a>    </span>
+<span id="cb67-30"><a href="subgroup-analysis.html#cb67-30" tabindex="-1"></a>    <span class="co"># merge with results dataframe</span></span>
+<span id="cb67-31"><a href="subgroup-analysis.html#cb67-31" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(results, gene_result)</span>
+<span id="cb67-32"><a href="subgroup-analysis.html#cb67-32" tabindex="-1"></a>  }</span>
+<span id="cb67-33"><a href="subgroup-analysis.html#cb67-33" tabindex="-1"></a>  </span>
+<span id="cb67-34"><a href="subgroup-analysis.html#cb67-34" tabindex="-1"></a>  <span class="co"># filtering and multiple test correction</span></span>
+<span id="cb67-35"><a href="subgroup-analysis.html#cb67-35" tabindex="-1"></a>  results <span class="ot">&lt;-</span> results[<span class="fu">complete.cases</span>(results<span class="sc">$</span>pvalue),]</span>
+<span id="cb67-36"><a href="subgroup-analysis.html#cb67-36" tabindex="-1"></a>  results<span class="sc">$</span>FDR <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(results<span class="sc">$</span>pvalue, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>, <span class="at">n =</span> <span class="fu">length</span>(results<span class="sc">$</span>pvalue))</span>
+<span id="cb67-37"><a href="subgroup-analysis.html#cb67-37" tabindex="-1"></a>  results<span class="sc">$</span>FDRsig <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(results<span class="sc">$</span>FDR <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">&#39;FDR Sig&#39;</span>, <span class="st">&#39;Not FDR Sig&#39;</span>)</span>
+<span id="cb67-38"><a href="subgroup-analysis.html#cb67-38" tabindex="-1"></a>  </span>
+<span id="cb67-39"><a href="subgroup-analysis.html#cb67-39" tabindex="-1"></a>  <span class="co"># output results</span></span>
+<span id="cb67-40"><a href="subgroup-analysis.html#cb67-40" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
+<span id="cb67-41"><a href="subgroup-analysis.html#cb67-41" tabindex="-1"></a>}</span>
+<span id="cb67-42"><a href="subgroup-analysis.html#cb67-42" tabindex="-1"></a></span>
+<span id="cb67-43"><a href="subgroup-analysis.html#cb67-43" tabindex="-1"></a><span class="co"># use this function on both our lymp and lung data</span></span>
+<span id="cb67-44"><a href="subgroup-analysis.html#cb67-44" tabindex="-1"></a>lymp_results <span class="ot">&lt;-</span> <span class="fu">compute_CI</span>(<span class="at">expr =</span> lymp_expr, <span class="at">drug_vector =</span> lymp_auc, <span class="at">drug =</span> drug)</span>
+<span id="cb67-45"><a href="subgroup-analysis.html#cb67-45" tabindex="-1"></a>lung_results <span class="ot">&lt;-</span> <span class="fu">compute_CI</span>(<span class="at">expr =</span> lung_expr, <span class="at">drug_vector =</span> lung_auc, <span class="at">drug =</span> drug)</span>
+<span id="cb67-46"><a href="subgroup-analysis.html#cb67-46" tabindex="-1"></a></span>
+<span id="cb67-47"><a href="subgroup-analysis.html#cb67-47" tabindex="-1"></a>lymp_results <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##              gene      drug        ci     pvalue         se     upper     lower
+## 1 ENSG00000181019 lapatinib 0.5497723 0.30681314 0.04870411 0.6452306 0.4543140
+## 2 ENSG00000157764 lapatinib 0.5191932 0.72503712 0.05456734 0.6261432 0.4122432
+## 3 ENSG00000000003 lapatinib 0.4528302 0.38826533 0.05467268 0.5599867 0.3456737
+## 4 ENSG00000000005 lapatinib 0.4547820 0.37310423 0.05076826 0.5542860 0.3552781
+## 5 ENSG00000000419 lapatinib 0.4925179 0.86910085 0.04540095 0.5815021 0.4035337
+## 6 ENSG00000000457 lapatinib 0.6005205 0.06179093 0.05381779 0.7060014 0.4950396
+##         FDR      FDRsig
+## 1 0.8522587 Not FDR Sig
+## 2 0.9062964 Not FDR Sig
+## 3 0.8688491 Not FDR Sig
+## 4 0.8688491 Not FDR Sig
+## 5 0.9516488 Not FDR Sig
+## 6 0.7079522 Not FDR Sig</code></pre>
+<p>We also added a column called <code>FDRsig</code> which represents if the association met the
+FDR &lt; 5% threshold. This will help us in plotting.</p>
+</div>
+<div id="visualizing-feature-drug-associations" class="section level3 hasAnchor">
+<h3>Visualizing feature-drug associations<a href="subgroup-analysis.html#visualizing-feature-drug-associations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now that we have the associations between all our genes with lapatinib response for
+both our tissue groups, let’s visualize the distribution of the computed associations.</p>
+<p>Let’s first rank by concordance index.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="subgroup-analysis.html#cb69-1" tabindex="-1"></a>lymp_results <span class="ot">&lt;-</span> lymp_results[<span class="fu">order</span>(lymp_results<span class="sc">$</span>ci),]</span>
+<span id="cb69-2"><a href="subgroup-analysis.html#cb69-2" tabindex="-1"></a>lung_results <span class="ot">&lt;-</span> lung_results[<span class="fu">order</span>(lung_results<span class="sc">$</span>ci),]</span>
+<span id="cb69-3"><a href="subgroup-analysis.html#cb69-3" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="subgroup-analysis.html#cb69-4" tabindex="-1"></a>lymp_results <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##               gene      drug        ci     pvalue         se     upper
+## 40 ENSG00000003400 lapatinib 0.4014314 0.07602913 0.05555649 0.5103201
+## 14 ENSG00000001461 lapatinib 0.4098894 0.08110842 0.05166032 0.5111418
+## 10 ENSG00000001036 lapatinib 0.4131425 0.10091227 0.05294747 0.5169176
+## 35 ENSG00000003096 lapatinib 0.4183474 0.11327235 0.05155958 0.5194024
+## 46 ENSG00000003989 lapatinib 0.4255042 0.14509404 0.05112672 0.5257108
+## 25 ENSG00000002586 lapatinib 0.4294079 0.17377225 0.05189897 0.5311281
+##        lower       FDR      FDRsig
+## 40 0.2925426 0.7079522 Not FDR Sig
+## 14 0.3086370 0.7079522 Not FDR Sig
+## 10 0.3093674 0.7079522 Not FDR Sig
+## 35 0.3172925 0.7079522 Not FDR Sig
+## 46 0.3252977 0.7254702 Not FDR Sig
+## 25 0.3276878 0.7898739 Not FDR Sig</code></pre>
+<p>Next, we will create a waterfall plot. We’ve created a function to do so, the function
+is named <code>plot_waterfall</code> and takes the following arguments:
+- <code>ci_results</code>: results matrix from the <code>compute_CI</code> function
+- <code>tissue</code>: string of the tissue type</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="subgroup-analysis.html#cb71-1" tabindex="-1"></a><span class="co"># create palette</span></span>
+<span id="cb71-2"><a href="subgroup-analysis.html#cb71-2" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;FDR Sig&#39;</span> <span class="ot">=</span> <span class="st">&quot;#B1D3A3&quot;</span>, <span class="st">&#39;Not FDR Sig&#39;</span> <span class="ot">=</span> <span class="st">&quot;gray&quot;</span>)</span>
+<span id="cb71-3"><a href="subgroup-analysis.html#cb71-3" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="subgroup-analysis.html#cb71-4" tabindex="-1"></a><span class="co"># function to plot waterfall plots</span></span>
+<span id="cb71-5"><a href="subgroup-analysis.html#cb71-5" tabindex="-1"></a>plot_waterfall <span class="ot">&lt;-</span> <span class="cf">function</span>(ci_results, tissue) {</span>
+<span id="cb71-6"><a href="subgroup-analysis.html#cb71-6" tabindex="-1"></a>  </span>
+<span id="cb71-7"><a href="subgroup-analysis.html#cb71-7" tabindex="-1"></a>  <span class="co"># minor formating for plotting</span></span>
+<span id="cb71-8"><a href="subgroup-analysis.html#cb71-8" tabindex="-1"></a>  ci_results<span class="sc">$</span>rank <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ci_results)</span>
+<span id="cb71-9"><a href="subgroup-analysis.html#cb71-9" tabindex="-1"></a>  ci_results<span class="sc">$</span>rank <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ci_results<span class="sc">$</span>rank)</span>
+<span id="cb71-10"><a href="subgroup-analysis.html#cb71-10" tabindex="-1"></a>  ci_results<span class="sc">$</span>drug <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ci_results<span class="sc">$</span>drug)</span>
+<span id="cb71-11"><a href="subgroup-analysis.html#cb71-11" tabindex="-1"></a>  </span>
+<span id="cb71-12"><a href="subgroup-analysis.html#cb71-12" tabindex="-1"></a>  <span class="co"># create waterfall plot</span></span>
+<span id="cb71-13"><a href="subgroup-analysis.html#cb71-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(ci_results, <span class="fu">aes</span>(<span class="at">x =</span> ci <span class="sc">-</span> <span class="fl">0.5</span>, <span class="at">y =</span> rank)) <span class="sc">+</span></span>
+<span id="cb71-14"><a href="subgroup-analysis.html#cb71-14" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> FDRsig), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb71-15"><a href="subgroup-analysis.html#cb71-15" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="at">labels =</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb71-16"><a href="subgroup-analysis.html#cb71-16" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">breaks =</span> ci_results<span class="sc">$</span>rank, <span class="at">labels =</span> ci_results<span class="sc">$</span>gene) <span class="sc">+</span> </span>
+<span id="cb71-17"><a href="subgroup-analysis.html#cb71-17" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb71-18"><a href="subgroup-analysis.html#cb71-18" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="st">&quot;FDR Significance&quot;</span>, <span class="at">values =</span> pal) <span class="sc">+</span> </span>
+<span id="cb71-19"><a href="subgroup-analysis.html#cb71-19" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb71-20"><a href="subgroup-analysis.html#cb71-20" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb71-21"><a href="subgroup-analysis.html#cb71-21" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Gene&quot;</span>, <span class="at">title =</span> tissue, <span class="at">x =</span> <span class="st">&quot;Concordance Index (CI)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb71-22"><a href="subgroup-analysis.html#cb71-22" tabindex="-1"></a>    <span class="fu">coord_flip</span>()</span>
+<span id="cb71-23"><a href="subgroup-analysis.html#cb71-23" tabindex="-1"></a>}</span>
+<span id="cb71-24"><a href="subgroup-analysis.html#cb71-24" tabindex="-1"></a></span>
+<span id="cb71-25"><a href="subgroup-analysis.html#cb71-25" tabindex="-1"></a><span class="co"># call the function on our lymp and lung results</span></span>
+<span id="cb71-26"><a href="subgroup-analysis.html#cb71-26" tabindex="-1"></a><span class="fu">plot_waterfall</span>(lymp_results, <span class="st">&#39;Haematopoietic &amp; Lymphoid&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/waterfall_plot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="subgroup-analysis.html#cb72-1" tabindex="-1"></a><span class="fu">plot_waterfall</span>(lung_results, <span class="st">&#39;Lung&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/waterfall_plot-2.png" width="672" /></p>
+<p>Notice that there are no FDR significant associations within the lymp data, but there
+are some from the lung data.</p>
+<p>If you inspect closely, you can also see that the genes with the most predictive
+power (low and high CI values) are different between the two tissue types.</p>
+</div>
+<div id="identifying-candidate-biomarkers" class="section level3 hasAnchor">
+<h3>Identifying candidate biomarkers<a href="subgroup-analysis.html#identifying-candidate-biomarkers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We see some FDR significant associations in our lung data. Let’s extract those
+genes.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="subgroup-analysis.html#cb73-1" tabindex="-1"></a>lung_sig <span class="ot">&lt;-</span> lung_results[lung_results<span class="sc">$</span>FDR <span class="sc">&lt;</span> <span class="fl">0.05</span>,]</span>
+<span id="cb73-2"><a href="subgroup-analysis.html#cb73-2" tabindex="-1"></a>lung_sig</span></code></pre></div>
+<pre><code>##               gene      drug        ci       pvalue         se     upper
+## 3  ENSG00000000003 lapatinib 0.3532213 2.812853e-05 0.03504651 0.4219112
+## 26 ENSG00000002587 lapatinib 0.3789916 3.713691e-04 0.03399460 0.4456198
+## 9  ENSG00000000971 lapatinib 0.3837535 3.707483e-04 0.03265282 0.4477519
+## 31 ENSG00000002834 lapatinib 0.3882353 1.091398e-03 0.03422234 0.4553099
+## 40 ENSG00000003400 lapatinib 0.4028011 5.219215e-03 0.03479861 0.4710051
+## 48 ENSG00000004139 lapatinib 0.6196078 1.663106e-04 0.03176533 0.6818667
+##        lower         FDR  FDRsig
+## 3  0.2845314 0.001406427 FDR Sig
+## 26 0.3123634 0.004642114 FDR Sig
+## 9  0.3197552 0.004642114 FDR Sig
+## 31 0.3211607 0.010913980 FDR Sig
+## 40 0.3345971 0.043493456 FDR Sig
+## 48 0.5573489 0.004157765 FDR Sig</code></pre>
+<p>There are 6 genes that have FDR significant associations with lapatinib response.
+Of these 6, the most predictive is <code>ENSG00000000003</code> which is associated with
+resistance (CI &lt; 0.5).</p>
+<p>A next possible step would be to take some of these genes and assess their association
+in lung tissue-derived cell lines from another PSet (do a meta-analysis!)</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="perform-meta-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interactive-exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/cbw-dev/PGX-2024/blob/main/040-module-4.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

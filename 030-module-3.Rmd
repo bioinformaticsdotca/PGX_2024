@@ -1,0 +1,511 @@
+# Module 3: Pharmacogenomics for Biomarker Discover - Basic Analysis
+
+## Lecture
+
+<iframe width="640" height="340" src="https://www.youtube.com/embed/uiiYFyVEFBw?si=daES2wdCzbmuPGC2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<br>
+
+<iframe src="https://drive.google.com/file/d/1qTd_ywKqpbAY6_UcCEVLjwoehZlieVvS/preview" width="640" height="480" allow="autoplay"></iframe>
+
+## Lab
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r eval=TRUE, echo=FALSE}
+PGx <- BiocStyle::Biocpkg("PharmacoGx")
+CGx <- BiocStyle::Biocpkg("CoreGx")
+TGx <- BiocStyle::Biocpkg("ToxicoGx")
+RGx <- BiocStyle::Biocpkg("RadioGx")
+Xv <- BiocStyle::Biocpkg("Xeva")
+DT <- BiocStyle::CRANpkg("data.table")
+SE <- BiocStyle::Biocpkg("SummarizedExperiment")
+MAE <- BiocStyle::Biocpkg("MultiAssayExperiment")
+```
+
+### Instructor(s) Name(s) and Contact Information {-}
+
+* Jermiah J. Joseph <jermiah.joseph@uhn.ca>
+* Nikta Feizi <nikta.feizi@uhn.ca>
+* Julia Nguyen <julia.nguyen@uhn.ca>
+
+### PharmacoGx Package Overview
+
+**PharmacoGx:** An R package for analyzing pharmacogenomic datasets.
+
+**Key Functions:**
+
+* **Install and Load PharmacoGx**
+  ```r
+  install.packages("BiocManager")
+  BiocManager::install("PharmacoGx")
+  library(PharmacoGx)
+  ```
+
+* **Download a PharmacoSet**
+  ```r
+  availablePSets()
+  GDSC <- downloadPSet("GDSC_2020(v2-8.2)")
+  # downloadPSet(): Download pharmacogenomic datasets.
+  ```
+
+* **Extract Drug Response Data**
+  ```r
+  drug_response <- summarizeSensitivityProfiles(GDSC, sensitivity.measure='aac_recomputed')
+  # summarizeSensitivityProfiles(): Summarize drug response data.
+  ```
+
+* **Extract Gene Expression Data**
+  ```r
+  gene_expr <- summarizeMolecularProfiles(GDSC, mDataType='rna') 
+  gene_expr_mtx <- assay(gene_expr)
+  ```
+
+**Data Retrieval:**
+
+* **availablePSets()**: Lists available pharmacogenomic datasets.
+
+* **Downloading Multiple PharmacoSets:**
+  ```r
+  PSet.list <- lapply(c("GDSC", "CCLE", "CTRP"), downloadPSet)
+  names(PSet.list) <- c("GDSC", "CCLE", "CTRP")
+  ```
+
+* **Accessing Molecular Profiles:**
+  ```r
+  molecular.data <- lapply(PSet.list, function(pset) {
+    summarizeMolecularProfiles(pset, mDataType = 'rna')
+  })
+  ```
+
+#### Introduction
+
+In this workshop, we will explore data integration and comparative analysis using the `r PGx` package, focusing on the **GDSC** and **CCLE** datasets. Specifically, we will cover drug sensitivity comparisons using AUC and IC50 measures and investigate correlations between gene expression profiles. This R Markdown file is designed to give participants hands-on experience with data exploration and interpretation.
+
+##### Learning Objectives
+
+1. Learn how to load and handle data from the **GDSC** and **CCLE** datasets.
+2. Understand how to summarize drug sensitivity profiles and molecular data.
+3. Perform correlations to assess concordance between cell line datasets.
+4. Visualize and interpret the results of statistical tests.
+
+```{r load_packages_3, eval=TRUE, echo=FALSE, include=FALSE}
+suppressPackageStartupMessages({
+  library(CBWWorkshop2024)
+  library(PharmacoGx)
+  library(data.table)
+  library(reshape2)
+  library(ggplot2)
+  library(ggpubr)
+  library(Biobase) # Core Bioconductor class for gene expression data
+  library(SummarizedExperiment) # Core Bioconductor class for summarized data
+  library(S4Vectors) # Core Bioconductor class for handling S4 objects
+  library(pander) # Package for nicely formatted tables
+})
+```
+
+#### Exploring GDSC and CCLE Datasets
+
+##### Load GDSC and CCLE Datasets
+
+We will use the **GDSCsmall** and **CCLEsmall** sample datasets provided by [*PharmacoGx*](https://bioconductor.org/packages/3.19/PharmacoGx) to compare the two data sources.
+
+```{r load_data}
+data("GDSCsmall")
+data("CCLEsmall")
+GDSCsmall
+```
+
+##### Find Common Genes Between GDSC and CCLE
+
+The first step in comparing datasets is to find shared features between them.
+Here, we identify the genes that are present in both datasets.
+```{r find_common_genes}
+commonGenes <- intersect(fNames(GDSCsmall, "rna"), fNames(CCLEsmall, "rna"))
+length(commonGenes)
+```
+
+There are 41 genes that are common between the RNA profiles of the GDSC and CCLE datasets.
+
+##### Identify Common Cell Lines and Drugs
+
+Next, we identify the common cell lines and drugs between **GDSC** and **CCLE**.
+```{r intersect_pset}
+common <- intersectPSet(
+  list("CCLE" = CCLEsmall, "GDSC" = GDSCsmall),
+  intersectOn = c("cell.lines", "drugs"),
+  strictIntersect = TRUE
+)
+
+cellNames(common[[1]])
+length(cellNames(common[[1]]))
+```
+
+There are 9 common samples between GDSC and CCLE. The `intersectPSet` function returns a list of the two PSets subsetted to include only the common cell lines.
+```{r intersect_pset_results}
+common
+```
+
+Notice that most of the molecular profiles are subsetted to include the 9 common samples. Some odd cases include RNA from GDSC which has a technical replicate (hence 10 samples) and CNV from CCLE which is missing CNV profiles for two of the nine cell lines.
+
+##### Summarize Drug Sensitivity Profiles
+
+We summarize drug sensitivity profiles (AUC and IC50) for each dataset. The `summary.stat` parameter can be set to different statistical metrics such as `mean`, `median`, etc. Here, we use the `median` for summarizing the sensitivity.
+```{r summarize_profiles}
+# Summary statistics for AUC
+GDSC.auc <- summarizeSensitivityProfiles(
+  common$GDSC,
+  sensitivity.measure = "auc_published",
+  summary.stat = "median",
+  verbose = FALSE
+)
+CCLE.auc <- summarizeSensitivityProfiles(
+  common$CCLE,
+  sensitivity.measure = "auc_published",
+  summary.stat = "median",
+  verbose = FALSE
+)
+
+# Summary statistics for IC50
+GDSC.ic50 <- summarizeSensitivityProfiles(
+  common$GDSC,
+  sensitivity.measure = "ic50_published",
+  summary.stat = "median",
+  verbose = FALSE
+)
+CCLE.ic50 <- summarizeSensitivityProfiles(
+  common$CCLE,
+  sensitivity.measure = "ic50_published",
+  summary.stat = "median",
+  verbose = FALSE
+)
+CCLE.auc |> head()
+```
+
+We can visualize the distribution of drug sensitivity profiles to compare between the two psets. 
+
+First we quickly reformat the data into a long format to facilitate plotting. We use the `melt()` function from the `reshape2` package.
+```{r format_sensitivity}
+CCLE_toPlot <- melt(CCLE.auc)
+colnames(CCLE_toPlot) <- c("Drug", "Gene", "AUC")
+
+CCLE_toPlot |> head()
+```
+
+Next, we can create a quick box plot to visualize the AUC distributions per drug.
+```{r plot_sensitivity}
+ggplot(CCLE_toPlot, aes(x = Drug, y = AUC)) + geom_boxplot(fill = "grey") +
+  theme_classic() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) #rotate x-axis labels
+```
+
+Let's do this again but with the GDSC PSet so we can compare the two
+```{r plot_sensitivity_compare}
+# format the CCLE sensitivity data
+GDSC_toPlot <- melt(GDSC.auc)
+colnames(GDSC_toPlot) <- c("Drug", "Gene", "AUC")
+
+# merge the two pset dataframes
+GDSC_toPlot$PSet <- "GDSC"
+CCLE_toPlot$PSet <- "CCLE"
+merge_toPlot <- rbind(GDSC_toPlot, CCLE_toPlot)
+
+# plot to compare AUC distribution between PSets
+ggplot(merge_toPlot, aes(x = Drug, y = AUC)) + geom_boxplot(aes(fill = PSet)) +
+  scale_fill_manual(values = c("#624763", "#B1D3A3")) + theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) #rotate x-axis labels
+```
+
+Preclinical drug response data is fairly noisy, hence the variation we see between the two datasets. However, we do see some commonalities in distribution.
+
+##### Summarize Gene Expression Profiles
+
+We summarize gene expression data for the genes that are common between **GDSC** and **CCLE**.
+```{r summarize_expression}
+GDSCexpression <- summarizeMolecularProfiles(
+  common$GDSC, cellNames(common$GDSC),
+  mDataType = "rna", features = commonGenes, verbose = FALSE
+) |> assay()
+CCLEexpression <- summarizeMolecularProfiles(
+  common$CCLE, cellNames(common$CCLE),
+  mDataType = "rna", features = commonGenes, verbose = FALSE
+) |> assay() 
+
+GDSCexpression |> head()
+```
+
+Here, you could do PCA on the profiles to quickly check the data. We will skip this step in the interest of time.
+
+#### Correlation Analysis Between GDSC and CCLE
+
+We perform correlation analysis to examine the relationship between gene expression, AUC, and IC50 measures across the **GDSC** and **CCLE** datasets using **Spearman's correlation**.
+```{r correlation_analysis_gene_expression}
+# get common cell line names
+cc <- cellNames(common[[1]])
+
+# correlation of gene expression across common cell lines
+ge.cor <- sapply(cc, function(x, d1, d2) {
+  stats::cor(
+    d1[, x], d2[, x],
+    method = "spearman", use = "pairwise.complete.obs"
+  )
+}, d1 = GDSCexpression, d2 = CCLEexpression)
+
+ge.cor
+```
+
+We can see that the RNA-Seq expression values are highly correlated across the common cell lines.
+
+Let's take a look at the correlation of drug response, starting with IC50 values.
+```{r correlation_analysis_IC50}
+# quick look at the CCLE IC50 data
+CCLE.ic50 |> head()
+
+# correlation of IC50 values across common drugs and cell lines
+ic50.cor <- sapply(cc, function(x, d1, d2) {
+  stats::cor(
+    d1[, x], d2[, x],
+    method = "spearman", use = "pairwise.complete.obs"
+  )
+}, d1 = GDSC.ic50, d2 = CCLE.ic50)
+
+ic50.cor
+```
+
+Notice that we have some `NA` values in the original CCLE IC50 dataset and in the correlation results. 
+
+The `pairwise.complete.obs` argument used in the `cor()` function ensures that only complete observations (i.e. numeric values that are not `NA`) are included in the pairwise correlations. 
+
+Since `23132-87` and `647-V` are all `NA` values, no spearman correlation was computed.
+
+We can quickly compute the correlation for AUC as well.
+```{r correlation_analysis_AUC}
+# correlation of AUC values across common drugs and cell lines
+auc.cor <- sapply(cc, function(x, d1, d2) {
+  stats::cor(
+    d1[, x], d2[, x],
+    method = "spearman", use = "pairwise.complete.obs"
+  )
+}, d1 = GDSC.auc, d2 = CCLE.auc)
+
+auc.cor
+```
+
+#### Statistical Comparison
+
+We compare the correlations using **Wilcoxon signed-rank tests** to see if there are significant differences between the gene expression correlations and the drug sensitivity correlations.
+```{r wilcox_tests}
+w1 <- stats::wilcox.test(
+  x = ge.cor, y = auc.cor, conf.int = TRUE, exact = FALSE
+)
+w2 <- stats::wilcox.test(
+  x = ge.cor, y = ic50.cor, conf.int = TRUE, exact = FALSE
+)
+
+w1
+w2
+
+# Display p-values
+ss <- sprintf("GE vs. AUC = %.1E\nGE vs. IC50 = %.1E", w1$p.value, w2$p.value)
+cat(ss)
+```
+
+##### Boxplot Visualization
+
+The results are visualized using boxplots to compare the correlations across gene expression, AUC, and IC50.
+```{r boxplot_results}
+boxplot(list("GE" = ge.cor, "AUC" = auc.cor, "IC50" = ic50.cor),
+  main = "Concordance between cell lines",
+  ylab = expression(R[s]),
+  sub = ss,
+  ylim = c(-1, 1),
+  col = "lightgrey",
+  pch = 20,
+  border = "black"
+)
+```
+
+#### Statistical Analysis for Drug Response Associations
+
+In this final section, we will be focusing on computing the association between a feature of interest and drug response in order to identify predictive biomarkers.
+
+Let's begin by selecting a feature and drug of interest to explore.
+```{r variables_association}
+commonGenes |> head()
+feature <- "ENSG00000000003"
+
+common$GDSC@treatment |> rownames()
+drug <- "PD-0325901"
+```
+
+Next, we need to extract the vector of gene expression for our chosen feature and drug response for our chosen drug. Let's do this for the GDSC dataset.
+```{r get_vector}
+Gene <- GDSCexpression[feature,]
+Drug <- GDSC.auc[drug,]
+
+Gene
+Drug
+```
+
+Notice that the PSet has already kept the samples ordered across the various profiles.
+
+Before we compute the associations, we can quickly plot the two variables to visualize their relationship.
+```{r plot_association}
+# create datafarme to plot
+toPlot <- data.frame(Gene = Gene, Drug = Drug)
+
+ggplot(toPlot, aes(x = Gene, y = Drug)) + geom_point() +
+  theme_classic() + labs(x = "Gene (expr)", y = "Drug (AUC)")
+```
+
+From the scatter plot, we see a weak positive correlation. Let's see if this is reflected in our association analyses.
+
+##### Concordance Index
+
+Fist, we will compute the association between the gene expression data and drug response. We will use the `concordance.index` function from the `survcomp` package.
+``` {r compute_ci_3}
+ci <- survcomp::concordance.index(
+  as.numeric(Drug),                   # drug vector
+  surv.time = as.numeric(Gene),       # gene vector
+  surv.event = rep(1,length(Gene)),   
+  outx = TRUE, method="noether", na.rm = TRUE
+)
+
+cat("Concordance Index:", ci$c.index, "\n",
+    "P-value:", ci$p.value, "\n",
+    "Standard Error:", ci$se, "\n", 
+    "Upper CI:", ci$upper,"\n",
+    "Lower CI:", ci$lower)
+```
+
+The concordance index tells us there is a weak inverse association between the gene expression and the drug response.
+
+##### Pearson's Correlation Coefficient
+
+Using the same feature and drug, let's compute the association again but this time using Pearson's correlation.
+``` {r compute_pearson}
+ps <- cor.test(
+  x = Gene,
+  y = Drug,
+  alternative = "two.sided",
+  method = "pearson"
+)
+
+cat("Pearson's correlation:", ps$estimate, "\n",
+    "P-value:", ci$p.value, "\n",
+    "Confidence Interval:", ps$conf.int)
+```
+
+The Pearson's correlation tells us there is a (very) weak positive linear relationship between the gene expression and the drug response.
+
+Notice the slight difference in interpretation between the concordance index and the Pearson's correlation.
+
+##### Drug Sensitivity Signatures (PharmacoGx)
+
+The last method we will explore is a built-in function from the `PharmacoGx` package called `drugSensitivitySig`. This function takes a `PharmacoSet` along with a list of drugs and features, then computes the association between the feature expression and drug response for each pair.
+
+Let's first select the first 3 genes and drugs as our features & drugs of interest:
+```{r variables_drugSS}
+features <- commonGenes[1:3]
+drugs <- rownames(common$GDSC@treatment)[1:3]
+
+features
+drugs
+```
+
+Now we can calculate the drug sensitivity signature using the vector of genes and drugs for the GDSC dataset.
+
+:::: {.callout type="blue" title="Note"}
+
+This gene-drug signature is based on univariable analysis.
+
+::::
+```{r DSS_gene}
+# gene expression signature
+sig.rna <- drugSensitivitySig(
+  object = GDSCsmall,
+  mDataType = "rna",
+  drugs = drugs,
+  features = features,
+  sensitivity.measure = "auc_published",
+  molecular.summary.stat = "median",
+  sensitivity.summary.stat = "median",
+  modeling.method = "pearson",
+  verbose = FALSE
+)
+sig.rna@.Data[,,c(1,5)]
+```
+
+The output is a 3D array of genes x drugs x metric. Outputted are the `estimate` and `pvalue`. Feel free to explore the other array components in `sig.rna@.Data`.
+
+This function is a powerful method for investigating the univariate relationship between multiple molecular features and drugs. 
+
+Let's do the same for mutations, we'll do a quick example using one gene and drug from the CCLE dataset.
+```{r DSS_mut}
+# mutation signature
+sig.mut <- drugSensitivitySig(
+  object = CCLEsmall,
+  mDataType = "mutation",
+  drugs = "PD-0325901",
+  features = "BRAF",
+  sensitivity.measure = "auc_published",
+  molecular.summary.stat = "and",
+  sensitivity.summary.stat = "median",
+  verbose = FALSE
+)
+sig.mut@.Data[,,c(1,6)]
+```
+
+
+#### Univariate vs Multivariate Analysis
+
+For the final section of this lab, we will explore univariate vs multivariate linear modeling. Let's start with a simple  univariate linear model using the same Gene and Drug vector from earlier.
+
+##### Univariate Analysis
+
+Recall `Gene` is the RNA expression vector of `ENSG00000000005` and `Drug` is the drug response vector (AUC) for `PD-0325901` in the GDSC dataset.
+```{r uni_lm}
+lm(Drug ~ Gene) |> summary()
+```
+
+Let's break down this output:
+
+*Residuals*: the difference between the predicted y (drug response) values and the
+actual y values. A larger range suggests the model may not be a good fit of the data.
+
+*Coefficients*: the parameters of the model.
+
+* `Estimate` can be considered the effect size. Specifically, it is the one-unit change in the y variable (drug response) per one-unit change in the x variable (gene expression). The estimate from our drug~gene association is `0.014028`.
+* `Pr(>|t|)` is the corresponding p-value for each estimate. The p-value from our drug~gene association test is `0.443`.
+
+:::: {.callout type="blue" title="Note"}
+
+If any of the coefficients had met the p-value < 0.05 significance threshold, you would have seen `*` beside the estimate (unfortunately, this association does not meet this threshold).
+
+::::
+
+Let's see if we can make a multi-variate model with better performance.
+```{r multi_lm}
+# get another gene vector
+commonGenes[2]
+Gene2 <- GDSCexpression[commonGenes[2],]
+
+# multi-variate model
+lm(Drug ~ Gene + Gene2) |> summary()
+```
+
+The second gene feature we are adding to our model is `ENSG00000000005`.
+
+Take a look at the output, comparing it to the previous model we ran. Do you think that adding an additional gene has improved model performance?
+
+
+#### Individual Practice
+
+For the remainder of the lab, please explore the associations between other features and drug response. Try using the CCLE pset too!
+
+:::: {.callout type="green" title="Lab Completed!"}
+
+Congratulations! You have completed Lab 3!
+
+::::

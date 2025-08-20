@@ -1,0 +1,42 @@
+# Data and Compute Setup
+
+#### Course Data Downloads
+
+* [CCLE_chromatin.rda](./content-files/downloads/CCLE_chromatin.rda)
+* [CCLE_metabolomics.rda](./content-files/downloads/CCLE_metabolomics.rda)
+* [CCLE_model_list.rda](./content-files/downloads/CCLE_model_list.rda)
+* [CCLE_rrpa.rda](./content-files/downloads/CCLE_rrpa.rda)
+* [dummy_pset.rda](./content-files/downloads/dummy_pset.rda)
+* [GDSC_drivers.rda](./content-files/downloads/GDSC_drivers.rda)
+* [GDSC_drug_response.rda](./content-files/downloads/GDSC_drug_response.rda)
+* [GDSC_gene_identifiers.rda](./content-files/downloads/GDSC_gene_identifiers.rda)
+* [GDSC_methylation_model_list.rda](./content-files/downloads/GDSC_methylation_model_list.rda)
+* [GDSC_methylation.rda](./content-files/downloads/GDSC_methylation.rda)
+* [GDSC_model_list.rda](./content-files/downloads/GDSC_model_list.rda)
+* [GDSC_rnaseq.rda](./content-files/downloads/GDSC_rnaseq.rda)
+* [NCI_ALMANAC_pset.rda](./content-files/downloads/NCI_ALMANAC_pset.rda)
+* [NCI_ALMANAC_raw.rda](./content-files/downloads/NCI_ALMANAC_raw.rda)
+* [NCI_ALMANAC_sample_metadata.rda](./content-files/downloads/NCI_ALMANAC_sample_metadata.rda)
+* [NCI_ALMANAC_TRE.rda](./content-files/downloads/NCI_ALMANAC_TRE.rda)
+* [NCI_ALMANAC_treatment_metadata.rda](./content-files/downloads/NCI_ALMANAC_treatment_metadata.rda)
+* [NCI60_molecular_data.rda](./content-files/downloads/NCI60_molecular_data.rda)
+
+#### Compute Setup
+
+##### Installing from GitHub
+
+Run to install this package and its dependencies.
+
+```{r}
+pak::pkg_install("bhklab/CBWWorkshop2024", dependencies=TRUE)
+```
+
+:::: {.callout type="blue" title="Note"}
+
+You may need to install the pak package first. pak is a [“Fresh Approach to R Package Installation”](https://pak.r-lib.org/). You can install it by running:
+
+```{}
+install.packages("pak")
+```
+
+::::

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Pharmacogenomics Data Analysis 2024</title>
+  <meta name="description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Pharmacogenomics Data Analysis 2024" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bioinformaticsdotca.github.io/PGX_2024/img/bioinformatics_logo.png" />
+  <meta property="og:description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="github-repo" content="bioinformaticsdotca/PGX_2024" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pharmacogenomics Data Analysis 2024" />
+  
+  <meta name="twitter:description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="twitter:image" content="https://bioinformaticsdotca.github.io/PGX_2024/img/bioinformatics_logo.png" />
+
+<meta name="author" content="Faculty: Benjamin Haibe-Kains, Jermiah Joseph, Nikta Feizi, Julia Nguyen, and Nia Hughes" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+<link rel="next" href="data-and-compute-setup.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://bioinformaticsdotca.github.io/">
+ <img src="img/bioinformatics_logo.png" width="90%" alt="bioinformatics.ca logo" style="display:block; margin-left:auto; margin-right:auto; margin-top:15px;">
+ </a>
+<li><center><strong><a href="./"><br>Pharmacogenomics Data Analysis<br><br></a></strong></center></li>
+<a href="./">
+ <img src="img/pgx.png" width="70%" alt="Pharmacogenomics Data Analysis logo" style="display:block; margin-left:auto; margin-right:auto; ">
+ </a>
+<br>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop Info</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#class-photo"><i class="fa fa-check"></i>Class Photo</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-work"><i class="fa fa-check"></i>Pre-work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-and-compute-setup.html"><a href="data-and-compute-setup.html"><i class="fa fa-check"></i>Data and Compute Setup</a></li>
+<li class="part"><span><b>II Modules</b></span></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><i class="fa fa-check"></i>Module 1: Intro to Pharmacogenomics in the Context of Cancer</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lecture"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lab"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#getting-started"><i class="fa fa-check"></i>Getting Started</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html"><i class="fa fa-check"></i>Module 2: Data Preparation for Pharmacogenomic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lecture-1"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lab-1"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#overview-1"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#setup"><i class="fa fa-check"></i>Setup</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#understanding-the-pharmacoset-data-structure"><i class="fa fa-check"></i>Understanding the <code>PharmacoSet</code> Data Structure</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#molecular-profiles-1"><i class="fa fa-check"></i>Molecular Profiles</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#treatment-response"><i class="fa fa-check"></i>Treatment Response</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#subsetting-a-pharmacoset"><i class="fa fa-check"></i>Subsetting a <code>PharmacoSet</code></a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#computing-over-a-treatmentresponseexperiment"><i class="fa fa-check"></i>Computing Over a <code>TreatmentResponseExperiment</code></a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#quality-control-of-pharmacogenomic-datasets"><i class="fa fa-check"></i>Quality Control of Pharmacogenomic Datasets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><i class="fa fa-check"></i>Module 3: Pharmacogenomics for Biomarker Discover - Basic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lecture-2"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lab-2"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#instructors-names-and-contact-information-1"><i class="fa fa-check"></i>Instructor(s) Name(s) and Contact Information</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#pharmacogx-package-overview"><i class="fa fa-check"></i>PharmacoGx Package Overview</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><i class="fa fa-check"></i>Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lecture-3"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lab-3"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#overview-2"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#data-acquisition-and-preparation"><i class="fa fa-check"></i>Data Acquisition and Preparation</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<h1 id="sponsors">Sponsors</h1>
+<center>
+<a href="https://genomecanada.ca/"><img src="img/sponsors/genomecanada.png" height="70" style="display:inline-block;"  style="padding-bottom: 20px" alt="Genome Canada logo.">
+<a href="https://www.ontariogenomics.ca/"><img src="img/sponsors/ontariogenomics.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Ontario Genomics logo.">
+<br><br>
+<a href="https://oicr.on.ca/"><img src="img/sponsors/oicr.png" width=25% style="display:inline-block;" style="padding-bottom: 20px" alt="Ontario Institute for Cancer Research logo.">
+<a href="https://www.hpcforhealth.ca/"><img src="img/sponsors/hpc4health.png" width=60% style="display:inline-block;" style="padding-bottom: 20px "alt="HPC4Health logo.">
+<br><br>
+<a href="https://computationalgenomics.ca/"><img src="img/sponsors/c3g.png" style="display:inline-block;" width=35% style="padding-bottom: 20px" alt="Canadian Centre for Computational Genomcis logo.">
+
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li></center>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pharmacogenomics Data Analysis 2024</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Pharmacogenomics Data Analysis 2024</h1>
+<p class="author"><em>Faculty: Benjamin Haibe-Kains, Jermiah Joseph, Nikta Feizi, Julia Nguyen, and Nia Hughes</em></p>
+<p class="date"><em>October 17, 2024 - October 18, 2024</em></p>
+</div>
+<div id="workshop-info" class="section level1 hasAnchor">
+<h1>Workshop Info<a href="index.html#workshop-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Welcome to the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop webpage!</p>
+<div id="class-photo" class="section level2 hasAnchor">
+<h2>Class Photo<a href="index.html#class-photo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<iframe src="https://drive.google.com/file/d/1aUfyf57uF8PshyeRR1lKR7aF_VieF1ec/preview" width="640" height="480" allow="autoplay">
+</iframe>
+</div>
+<div id="schedule" class="section level2 hasAnchor">
+<h2>Schedule<a href="index.html#schedule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="41%" />
+<col width="6%" />
+<col width="45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Time (EDT)</th>
+<th align="center">October 17</th>
+<th align="center">Time (EDT)</th>
+<th align="center">October 18</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">8:30</td>
+<td align="center">Arrivals &amp; Check-in</td>
+<td align="center">8:30</td>
+<td align="center">Arrivals</td>
+</tr>
+<tr class="even">
+<td align="center">9:00</td>
+<td align="center">Welcome (Nia Hughes)</td>
+<td align="center">9:00</td>
+<td align="center">Module 3: Pharmacogenomics for biomarker discovery - Basic analysis (Nikta, Julia)</td>
+</tr>
+<tr class="odd">
+<td align="center">9:30</td>
+<td align="center">Module 1: Introduction to pharmacogenomics in the context of cancer (Benjamin)</td>
+<td align="center">10:00</td>
+<td align="center">Break (30 mins)</td>
+</tr>
+<tr class="even">
+<td align="center">10:30</td>
+<td align="center">Break (30 mins)</td>
+<td align="center">10:30</td>
+<td align="center">Module 3 Lab: Statistical analysis - Part 1 Lab (Nikta, Julia)</td>
+</tr>
+<tr class="odd">
+<td align="center">11:00</td>
+<td align="center">Module 1 Lab: Getting to know multi-omics data (Julia, Nikta, Jermiah)</td>
+<td align="center">12:30</td>
+<td align="center">Class photo + Lunch (1 hr)</td>
+</tr>
+<tr class="even">
+<td align="center">13:00</td>
+<td align="center">Lunch (1 hr)</td>
+<td align="center">13:30</td>
+<td align="center">Module 4: Pharmacogenomics for biomarker discovery - Advanced analysis (Nikta, Julia)</td>
+</tr>
+<tr class="odd">
+<td align="center">14:00</td>
+<td align="center">Module 2: Data preparation for pharmacogenomic analysis (Jermiah)</td>
+<td align="center">14:30</td>
+<td align="center">Break (30 mins)</td>
+</tr>
+<tr class="even">
+<td align="center">15:00</td>
+<td align="center">Break (30 mins)</td>
+<td align="center">15:00</td>
+<td align="center">Module 4 Lab: Statistical analysis - Part 2 (Nikta, Julia)</td>
+</tr>
+<tr class="odd">
+<td align="center">15:30</td>
+<td align="center">Module 2 Lab: Hands-on with pharmacogenomics data (Jermiah, Almas)</td>
+<td align="center">17:00</td>
+<td align="center">Survey &amp; Closing Remarks</td>
+</tr>
+<tr class="even">
+<td align="center">17:30</td>
+<td align="center">Finished</td>
+<td align="center">17:30</td>
+<td align="center">Finished</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="pre-work" class="section level2 hasAnchor">
+<h2>Pre-work<a href="index.html#pre-work" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfVRGQTvRJG0PKQhkHZ_L7MQYYI_W5ZETPcBgMOVzMTwL2WMQ/viewform">You can find your pre-work here.</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="data-and-compute-setup.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/bioinformaticsdotca/PGX_2024/blob/main/index.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

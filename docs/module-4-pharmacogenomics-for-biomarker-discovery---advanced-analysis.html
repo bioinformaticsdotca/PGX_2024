@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis | Pharmacogenomics Data Analysis 2024</title>
+  <meta name="description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis | Pharmacogenomics Data Analysis 2024" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bioinformaticsdotca.github.io/PGX_2024/img/bioinformatics_logo.png" />
+  <meta property="og:description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="github-repo" content="bioinformaticsdotca/PGX_2024" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis | Pharmacogenomics Data Analysis 2024" />
+  
+  <meta name="twitter:description" content="Workshop website for the 2024 Pharmacogenomics Data Analysis Canadian Bioinformatics Workshop" />
+  <meta name="twitter:image" content="https://bioinformaticsdotca.github.io/PGX_2024/img/bioinformatics_logo.png" />
+
+<meta name="author" content="Faculty: Benjamin Haibe-Kains, Jermiah Joseph, Nikta Feizi, Julia Nguyen, and Nia Hughes" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://bioinformaticsdotca.github.io/">
+ <img src="img/bioinformatics_logo.png" width="90%" alt="bioinformatics.ca logo" style="display:block; margin-left:auto; margin-right:auto; margin-top:15px;">
+ </a>
+<li><center><strong><a href="./"><br>Pharmacogenomics Data Analysis<br><br></a></strong></center></li>
+<a href="./">
+ <img src="img/pgx.png" width="70%" alt="Pharmacogenomics Data Analysis logo" style="display:block; margin-left:auto; margin-right:auto; ">
+ </a>
+<br>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop Info</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#class-photo"><i class="fa fa-check"></i>Class Photo</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-work"><i class="fa fa-check"></i>Pre-work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-and-compute-setup.html"><a href="data-and-compute-setup.html"><i class="fa fa-check"></i>Data and Compute Setup</a></li>
+<li class="part"><span><b>II Modules</b></span></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><i class="fa fa-check"></i>Module 1: Intro to Pharmacogenomics in the Context of Cancer</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lecture"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#lab"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html"><a href="module-1-intro-to-pharmacogenomics-in-the-context-of-cancer.html#getting-started"><i class="fa fa-check"></i>Getting Started</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html"><i class="fa fa-check"></i>Module 2: Data Preparation for Pharmacogenomic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lecture-1"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#lab-1"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#overview-1"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#setup"><i class="fa fa-check"></i>Setup</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#understanding-the-pharmacoset-data-structure"><i class="fa fa-check"></i>Understanding the <code>PharmacoSet</code> Data Structure</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#molecular-profiles-1"><i class="fa fa-check"></i>Molecular Profiles</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#treatment-response"><i class="fa fa-check"></i>Treatment Response</a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#subsetting-a-pharmacoset"><i class="fa fa-check"></i>Subsetting a <code>PharmacoSet</code></a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#computing-over-a-treatmentresponseexperiment"><i class="fa fa-check"></i>Computing Over a <code>TreatmentResponseExperiment</code></a></li>
+<li class="chapter" data-level="" data-path="module-2-data-preparation-for-pharmacogenomic-analysis.html"><a href="module-2-data-preparation-for-pharmacogenomic-analysis.html#quality-control-of-pharmacogenomic-datasets"><i class="fa fa-check"></i>Quality Control of Pharmacogenomic Datasets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><i class="fa fa-check"></i>Module 3: Pharmacogenomics for Biomarker Discover - Basic Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lecture-2"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#lab-2"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#instructors-names-and-contact-information-1"><i class="fa fa-check"></i>Instructor(s) Name(s) and Contact Information</a></li>
+<li class="chapter" data-level="" data-path="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html"><a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html#pharmacogx-package-overview"><i class="fa fa-check"></i>PharmacoGx Package Overview</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><i class="fa fa-check"></i>Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lecture-3"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lab-3"><i class="fa fa-check"></i>Lab</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#overview-2"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#data-acquisition-and-preparation"><i class="fa fa-check"></i>Data Acquisition and Preparation</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<h1 id="sponsors">Sponsors</h1>
+<center>
+<a href="https://genomecanada.ca/"><img src="img/sponsors/genomecanada.png" height="70" style="display:inline-block;"  style="padding-bottom: 20px" alt="Genome Canada logo.">
+<a href="https://www.ontariogenomics.ca/"><img src="img/sponsors/ontariogenomics.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Ontario Genomics logo.">
+<br><br>
+<a href="https://oicr.on.ca/"><img src="img/sponsors/oicr.png" width=25% style="display:inline-block;" style="padding-bottom: 20px" alt="Ontario Institute for Cancer Research logo.">
+<a href="https://www.hpcforhealth.ca/"><img src="img/sponsors/hpc4health.png" width=60% style="display:inline-block;" style="padding-bottom: 20px "alt="HPC4Health logo.">
+<br><br>
+<a href="https://computationalgenomics.ca/"><img src="img/sponsors/c3g.png" style="display:inline-block;" width=35% style="padding-bottom: 20px" alt="Canadian Centre for Computational Genomcis logo.">
+
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li></center>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pharmacogenomics Data Analysis 2024</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis" class="section level1 hasAnchor">
+<h1>Module 4: Pharmacogenomics for Biomarker Discovery - Advanced Analysis<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lecture-3" class="section level2 hasAnchor">
+<h2>Lecture<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lecture-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/r73hywi6a48?si=uT41HDlpt0GRmH1K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<p><br></p>
+<iframe src="https://drive.google.com/file/d/1iuzxJENmCwG6X1ymU9Qnf_5Gw011YXDv/preview" width="640" height="480" allow="autoplay">
+</iframe>
+</div>
+<div id="lab-3" class="section level2 hasAnchor">
+<h2>Lab<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#lab-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="overview-2" class="section level3 hasAnchor">
+<h3>Overview<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#overview-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="intructors-name-and-contact-information" class="section level4 hasAnchor">
+<h4>Intructor(s) Name and Contact Information<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#intructors-name-and-contact-information" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Nikta Feizi <a href="mailto:nikta.feizi@uhn.ca" class="email">nikta.feizi@uhn.ca</a></li>
+<li>Julia Nguyen <a href="mailto:julia.nguyen@uhn.ca" class="email">julia.nguyen@uhn.ca</a></li>
+</ul>
+</div>
+<div id="introduction-1" class="section level4 hasAnchor">
+<h4>Introduction<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This workshop will touch on more advanced statistical methods for univariate biomarker discovery. It will primarily cover meta-analysis techniques and sub-group analysis.</p>
+<div id="learning-objectives-3" class="section level5 hasAnchor">
+<h5>Learning Objectives<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#learning-objectives-3" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>By the end of this lab, participants will be able to:</p>
+<ul>
+<li>Execute a meta-analysis using multiple PharmacoSets to evaluate a biomarker of interest across different cancer types</li>
+<li>Generate and interpret forest plots to visualize effect sizes</li>
+<li>Perform subgroup analyses using a small subset of the CCLE dataset</li>
+<li>Understand the preprocessing steps required for pharmacogenomic data</li>
+<li>Assess the assumptions and model diagnostics for linear regression models</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="data-acquisition-and-preparation" class="section level3 hasAnchor">
+<h3>Data Acquisition and Preparation<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#data-acquisition-and-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Like before, we will use smaller versions of the PharmacoSets for the workshop to minimize
+processing time. Let’s load these datasets in and subset for common cell lines and .</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb91-1" tabindex="-1"></a><span class="co"># load in the datasets</span></span>
+<span id="cb91-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb91-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GDSCsmall&quot;</span>)</span>
+<span id="cb91-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb91-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;CCLEsmall&quot;</span>)</span></code></pre></div>
+<div id="extracting-required-vectors-for-biomarker-analysis" class="section level4 hasAnchor">
+<h4>Extracting Required Vectors for Biomarker Analysis<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#extracting-required-vectors-for-biomarker-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Recall there are two components needed for a biomarker association analysis:</p>
+<ul>
+<li>Feature data (molecular profile)</li>
+<li>Drug response</li>
+</ul>
+<p>Say we are interested in <code>ENSG00000003987</code> expression association with <code>PD-0325901</code>. We can start by extracting this data from both PSets.</p>
+<div id="gene-expression-data" class="section level5 hasAnchor">
+<h5>Gene Expression Data<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#gene-expression-data" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-1" tabindex="-1"></a><span class="co"># specify our gene of interest</span></span>
+<span id="cb92-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-2" tabindex="-1"></a>gene <span class="ot">&lt;-</span> <span class="st">&quot;ENSG00000003987&quot;</span></span>
+<span id="cb92-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-3" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-4" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-5" tabindex="-1"></a><span class="co"># extract the RNA-Seq data for our gene of interest in both GDSC and CCLE</span></span>
+<span id="cb92-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-6" tabindex="-1"></a>ccle_rna_data <span class="ot">&lt;-</span> <span class="fu">summarizeMolecularProfiles</span>(</span>
+<span id="cb92-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-7" tabindex="-1"></a>  CCLEsmall,</span>
+<span id="cb92-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-8" tabindex="-1"></a>  <span class="at">mDataType =</span> <span class="st">&quot;rna&quot;</span>, <span class="at">features =</span> gene</span>
+<span id="cb92-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-9" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">assay</span>()</span>
+<span id="cb92-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-10" tabindex="-1"></a></span>
+<span id="cb92-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-11" tabindex="-1"></a>gdsc_rna_data <span class="ot">&lt;-</span> <span class="fu">summarizeMolecularProfiles</span>(</span>
+<span id="cb92-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-12" tabindex="-1"></a>  GDSCsmall,</span>
+<span id="cb92-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-13" tabindex="-1"></a>  <span class="at">mDataType =</span> <span class="st">&quot;rna&quot;</span>, <span class="at">features =</span> gene</span>
+<span id="cb92-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-14" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">assay</span>()</span>
+<span id="cb92-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-15" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span id="cb92-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-16" tabindex="-1"></a>gdsc_rna_data</span>
+<span id="cb92-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-17" tabindex="-1"></a><span class="co">#&gt;                    22RV1 23132-87      380     5637    639-V    647-V     697</span></span>
+<span id="cb92-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-18" tabindex="-1"></a><span class="co">#&gt; ENSG00000003987 4.197327 4.022529 4.000509 4.031896 3.977781 3.834624 4.36307</span></span>
+<span id="cb92-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-19" tabindex="-1"></a><span class="co">#&gt;                    769-P    786-0  8-MG-BA</span></span>
+<span id="cb92-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb92-20" tabindex="-1"></a><span class="co">#&gt; ENSG00000003987 4.397028 3.973001 4.275385</span></span></code></pre></div>
+</div>
+<div id="drug-response-data-1" class="section level5 hasAnchor">
+<h5>Drug Response Data<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#drug-response-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Next, let’s take a look at the available drug response data</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-1" tabindex="-1"></a><span class="fu">sensitivityProfiles</span>(CCLEsmall) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb93-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-2" tabindex="-1"></a><span class="co">#&gt;                        ic50_published auc_published amax_published</span></span>
+<span id="cb93-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-3" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_1321N1         8.000000     0.0873750      -42.55801</span></span>
+<span id="cb93-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-4" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_22Rv1          2.329924     0.2205000      -71.58934</span></span>
+<span id="cb93-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-5" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_42-MG-BA       2.682130     0.1144375      -63.49137</span></span>
+<span id="cb93-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-6" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_5637           5.002314     0.1243550      -62.35278</span></span>
+<span id="cb93-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-7" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_639-V          1.736181     0.1936250      -51.95981</span></span>
+<span id="cb93-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-8" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_697            4.260822     0.1087625      -73.33379</span></span>
+<span id="cb93-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-9" tabindex="-1"></a><span class="co">#&gt;                        auc_recomputed ic50_recomputed amax_recomputed</span></span>
+<span id="cb93-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-10" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_1321N1        0.1017047        13.09700        42.87563</span></span>
+<span id="cb93-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-11" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_22Rv1         0.2239774         2.18654        70.37213</span></span>
+<span id="cb93-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-12" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_42-MG-BA      0.1215999         2.68981        63.00413</span></span>
+<span id="cb93-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-13" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_5637          0.1092448         5.19939        61.43152</span></span>
+<span id="cb93-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-14" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_639-V         0.1912847         5.40523        54.22604</span></span>
+<span id="cb93-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb93-15" tabindex="-1"></a><span class="co">#&gt; drugid_AEW541_697           0.1146054         4.17688        69.94055</span></span></code></pre></div>
+<p>We can see a few options of drug response metrics to choose from. We will use <code>auc_published</code> for our drug response associations.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-1" tabindex="-1"></a><span class="co"># extract AUC_published data from CCLE and GDSC</span></span>
+<span id="cb94-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-2" tabindex="-1"></a>ccle_auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(</span>
+<span id="cb94-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-3" tabindex="-1"></a>  CCLEsmall,</span>
+<span id="cb94-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-4" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb94-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-5" tabindex="-1"></a>  <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb94-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-6" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb94-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-7" tabindex="-1"></a>)</span>
+<span id="cb94-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-8" tabindex="-1"></a></span>
+<span id="cb94-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-9" tabindex="-1"></a>gdsc_auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(</span>
+<span id="cb94-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-10" tabindex="-1"></a>  GDSCsmall,</span>
+<span id="cb94-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-11" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb94-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-12" tabindex="-1"></a>  <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb94-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-13" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb94-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-14" tabindex="-1"></a>)</span>
+<span id="cb94-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-15" tabindex="-1"></a></span>
+<span id="cb94-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-16" tabindex="-1"></a>ccle_auc[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb94-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-17" tabindex="-1"></a><span class="co">#&gt;               1321N1 143B    22RV1 23132-87 253J-BV</span></span>
+<span id="cb94-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-18" tabindex="-1"></a><span class="co">#&gt; PD-0325901 0.1148875   NA 0.385000       NA      NA</span></span>
+<span id="cb94-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-19" tabindex="-1"></a><span class="co">#&gt; 17-AAG     0.4177000   NA 0.372460       NA      NA</span></span>
+<span id="cb94-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-20" tabindex="-1"></a><span class="co">#&gt; AEW541     0.0873750   NA 0.220500       NA      NA</span></span>
+<span id="cb94-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-21" tabindex="-1"></a><span class="co">#&gt; Nilotinib         NA   NA 0.000000       NA      NA</span></span>
+<span id="cb94-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb94-22" tabindex="-1"></a><span class="co">#&gt; PHA-665752 0.0333750   NA 0.094375       NA      NA</span></span></code></pre></div>
+<p>The <code>summarizeSensitivityProfiles()</code> function nicely pulls the drug response data and converts it into a sample~drug matrix for easy use.</p>
+<p>We only need the drug response data for <code>PD-0325901</code>, so let’s pull that out.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-1" tabindex="-1"></a>drug <span class="ot">&lt;-</span> <span class="st">&quot;PD-0325901&quot;</span></span>
+<span id="cb95-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-2" tabindex="-1"></a>ccle_drug_data <span class="ot">&lt;-</span> ccle_auc[drug, ]</span>
+<span id="cb95-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-3" tabindex="-1"></a>gdsc_drug_data <span class="ot">&lt;-</span> gdsc_auc[drug, ]</span>
+<span id="cb95-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-4" tabindex="-1"></a></span>
+<span id="cb95-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-5" tabindex="-1"></a><span class="fu">head</span>(ccle_drug_data)</span>
+<span id="cb95-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-6" tabindex="-1"></a><span class="co">#&gt;    1321N1      143B     22RV1  23132-87   253J-BV      253J </span></span>
+<span id="cb95-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-7" tabindex="-1"></a><span class="co">#&gt; 0.1148875        NA 0.3850000        NA        NA        NA</span></span>
+<span id="cb95-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-8" tabindex="-1"></a><span class="fu">head</span>(gdsc_drug_data)</span>
+<span id="cb95-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-9" tabindex="-1"></a><span class="co">#&gt;    22RV1 23132-87      380     5637    639-V    647-V </span></span>
+<span id="cb95-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb95-10" tabindex="-1"></a><span class="co">#&gt; 0.029649 0.122911       NA 0.007242 0.279261 0.100351</span></span></code></pre></div>
+</div>
+</div>
+<div id="gene-expression-exploratory-data-analysis-eda" class="section level4 hasAnchor">
+<h4>Gene Expression Exploratory Data Analysis (EDA)<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#gene-expression-exploratory-data-analysis-eda" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Before performing the statistical analysis, let’s quickly look at the distribution of <code>ENSG00000003987</code> expression data.</p>
+<p>First, we can check the number of cell lines in each vector:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb96-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Number of cell lines in GDSC:&quot;</span>, <span class="fu">length</span>(gdsc_rna_data))</span>
+<span id="cb96-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb96-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Number of cell lines in GDSC: 10&quot;</span></span>
+<span id="cb96-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb96-3" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Number of cell lines in CCLE:&quot;</span>, <span class="fu">length</span>(ccle_rna_data))</span>
+<span id="cb96-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb96-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Number of cell lines in CCLE: 1061&quot;</span></span></code></pre></div>
+<p>Notice there is a large difference between the number of samples between GDSC and CCLE. This difference in sample size may reflected in the meta-analysis.</p>
+<p>Let’s quickly look at the distribution of this gene in both PSets.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">t</span>(ccle_rna_data), <span class="fu">aes_string</span>(<span class="at">x =</span> gene)) <span class="sc">+</span></span>
+<span id="cb97-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb97-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-3" tabindex="-1"></a>        <span class="fu">labs</span>(</span>
+<span id="cb97-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-4" tabindex="-1"></a>          <span class="at">title =</span> stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="st">&quot;Distribution of &quot;</span>, gene, <span class="st">&quot; Expression in CCLEsmall&quot;</span>),</span>
+<span id="cb97-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-5" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">&quot;Expression&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span></span>
+<span id="cb97-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-6" tabindex="-1"></a>        )</span>
+<span id="cb97-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-7" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">t</span>(gdsc_rna_data), <span class="fu">aes_string</span>(<span class="at">x =</span> gene)) <span class="sc">+</span></span>
+<span id="cb97-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-8" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb97-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-9" tabindex="-1"></a>        <span class="fu">labs</span>(</span>
+<span id="cb97-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-10" tabindex="-1"></a>          <span class="at">title =</span> stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="st">&quot;Distribution of &quot;</span>, gene, <span class="st">&quot; Expression in GDSCsmall&quot;</span>),</span>
+<span id="cb97-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-11" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">&quot;Expression&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span></span>
+<span id="cb97-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-12" tabindex="-1"></a>        )</span>
+<span id="cb97-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb97-13" tabindex="-1"></a><span class="fu">ggarrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot_EDA-1.png" width="672" /></p>
+<p>Notice that the difference in distribution shapes. You can imagine what implications a small sample size (e.g. GDSC) would have when downstream analysis.</p>
+</div>
+<div id="effect-size-calculation" class="section level4 hasAnchor">
+<h4>Effect Size Calculation<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#effect-size-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In this next section, we will compute the associations between our feature and drug within each individual PSet. These results will be what we input into the meta-analysis.</p>
+<p>Before we start, let’s confirm that the samples in our input <code>ENSG00000003987</code> expression and <code>PD-0325901</code> response vectors are in the samae order.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-1" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">names</span>(gdsc_drug_data) <span class="sc">==</span> <span class="fu">colnames</span>(gdsc_rna_data))</span>
+<span id="cb98-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb98-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-3" tabindex="-1"></a><span class="co">#&gt; TRUE </span></span>
+<span id="cb98-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-4" tabindex="-1"></a><span class="co">#&gt;   10</span></span>
+<span id="cb98-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-5" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">names</span>(ccle_drug_data) <span class="sc">==</span> <span class="fu">colnames</span>(ccle_rna_data))</span>
+<span id="cb98-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb98-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-7" tabindex="-1"></a><span class="co">#&gt; TRUE </span></span>
+<span id="cb98-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-8" tabindex="-1"></a><span class="co">#&gt; 1061</span></span>
+<span id="cb98-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-9" tabindex="-1"></a></span>
+<span id="cb98-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-10" tabindex="-1"></a><span class="co"># manually look at the cell line names</span></span>
+<span id="cb98-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-11" tabindex="-1"></a><span class="fu">names</span>(gdsc_drug_data)</span>
+<span id="cb98-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-12" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;22RV1&quot;    &quot;23132-87&quot; &quot;380&quot;      &quot;5637&quot;     &quot;639-V&quot;    &quot;647-V&quot;   </span></span>
+<span id="cb98-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-13" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;697&quot;      &quot;769-P&quot;    &quot;786-0&quot;    &quot;8-MG-BA&quot;</span></span>
+<span id="cb98-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-14" tabindex="-1"></a><span class="fu">colnames</span>(gdsc_rna_data)</span>
+<span id="cb98-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-15" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;22RV1&quot;    &quot;23132-87&quot; &quot;380&quot;      &quot;5637&quot;     &quot;639-V&quot;    &quot;647-V&quot;   </span></span>
+<span id="cb98-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb98-16" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;697&quot;      &quot;769-P&quot;    &quot;786-0&quot;    &quot;8-MG-BA&quot;</span></span></code></pre></div>
+<p>We can use any of the statistical methods discussed in Module 3 to calculate theeffect size of the association between <code>ENSG00000003987</code> expression and <code>PD-0325901</code> response.</p>
+<p>Let’s try using concordance index:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-1" tabindex="-1"></a><span class="co"># fixing drug response data (to change in subsetted PSet)</span></span>
+<span id="cb99-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-2" tabindex="-1"></a>gdsc_drug_data[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb99-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-3" tabindex="-1"></a></span>
+<span id="cb99-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-4" tabindex="-1"></a><span class="co"># compute concordance index for each pset</span></span>
+<span id="cb99-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-5" tabindex="-1"></a>CCLE_ci <span class="ot">&lt;-</span> survcomp<span class="sc">::</span><span class="fu">concordance.index</span>(</span>
+<span id="cb99-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-6" tabindex="-1"></a>  <span class="fu">as.numeric</span>(ccle_drug_data),                   <span class="co"># drug vector</span></span>
+<span id="cb99-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-7" tabindex="-1"></a>  <span class="at">surv.time =</span> <span class="fu">as.numeric</span>(ccle_rna_data),        <span class="co"># gene vector</span></span>
+<span id="cb99-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-8" tabindex="-1"></a>  <span class="at">surv.event =</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">length</span>(ccle_rna_data)),   </span>
+<span id="cb99-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-9" tabindex="-1"></a>  <span class="at">outx =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">&quot;noether&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb99-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-10" tabindex="-1"></a>)</span>
+<span id="cb99-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-11" tabindex="-1"></a></span>
+<span id="cb99-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Concordance Index:&quot;</span>, CCLE_ci<span class="sc">$</span>c.index, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb99-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-13" tabindex="-1"></a>    <span class="st">&quot;P-value:&quot;</span>, CCLE_ci<span class="sc">$</span>p.value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb99-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-14" tabindex="-1"></a>    <span class="st">&quot;Standard Error:&quot;</span>, CCLE_ci<span class="sc">$</span>se, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb99-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-15" tabindex="-1"></a>    <span class="st">&quot;Upper CI:&quot;</span>, CCLE_ci<span class="sc">$</span>upper,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb99-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-16" tabindex="-1"></a>    <span class="st">&quot;Lower CI:&quot;</span>, CCLE_ci<span class="sc">$</span>lower)</span>
+<span id="cb99-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-17" tabindex="-1"></a><span class="co">#&gt; Concordance Index: 0.5352986 </span></span>
+<span id="cb99-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-18" tabindex="-1"></a><span class="co">#&gt;  P-value: 0.01556791 </span></span>
+<span id="cb99-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-19" tabindex="-1"></a><span class="co">#&gt;  Standard Error: 0.0145929 </span></span>
+<span id="cb99-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-20" tabindex="-1"></a><span class="co">#&gt;  Upper CI: 0.5639002 </span></span>
+<span id="cb99-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-21" tabindex="-1"></a><span class="co">#&gt;  Lower CI: 0.5066971</span></span>
+<span id="cb99-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-22" tabindex="-1"></a></span>
+<span id="cb99-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-23" tabindex="-1"></a>GDSC_ci <span class="ot">&lt;-</span> survcomp<span class="sc">::</span><span class="fu">concordance.index</span>(</span>
+<span id="cb99-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-24" tabindex="-1"></a>  <span class="fu">as.numeric</span>(gdsc_drug_data),                   <span class="co"># drug vector</span></span>
+<span id="cb99-25"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-25" tabindex="-1"></a>  <span class="at">surv.time =</span> <span class="fu">as.numeric</span>(gdsc_rna_data),        <span class="co"># gene vector</span></span>
+<span id="cb99-26"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-26" tabindex="-1"></a>  <span class="at">surv.event =</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">length</span>(gdsc_rna_data)),   </span>
+<span id="cb99-27"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-27" tabindex="-1"></a>  <span class="at">outx =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">&quot;noether&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb99-28"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-28" tabindex="-1"></a>)</span>
+<span id="cb99-29"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-29" tabindex="-1"></a></span>
+<span id="cb99-30"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-30" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Concordance Index:&quot;</span>, GDSC_ci<span class="sc">$</span>c.index, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb99-31"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-31" tabindex="-1"></a>    <span class="st">&quot;P-value:&quot;</span>, GDSC_ci<span class="sc">$</span>p.value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb99-32"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-32" tabindex="-1"></a>    <span class="st">&quot;Standard Error:&quot;</span>, GDSC_ci<span class="sc">$</span>se, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb99-33"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-33" tabindex="-1"></a>    <span class="st">&quot;Upper CI:&quot;</span>, GDSC_ci<span class="sc">$</span>upper,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb99-34"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-34" tabindex="-1"></a>    <span class="st">&quot;Lower CI:&quot;</span>, GDSC_ci<span class="sc">$</span>lower)</span>
+<span id="cb99-35"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-35" tabindex="-1"></a><span class="co">#&gt; Concordance Index: 0.5777778 </span></span>
+<span id="cb99-36"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-36" tabindex="-1"></a><span class="co">#&gt;  P-value: 0.08389382 </span></span>
+<span id="cb99-37"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-37" tabindex="-1"></a><span class="co">#&gt;  Standard Error: 0.04499657 </span></span>
+<span id="cb99-38"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-38" tabindex="-1"></a><span class="co">#&gt;  Upper CI: 0.6659694 </span></span>
+<span id="cb99-39"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb99-39" tabindex="-1"></a><span class="co">#&gt;  Lower CI: 0.4895861</span></span></code></pre></div>
+</div>
+<div id="perform-meta-analysis" class="section level4 hasAnchor">
+<h4>Perform Meta-Analysis<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#perform-meta-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Now we can combine the effect sizes from <code>GDSCsmall</code> and <code>CCLEsmall</code> to perform a meta-analysis.</p>
+<p>Recall from the lecture that we need three variables for our meta-analysis:</p>
+<ul>
+<li>Effect Size (also called Treatment Effect or TE)</li>
+<li>Standard Error</li>
+<li>Dataset Labels (just for plotting purposes)</li>
+</ul>
+<p>Let’s extract all of this information from our outputs above and put it into a dataframe.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-1" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb100-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-2" tabindex="-1"></a>  <span class="at">Concordance.Index =</span> <span class="fu">c</span>(GDSC_ci<span class="sc">$</span>c.index, CCLE_ci<span class="sc">$</span>c.index),</span>
+<span id="cb100-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-3" tabindex="-1"></a>  <span class="at">Standard.Error =</span> <span class="fu">c</span>(GDSC_ci<span class="sc">$</span>se, CCLE_ci<span class="sc">$</span>se),</span>
+<span id="cb100-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-4" tabindex="-1"></a>  <span class="at">Upper.CI =</span> <span class="fu">c</span>(GDSC_ci<span class="sc">$</span>upper, CCLE_ci<span class="sc">$</span>upper),</span>
+<span id="cb100-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-5" tabindex="-1"></a>  <span class="at">Lower.CI =</span> <span class="fu">c</span>(GDSC_ci<span class="sc">$</span>lower, CCLE_ci<span class="sc">$</span>lower),</span>
+<span id="cb100-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-6" tabindex="-1"></a>  <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">&quot;GDSC&quot;</span>, <span class="st">&quot;CCLE&quot;</span>)</span>
+<span id="cb100-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-7" tabindex="-1"></a>)</span>
+<span id="cb100-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-8" tabindex="-1"></a></span>
+<span id="cb100-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-9" tabindex="-1"></a>combined</span>
+<span id="cb100-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-10" tabindex="-1"></a><span class="co">#&gt;   Concordance.Index Standard.Error  Upper.CI  Lower.CI Dataset</span></span>
+<span id="cb100-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-11" tabindex="-1"></a><span class="co">#&gt; 1         0.5777778     0.04499657 0.6659694 0.4895861    GDSC</span></span>
+<span id="cb100-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb100-12" tabindex="-1"></a><span class="co">#&gt; 2         0.5352986     0.01459290 0.5639002 0.5066971    CCLE</span></span></code></pre></div>
+<p>Now we can use the <code>metagen</code> function from the <code>meta</code> package to perform the meta-analysis.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-1" tabindex="-1"></a>meta.result <span class="ot">&lt;-</span> <span class="fu">metagen</span>(<span class="at">data =</span> combined,</span>
+<span id="cb101-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-2" tabindex="-1"></a>  <span class="at">TE =</span> Concordance.Index,</span>
+<span id="cb101-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-3" tabindex="-1"></a>  <span class="at">seTE =</span> Standard.Error,</span>
+<span id="cb101-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-4" tabindex="-1"></a>  <span class="at">studlab =</span> combined<span class="sc">$</span>Dataset</span>
+<span id="cb101-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-5" tabindex="-1"></a>)</span>
+<span id="cb101-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-6" tabindex="-1"></a></span>
+<span id="cb101-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-7" tabindex="-1"></a>meta.result</span>
+<span id="cb101-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-8" tabindex="-1"></a><span class="co">#&gt; Number of studies: k = 2</span></span>
+<span id="cb101-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb101-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-10" tabindex="-1"></a><span class="co">#&gt;                                       95%-CI     z p-value</span></span>
+<span id="cb101-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-11" tabindex="-1"></a><span class="co">#&gt; Common effect model  0.5393 [0.5121; 0.5665] 38.85       0</span></span>
+<span id="cb101-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-12" tabindex="-1"></a><span class="co">#&gt; Random effects model 0.5393 [0.5121; 0.5665] 38.85       0</span></span>
+<span id="cb101-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb101-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-14" tabindex="-1"></a><span class="co">#&gt; Quantifying heterogeneity:</span></span>
+<span id="cb101-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-15" tabindex="-1"></a><span class="co">#&gt;  tau^2 = 0; tau = 0; I^2 = 0.0%; H = 1.00</span></span>
+<span id="cb101-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb101-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-17" tabindex="-1"></a><span class="co">#&gt; Test of heterogeneity:</span></span>
+<span id="cb101-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-18" tabindex="-1"></a><span class="co">#&gt;     Q d.f. p-value</span></span>
+<span id="cb101-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-19" tabindex="-1"></a><span class="co">#&gt;  0.81    1  0.3692</span></span>
+<span id="cb101-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb101-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-21" tabindex="-1"></a><span class="co">#&gt; Details of meta-analysis methods:</span></span>
+<span id="cb101-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-22" tabindex="-1"></a><span class="co">#&gt; - Inverse variance method</span></span>
+<span id="cb101-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-23" tabindex="-1"></a><span class="co">#&gt; - Restricted maximum-likelihood estimator for tau^2</span></span>
+<span id="cb101-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb101-24" tabindex="-1"></a><span class="co">#&gt; - Calculation of I^2 based on Q</span></span></code></pre></div>
+<div id="visualization-with-forest-plots" class="section level5 hasAnchor">
+<h5>Visualization with Forest Plots<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#visualization-with-forest-plots" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="forest-function-from-meta-package" class="section level6 hasAnchor">
+<h6>Forest Function from Meta Package<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#forest-function-from-meta-package" class="anchor-section" aria-label="Anchor link to header"></a></h6>
+<p>We can use the built in <code>forest</code> function from the <code>meta</code> package to quickly create a forest plot using the output of the <code>metagen</code> function:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-1" tabindex="-1"></a><span class="co"># set your file path</span></span>
+<span id="cb102-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;forest_plot.png&quot;</span></span>
+<span id="cb102-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-3" tabindex="-1"></a></span>
+<span id="cb102-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-4" tabindex="-1"></a><span class="co"># generate forest plot</span></span>
+<span id="cb102-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-5" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> file_path, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">res =</span> <span class="dv">600</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span>
+<span id="cb102-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-6" tabindex="-1"></a><span class="fu">forest</span>(meta.result)</span>
+<span id="cb102-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb102-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-8" tabindex="-1"></a><span class="co">#&gt; quartz_off_screen </span></span>
+<span id="cb102-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb102-9" tabindex="-1"></a><span class="co">#&gt;                 2</span></span></code></pre></div>
+<p><img src="img/forest_plot.png" alt="PharmacoSet class structure" />
+###### Using ggplot2</p>
+<p>We can also visualize this data usign the <code>ggplot2</code> package. While this will not return a full forest plot, we can get a closer look at the relationship between the effect sizes of each individual dataset and the meta-estimate.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-1" tabindex="-1"></a><span class="fu">ggplot</span>(combined, <span class="fu">aes</span>(<span class="at">x =</span> Concordance.Index, <span class="at">y =</span> Dataset)) <span class="sc">+</span></span>
+<span id="cb103-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb103-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-3" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> Lower.CI, <span class="at">xmax =</span> Upper.CI), <span class="at">height =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb103-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> meta.result<span class="sc">$</span>TE.random, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb103-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb103-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Meta-Analysis of GeneX Expression and Drug Response&quot;</span>,</span>
+<span id="cb103-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Effect Size&quot;</span>,</span>
+<span id="cb103-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Study&quot;</span></span>
+<span id="cb103-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb103-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb103-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/ggplot_forest_plot-1.png" width="672" /></p>
+<p>In the plot above, we have each data point representing the individual dataset effect sizes, the error bars represents the confidence interval, and the vertical line representing the meta-analysis treatment estimate.</p>
+<p>We can very clearly see that the red line is closer to the CCLE data point compared to the GDSC data point. This is reflective of the CCLE having a greater weight dueto a lower variance among other considerations.</p>
+</div>
+</div>
+</div>
+<div id="subgroup-analysis" class="section level4 hasAnchor">
+<h4>Subgroup Analysis<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#subgroup-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We will now conduct a tissue-subgroup analysis using a subset of the <code>CCLEsmall</code> dataset, using all the steps that we have learned from this workshop.</p>
+<p>We will be looking at the response of RNA-Seq data on AUC drug response. We will take a discovery approach, looking for any associations in our rich dataset.</p>
+<div id="data-preparation" class="section level5 hasAnchor">
+<h5>Data Preparation<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Let’s start by loading in and looking at our data.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-1" tabindex="-1"></a><span class="co"># load in expression data</span></span>
+<span id="cb104-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-2" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="fu">summarizeMolecularProfiles</span>(CCLEsmall, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>) <span class="sc">|&gt;</span> <span class="fu">assay</span>()</span>
+<span id="cb104-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-3" tabindex="-1"></a>expr[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb104-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-4" tabindex="-1"></a><span class="co">#&gt;                    1321N1      143B     22RV1  23132-87   253J-BV</span></span>
+<span id="cb104-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-5" tabindex="-1"></a><span class="co">#&gt; ENSG00000181019 10.907043  9.773744  8.907329 13.961104 12.258347</span></span>
+<span id="cb104-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-6" tabindex="-1"></a><span class="co">#&gt; ENSG00000157764  7.072053  6.553047  7.237172  7.462726  7.190695</span></span>
+<span id="cb104-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-7" tabindex="-1"></a><span class="co">#&gt; ENSG00000000003  4.052251 10.542824  7.951917  8.079243 10.079808</span></span>
+<span id="cb104-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-8" tabindex="-1"></a><span class="co">#&gt; ENSG00000000005  3.430694  3.585748  3.524705  3.580134  3.651864</span></span>
+<span id="cb104-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-9" tabindex="-1"></a><span class="co">#&gt; ENSG00000000419 13.477683 12.891333 12.043700 12.200771 12.133981</span></span>
+<span id="cb104-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-10" tabindex="-1"></a></span>
+<span id="cb104-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-11" tabindex="-1"></a><span class="co"># load in drug response data</span></span>
+<span id="cb104-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-12" tabindex="-1"></a>auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(</span>
+<span id="cb104-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-13" tabindex="-1"></a>  CCLEsmall,</span>
+<span id="cb104-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-14" tabindex="-1"></a>  <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb104-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-15" tabindex="-1"></a>  <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb104-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-16" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb104-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-17" tabindex="-1"></a>)</span>
+<span id="cb104-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-18" tabindex="-1"></a>auc[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb104-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-19" tabindex="-1"></a><span class="co">#&gt;               1321N1 143B    22RV1 23132-87 253J-BV</span></span>
+<span id="cb104-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-20" tabindex="-1"></a><span class="co">#&gt; PD-0325901 0.1148875   NA 0.385000       NA      NA</span></span>
+<span id="cb104-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-21" tabindex="-1"></a><span class="co">#&gt; 17-AAG     0.4177000   NA 0.372460       NA      NA</span></span>
+<span id="cb104-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-22" tabindex="-1"></a><span class="co">#&gt; AEW541     0.0873750   NA 0.220500       NA      NA</span></span>
+<span id="cb104-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-23" tabindex="-1"></a><span class="co">#&gt; Nilotinib         NA   NA 0.000000       NA      NA</span></span>
+<span id="cb104-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb104-24" tabindex="-1"></a><span class="co">#&gt; PHA-665752 0.0333750   NA 0.094375       NA      NA</span></span></code></pre></div>
+<p>We have our RNA-Seq expression and drug response matrix in the feature~sample format.</p>
+<p>Next, let’s load in the metadata for the cell lines.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-1" tabindex="-1"></a><span class="co"># load in metadata</span></span>
+<span id="cb105-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-2" tabindex="-1"></a>meta <span class="ot">&lt;-</span> CCLEsmall<span class="sc">@</span>molecularProfiles[[<span class="st">&quot;rna&quot;</span>]] <span class="sc">|&gt;</span> <span class="fu">colData</span>()</span>
+<span id="cb105-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-3" tabindex="-1"></a><span class="fu">colnames</span>(meta)</span>
+<span id="cb105-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-4" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;samplename&quot;                &quot;filename&quot;                 </span></span>
+<span id="cb105-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-5" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;chiptype&quot;                  &quot;hybridization.date&quot;       </span></span>
+<span id="cb105-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-6" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;hybridization.hour&quot;        &quot;file.day&quot;                 </span></span>
+<span id="cb105-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-7" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;file.hour&quot;                 &quot;batch&quot;                    </span></span>
+<span id="cb105-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-8" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;sampleid&quot;                  &quot;CCLE.name&quot;                </span></span>
+<span id="cb105-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-9" tabindex="-1"></a><span class="co">#&gt; [11] &quot;Cell.line.primary.name&quot;    &quot;Cell.line.aliases&quot;        </span></span>
+<span id="cb105-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-10" tabindex="-1"></a><span class="co">#&gt; [13] &quot;Gender&quot;                    &quot;Site.Primary&quot;             </span></span>
+<span id="cb105-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-11" tabindex="-1"></a><span class="co">#&gt; [15] &quot;Histology&quot;                 &quot;Hist.Subtype1&quot;            </span></span>
+<span id="cb105-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-12" tabindex="-1"></a><span class="co">#&gt; [17] &quot;Notes&quot;                     &quot;Source&quot;                   </span></span>
+<span id="cb105-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-13" tabindex="-1"></a><span class="co">#&gt; [19] &quot;Expression.arrays&quot;         &quot;SNP.arrays&quot;               </span></span>
+<span id="cb105-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-14" tabindex="-1"></a><span class="co">#&gt; [21] &quot;Oncomap&quot;                   &quot;Hybrid.Capture.Sequencing&quot;</span></span>
+<span id="cb105-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb105-15" tabindex="-1"></a><span class="co">#&gt; [23] &quot;batchid&quot;                   &quot;rownames&quot;</span></span></code></pre></div>
+<p>Since we want to do a tissue subgroup analysis, we need to identify the variable that gives us the tissue type for each cell line.</p>
+<p>We also need to find the variable that maps to the column names of our <code>expr</code> matrix. Then, we make sure that all our samples are present in this metadata</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-1" tabindex="-1"></a><span class="co"># show needed column names</span></span>
+<span id="cb106-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-2" tabindex="-1"></a>meta[,<span class="fu">c</span>(<span class="st">&#39;Cell.line.primary.name&#39;</span>, <span class="st">&#39;Site.Primary&#39;</span>)] <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb106-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-3" tabindex="-1"></a><span class="co">#&gt; DataFrame with 6 rows and 2 columns</span></span>
+<span id="cb106-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-4" tabindex="-1"></a><span class="co">#&gt;                                              Cell.line.primary.name</span></span>
+<span id="cb106-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-5" tabindex="-1"></a><span class="co">#&gt;                                                         &lt;character&gt;</span></span>
+<span id="cb106-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-6" tabindex="-1"></a><span class="co">#&gt; NIECE_P_NCLE_RNA3_HG-U133_PLUS_2_B06_296024                  1321N1</span></span>
+<span id="cb106-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-7" tabindex="-1"></a><span class="co">#&gt; MAKER_P_NCLE_RNA7_HG-U133_PLUS_2_F09_454702                    143B</span></span>
+<span id="cb106-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-8" tabindex="-1"></a><span class="co">#&gt; NIECE_P_NCLE_RNA3_HG-U133_PLUS_2_F06_296120                   22Rv1</span></span>
+<span id="cb106-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-9" tabindex="-1"></a><span class="co">#&gt; WATCH_P_NCLE_RNA8_HG-U133_PLUS_2_E11_474718                23132/87</span></span>
+<span id="cb106-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-10" tabindex="-1"></a><span class="co">#&gt; CRAZY_P_NCLE_RNA10_HG-U133_PLUS_2_A05_569490                253J-BV</span></span>
+<span id="cb106-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-11" tabindex="-1"></a><span class="co">#&gt; CRAZY_P_NCLE_RNA10_HG-U133_PLUS_2_A03_569510                   253J</span></span>
+<span id="cb106-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-12" tabindex="-1"></a><span class="co">#&gt;                                                        Site.Primary</span></span>
+<span id="cb106-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-13" tabindex="-1"></a><span class="co">#&gt;                                                         &lt;character&gt;</span></span>
+<span id="cb106-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-14" tabindex="-1"></a><span class="co">#&gt; NIECE_P_NCLE_RNA3_HG-U133_PLUS_2_B06_296024  central_nervous_system</span></span>
+<span id="cb106-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-15" tabindex="-1"></a><span class="co">#&gt; MAKER_P_NCLE_RNA7_HG-U133_PLUS_2_F09_454702                    bone</span></span>
+<span id="cb106-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-16" tabindex="-1"></a><span class="co">#&gt; NIECE_P_NCLE_RNA3_HG-U133_PLUS_2_F06_296120                prostate</span></span>
+<span id="cb106-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-17" tabindex="-1"></a><span class="co">#&gt; WATCH_P_NCLE_RNA8_HG-U133_PLUS_2_E11_474718                 stomach</span></span>
+<span id="cb106-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-18" tabindex="-1"></a><span class="co">#&gt; CRAZY_P_NCLE_RNA10_HG-U133_PLUS_2_A05_569490          urinary_tract</span></span>
+<span id="cb106-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-19" tabindex="-1"></a><span class="co">#&gt; CRAZY_P_NCLE_RNA10_HG-U133_PLUS_2_A03_569510          urinary_tract</span></span>
+<span id="cb106-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-20" tabindex="-1"></a></span>
+<span id="cb106-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-21" tabindex="-1"></a><span class="co"># check for cell lines included in metadata</span></span>
+<span id="cb106-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-22" tabindex="-1"></a><span class="fu">colnames</span>(expr) <span class="sc">%in%</span> meta<span class="sc">$</span>Cell.line.primary.name <span class="sc">|&gt;</span> <span class="fu">table</span>()</span>
+<span id="cb106-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb106-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-24" tabindex="-1"></a><span class="co">#&gt; FALSE  TRUE </span></span>
+<span id="cb106-25"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb106-25" tabindex="-1"></a><span class="co">#&gt;   125   936</span></span></code></pre></div>
+<p>Notice we have some cell lines not included in the metadata. We will want to remove these samples from our analysis as we cannot give them a tissue label.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-1" tabindex="-1"></a><span class="co"># identify cell lines with both expression and metadata</span></span>
+<span id="cb107-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-2" tabindex="-1"></a>commonCells <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">colnames</span>(expr), meta<span class="sc">$</span>Cell.line.primary.name)</span>
+<span id="cb107-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-3" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Number of common cell lines:&quot;</span>, <span class="fu">length</span>(commonCells))</span>
+<span id="cb107-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Number of common cell lines: 936&quot;</span></span>
+<span id="cb107-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-5" tabindex="-1"></a></span>
+<span id="cb107-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-6" tabindex="-1"></a><span class="co"># check that all these cell lines also have drug response data</span></span>
+<span id="cb107-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-7" tabindex="-1"></a>commonCells <span class="sc">%in%</span> <span class="fu">colnames</span>(auc) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span>
+<span id="cb107-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb107-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-9" tabindex="-1"></a><span class="co">#&gt; TRUE </span></span>
+<span id="cb107-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-10" tabindex="-1"></a><span class="co">#&gt;  936</span></span>
+<span id="cb107-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-11" tabindex="-1"></a></span>
+<span id="cb107-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-12" tabindex="-1"></a><span class="co"># subset metadata to only include these samples</span></span>
+<span id="cb107-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-13" tabindex="-1"></a>meta <span class="ot">&lt;-</span> meta[meta<span class="sc">$</span>Cell.line.primary.name <span class="sc">%in%</span> commonCells,]</span>
+<span id="cb107-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-14" tabindex="-1"></a><span class="fu">dim</span>(meta)</span>
+<span id="cb107-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb107-15" tabindex="-1"></a><span class="co">#&gt; [1] 936  24</span></span></code></pre></div>
+<p>There were 936 cell lines with all RNA-Seq expression, drug response, and metadata. We only keep the metadata for these cell lines.</p>
+<p>Next, let’s take a look at the tissue types available within the samples we have.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-1" tabindex="-1"></a>meta<span class="sc">$</span>Site.Primary <span class="sc">|&gt;</span> <span class="fu">table</span>()</span>
+<span id="cb108-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb108-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-3" tabindex="-1"></a><span class="co">#&gt;                  autonomic_ganglia                      biliary_tract </span></span>
+<span id="cb108-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-4" tabindex="-1"></a><span class="co">#&gt;                                 15                                  7 </span></span>
+<span id="cb108-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-5" tabindex="-1"></a><span class="co">#&gt;                               bone                             breast </span></span>
+<span id="cb108-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-6" tabindex="-1"></a><span class="co">#&gt;                                 26                                 56 </span></span>
+<span id="cb108-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-7" tabindex="-1"></a><span class="co">#&gt;             central_nervous_system                        endometrium </span></span>
+<span id="cb108-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-8" tabindex="-1"></a><span class="co">#&gt;                                 59                                 24 </span></span>
+<span id="cb108-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-9" tabindex="-1"></a><span class="co">#&gt; haematopoietic_and_lymphoid_tissue                             kidney </span></span>
+<span id="cb108-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-10" tabindex="-1"></a><span class="co">#&gt;                                168                                 32 </span></span>
+<span id="cb108-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-11" tabindex="-1"></a><span class="co">#&gt;                    large_intestine                              liver </span></span>
+<span id="cb108-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-12" tabindex="-1"></a><span class="co">#&gt;                                 52                                 26 </span></span>
+<span id="cb108-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-13" tabindex="-1"></a><span class="co">#&gt;                               lung                         oesophagus </span></span>
+<span id="cb108-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-14" tabindex="-1"></a><span class="co">#&gt;                                175                                 26 </span></span>
+<span id="cb108-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-15" tabindex="-1"></a><span class="co">#&gt;                              ovary                           pancreas </span></span>
+<span id="cb108-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-16" tabindex="-1"></a><span class="co">#&gt;                                 47                                 38 </span></span>
+<span id="cb108-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-17" tabindex="-1"></a><span class="co">#&gt;                             pleura                           prostate </span></span>
+<span id="cb108-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-18" tabindex="-1"></a><span class="co">#&gt;                                 10                                  5 </span></span>
+<span id="cb108-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-19" tabindex="-1"></a><span class="co">#&gt;                     salivary_gland                               skin </span></span>
+<span id="cb108-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-20" tabindex="-1"></a><span class="co">#&gt;                                  1                                 55 </span></span>
+<span id="cb108-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-21" tabindex="-1"></a><span class="co">#&gt;                        soft_tissue                            stomach </span></span>
+<span id="cb108-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-22" tabindex="-1"></a><span class="co">#&gt;                                 20                                 31 </span></span>
+<span id="cb108-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-23" tabindex="-1"></a><span class="co">#&gt;                            thyroid          upper_aerodigestive_tract </span></span>
+<span id="cb108-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-24" tabindex="-1"></a><span class="co">#&gt;                                 11                                 29 </span></span>
+<span id="cb108-25"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-25" tabindex="-1"></a><span class="co">#&gt;                      urinary_tract </span></span>
+<span id="cb108-26"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb108-26" tabindex="-1"></a><span class="co">#&gt;                                 23</span></span></code></pre></div>
+<p>We have a large range of different tissue types represented in our CCLE dataset. Let’s select <code>haematopoietic_and_lymphoid_tissue</code> and <code>lung</code> tissues as they have the largest sample sizes.</p>
+<p>Let’s subset our PSets for each of these tissue types.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-1" tabindex="-1"></a><span class="co"># get cell lines from each tissue</span></span>
+<span id="cb109-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-2" tabindex="-1"></a>lymp_cells <span class="ot">&lt;-</span> meta<span class="sc">$</span>Cell.line.primary.name[meta<span class="sc">$</span>Site.Primary <span class="sc">==</span> <span class="st">&quot;haematopoietic_and_lymphoid_tissue&quot;</span>]</span>
+<span id="cb109-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-3" tabindex="-1"></a>lung_cells <span class="ot">&lt;-</span> meta<span class="sc">$</span>Cell.line.primary.name[meta<span class="sc">$</span>Site.Primary <span class="sc">==</span> <span class="st">&quot;lung&quot;</span>]</span>
+<span id="cb109-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-4" tabindex="-1"></a></span>
+<span id="cb109-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-5" tabindex="-1"></a><span class="co"># subset psets to only include cells within each tissue group</span></span>
+<span id="cb109-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-6" tabindex="-1"></a>lymp_pset <span class="ot">&lt;-</span> <span class="fu">subsetTo</span>(CCLEsmall, <span class="at">cells =</span> lymp_cells)</span>
+<span id="cb109-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-7" tabindex="-1"></a>lung_pset <span class="ot">&lt;-</span> <span class="fu">subsetTo</span>(CCLEsmall, <span class="at">cells =</span> lung_cells)</span>
+<span id="cb109-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-8" tabindex="-1"></a></span>
+<span id="cb109-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-9" tabindex="-1"></a><span class="co"># quickly check dimensions of the assays in our subsetted psets</span></span>
+<span id="cb109-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-10" tabindex="-1"></a><span class="fu">assay</span>(<span class="fu">summarizeMolecularProfiles</span>(lymp_pset, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>)) <span class="sc">|&gt;</span> <span class="fu">dim</span>()</span>
+<span id="cb109-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb109-11" tabindex="-1"></a><span class="co">#&gt; [1]  50 168</span></span></code></pre></div>
+<p>All our molecular profiles and drug response data within each tissue-specific pset is now subsetted to only include the cell lines that are in the respective tissue.</p>
+</div>
+<div id="statistical-analysis-to-measure-drug-response-associations" class="section level5 hasAnchor">
+<h5>Statistical Analysis to Measure Drug Response Associations<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#statistical-analysis-to-measure-drug-response-associations" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Let’s say we want to discover a gene (biomarker) that is predictive of response to the drug <code>lapatinib</code>. To do that, we will compute the association between the expression of each gene to the lapatinib drug response.</p>
+<p>First, let’s get our assays:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-1" tabindex="-1"></a><span class="co"># extract the expression assays</span></span>
+<span id="cb110-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-2" tabindex="-1"></a>lymp_expr <span class="ot">&lt;-</span> <span class="fu">assay</span>(<span class="fu">summarizeMolecularProfiles</span>(lymp_pset, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>))</span>
+<span id="cb110-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-3" tabindex="-1"></a>lung_expr <span class="ot">&lt;-</span> <span class="fu">assay</span>(<span class="fu">summarizeMolecularProfiles</span>(lung_pset, <span class="at">mDataType=</span><span class="st">&#39;rna&#39;</span>))</span>
+<span id="cb110-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-4" tabindex="-1"></a></span>
+<span id="cb110-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-5" tabindex="-1"></a><span class="co"># extract the drug response assays</span></span>
+<span id="cb110-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-6" tabindex="-1"></a>lymp_auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(lymp_pset, <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb110-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-7" tabindex="-1"></a>                    <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb110-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-8" tabindex="-1"></a>lung_auc <span class="ot">&lt;-</span> <span class="fu">summarizeSensitivityProfiles</span>(lung_pset, <span class="at">sensitivity.measure =</span> <span class="st">&quot;auc_published&quot;</span>,</span>
+<span id="cb110-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-9" tabindex="-1"></a>                    <span class="at">summary.stat =</span> <span class="st">&quot;median&quot;</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb110-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-10" tabindex="-1"></a></span>
+<span id="cb110-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-11" tabindex="-1"></a><span class="co"># extract just the drug response vector for lapatinib</span></span>
+<span id="cb110-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-12" tabindex="-1"></a>drug <span class="ot">&lt;-</span> <span class="st">&quot;lapatinib&quot;</span></span>
+<span id="cb110-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-13" tabindex="-1"></a></span>
+<span id="cb110-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-14" tabindex="-1"></a>lymp_auc <span class="ot">&lt;-</span> lymp_auc[drug,]</span>
+<span id="cb110-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-15" tabindex="-1"></a>lung_auc <span class="ot">&lt;-</span> lung_auc[drug,]</span>
+<span id="cb110-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-16" tabindex="-1"></a></span>
+<span id="cb110-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-17" tabindex="-1"></a></span>
+<span id="cb110-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-18" tabindex="-1"></a><span class="co"># quickly view the data</span></span>
+<span id="cb110-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-19" tabindex="-1"></a>lymp_expr[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb110-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-20" tabindex="-1"></a><span class="co">#&gt;                       697   ALL-SIL   AML-193     AMO-1     BCP-1</span></span>
+<span id="cb110-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-21" tabindex="-1"></a><span class="co">#&gt; ENSG00000181019  6.609914  7.032188  7.637502  9.810762 10.006768</span></span>
+<span id="cb110-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-22" tabindex="-1"></a><span class="co">#&gt; ENSG00000157764  7.754090  7.138147  7.228066  8.115521  7.197811</span></span>
+<span id="cb110-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-23" tabindex="-1"></a><span class="co">#&gt; ENSG00000000003  4.509136  4.072092  3.937972  5.118464  3.846667</span></span>
+<span id="cb110-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-24" tabindex="-1"></a><span class="co">#&gt; ENSG00000000005  3.736073  3.661470  3.770592  3.803109  3.660946</span></span>
+<span id="cb110-25"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-25" tabindex="-1"></a><span class="co">#&gt; ENSG00000000419 11.718635 11.769529 12.287833 12.586162 11.837654</span></span>
+<span id="cb110-26"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-26" tabindex="-1"></a>lymp_auc[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb110-27"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-27" tabindex="-1"></a><span class="co">#&gt;       697   ALL-SIL   AML-193     AMO-1     BCP-1 </span></span>
+<span id="cb110-28"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb110-28" tabindex="-1"></a><span class="co">#&gt; 0.0453250 0.0767875        NA 0.0663875        NA</span></span></code></pre></div>
+<p>The PSet has already ensured that the cell line order between the RNA-Seq expression matrix and the drug response vector is the same. Don’t forget to always check when working with your own data.</p>
+<p>Now we will have to compute the association between each gene to lapatinib. We can use a for loop to quickly do this:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-1" tabindex="-1"></a><span class="co"># create data frame to hold results</span></span>
+<span id="cb111-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-2" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">7</span>))</span>
+<span id="cb111-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-3" tabindex="-1"></a><span class="fu">colnames</span>(results) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;gene&quot;</span>, <span class="st">&quot;drug&quot;</span>, <span class="st">&quot;ci&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;upper&quot;</span>, <span class="st">&quot;lower&quot;</span>)</span>
+<span id="cb111-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-4" tabindex="-1"></a></span>
+<span id="cb111-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-5" tabindex="-1"></a><span class="co"># get the number of genes (features)</span></span>
+<span id="cb111-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-6" tabindex="-1"></a>num_genes <span class="ot">&lt;-</span> <span class="fu">nrow</span>(lymp_expr)</span>
+<span id="cb111-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-7" tabindex="-1"></a></span>
+<span id="cb111-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-8" tabindex="-1"></a><span class="co"># loop through every gene to compute concordance index to drug responses</span></span>
+<span id="cb111-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-9" tabindex="-1"></a><span class="cf">for</span> (gene <span class="cf">in</span> <span class="fu">rownames</span>(lymp_expr)) {</span>
+<span id="cb111-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-10" tabindex="-1"></a>  </span>
+<span id="cb111-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-11" tabindex="-1"></a>  <span class="co"># compute concordance index</span></span>
+<span id="cb111-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-12" tabindex="-1"></a>  ci <span class="ot">&lt;-</span> survcomp<span class="sc">::</span><span class="fu">concordance.index</span>(</span>
+<span id="cb111-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-13" tabindex="-1"></a>            <span class="fu">as.numeric</span>(lymp_auc),                   <span class="co"># drug vector</span></span>
+<span id="cb111-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-14" tabindex="-1"></a>            <span class="at">surv.time =</span> <span class="fu">as.numeric</span>(lymp_expr[gene,]),       <span class="co"># gene vector</span></span>
+<span id="cb111-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-15" tabindex="-1"></a>            <span class="at">surv.event =</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">length</span>(lymp_expr[gene,])),   </span>
+<span id="cb111-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-16" tabindex="-1"></a>            <span class="at">outx =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">&quot;noether&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb111-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-17" tabindex="-1"></a>          )</span>
+<span id="cb111-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-18" tabindex="-1"></a>  </span>
+<span id="cb111-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-19" tabindex="-1"></a>  <span class="co"># extract summary statistics</span></span>
+<span id="cb111-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-20" tabindex="-1"></a>  gene_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(gene, drug, </span>
+<span id="cb111-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-21" tabindex="-1"></a>                            <span class="at">ci =</span> ci<span class="sc">$</span>c.index,</span>
+<span id="cb111-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-22" tabindex="-1"></a>                            <span class="at">pvalue =</span> ci<span class="sc">$</span>p.value,</span>
+<span id="cb111-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-23" tabindex="-1"></a>                            <span class="at">se =</span> ci<span class="sc">$</span>se,</span>
+<span id="cb111-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-24" tabindex="-1"></a>                            <span class="at">upper =</span> ci<span class="sc">$</span>upper,</span>
+<span id="cb111-25"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-25" tabindex="-1"></a>                            <span class="at">lower =</span> ci<span class="sc">$</span>lower)</span>
+<span id="cb111-26"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-26" tabindex="-1"></a>  </span>
+<span id="cb111-27"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-27" tabindex="-1"></a>  <span class="co"># merge with results dataframe</span></span>
+<span id="cb111-28"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-28" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(results, gene_result)</span>
+<span id="cb111-29"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-29" tabindex="-1"></a>}</span>
+<span id="cb111-30"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-30" tabindex="-1"></a></span>
+<span id="cb111-31"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-31" tabindex="-1"></a><span class="co"># filtering and multiple test correction</span></span>
+<span id="cb111-32"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-32" tabindex="-1"></a>results <span class="ot">&lt;-</span> results[<span class="fu">complete.cases</span>(results<span class="sc">$</span>pvalue),]</span>
+<span id="cb111-33"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-33" tabindex="-1"></a>results<span class="sc">$</span>FDR <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(results<span class="sc">$</span>pvalue, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>, <span class="at">n =</span> <span class="fu">length</span>(results<span class="sc">$</span>pvalue))</span>
+<span id="cb111-34"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-34" tabindex="-1"></a></span>
+<span id="cb111-35"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-35" tabindex="-1"></a>results <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb111-36"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-36" tabindex="-1"></a><span class="co">#&gt;              gene      drug        ci     pvalue         se     upper     lower</span></span>
+<span id="cb111-37"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-37" tabindex="-1"></a><span class="co">#&gt; 1 ENSG00000181019 lapatinib 0.5497723 0.30681314 0.04870411 0.6452306 0.4543140</span></span>
+<span id="cb111-38"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-38" tabindex="-1"></a><span class="co">#&gt; 2 ENSG00000157764 lapatinib 0.5191932 0.72503712 0.05456734 0.6261432 0.4122432</span></span>
+<span id="cb111-39"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-39" tabindex="-1"></a><span class="co">#&gt; 3 ENSG00000000003 lapatinib 0.4528302 0.38826533 0.05467268 0.5599867 0.3456737</span></span>
+<span id="cb111-40"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-40" tabindex="-1"></a><span class="co">#&gt; 4 ENSG00000000005 lapatinib 0.4547820 0.37310423 0.05076826 0.5542860 0.3552781</span></span>
+<span id="cb111-41"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-41" tabindex="-1"></a><span class="co">#&gt; 5 ENSG00000000419 lapatinib 0.4925179 0.86910085 0.04540095 0.5815021 0.4035337</span></span>
+<span id="cb111-42"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-42" tabindex="-1"></a><span class="co">#&gt; 6 ENSG00000000457 lapatinib 0.6005205 0.06179093 0.05381779 0.7060014 0.4950396</span></span>
+<span id="cb111-43"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-43" tabindex="-1"></a><span class="co">#&gt;         FDR</span></span>
+<span id="cb111-44"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-44" tabindex="-1"></a><span class="co">#&gt; 1 0.8522587</span></span>
+<span id="cb111-45"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-45" tabindex="-1"></a><span class="co">#&gt; 2 0.9062964</span></span>
+<span id="cb111-46"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-46" tabindex="-1"></a><span class="co">#&gt; 3 0.8688491</span></span>
+<span id="cb111-47"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-47" tabindex="-1"></a><span class="co">#&gt; 4 0.8688491</span></span>
+<span id="cb111-48"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-48" tabindex="-1"></a><span class="co">#&gt; 5 0.9516488</span></span>
+<span id="cb111-49"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb111-49" tabindex="-1"></a><span class="co">#&gt; 6 0.7079522</span></span></code></pre></div>
+<p>Notice at the end we also computed the false discovery rate (FDR) which is a method for multiple test correction.</p>
+<p>We would have to repeat this code for every tissue type. Although we are only working with two, imagine we wanted to do more tissue types in the future.</p>
+<div id="function-for-computing-concordance-index" class="section level6 hasAnchor">
+<h6>Function for computing concordance index<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#function-for-computing-concordance-index" class="anchor-section" aria-label="Anchor link to header"></a></h6>
+<p>To simply this, we can turn the code above into a function such that we just have to input the expression matrix and drug response vector to get our result without having to change the rest of the code.</p>
+<p>Below is a function named <code>compute_CI</code> which takes two arguments:</p>
+<ul>
+<li><code>expr</code>: an expression matrix with features as rows and samples as columns</li>
+<li><code>drug_vector</code>: a vector of drug response in the same order as the samples in expr</li>
+<li><code>drug</code>: string name of drug (just for putting in the results dataframe)</li>
+</ul>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-1" tabindex="-1"></a>compute_CI <span class="ot">&lt;-</span> <span class="cf">function</span>(expr, drug_vector, drug) {</span>
+<span id="cb112-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-2" tabindex="-1"></a>  </span>
+<span id="cb112-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-3" tabindex="-1"></a>  </span>
+<span id="cb112-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-4" tabindex="-1"></a>  <span class="co"># create data frame to hold results</span></span>
+<span id="cb112-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-5" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">7</span>))</span>
+<span id="cb112-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-6" tabindex="-1"></a>  <span class="fu">colnames</span>(results) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;gene&quot;</span>, <span class="st">&quot;drug&quot;</span>, <span class="st">&quot;ci&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;upper&quot;</span>, <span class="st">&quot;lower&quot;</span>)</span>
+<span id="cb112-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-7" tabindex="-1"></a>  </span>
+<span id="cb112-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-8" tabindex="-1"></a>  <span class="co"># get the number of genes (features)</span></span>
+<span id="cb112-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-9" tabindex="-1"></a>  num_genes <span class="ot">&lt;-</span> <span class="fu">nrow</span>(expr)</span>
+<span id="cb112-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-10" tabindex="-1"></a>  </span>
+<span id="cb112-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-11" tabindex="-1"></a>  <span class="co"># loop through every gene to compute concordance index to drug responses</span></span>
+<span id="cb112-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-12" tabindex="-1"></a>  <span class="cf">for</span> (gene <span class="cf">in</span> <span class="fu">rownames</span>(expr)) {</span>
+<span id="cb112-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-13" tabindex="-1"></a>    </span>
+<span id="cb112-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-14" tabindex="-1"></a>    <span class="co"># compute concordance index</span></span>
+<span id="cb112-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-15" tabindex="-1"></a>    ci <span class="ot">&lt;-</span> survcomp<span class="sc">::</span><span class="fu">concordance.index</span>(</span>
+<span id="cb112-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-16" tabindex="-1"></a>              <span class="fu">as.numeric</span>(drug_vector),                   <span class="co"># drug vector</span></span>
+<span id="cb112-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-17" tabindex="-1"></a>              <span class="at">surv.time =</span> <span class="fu">as.numeric</span>(expr[gene,]),       <span class="co"># gene vector</span></span>
+<span id="cb112-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-18" tabindex="-1"></a>              <span class="at">surv.event =</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">length</span>(expr[gene,])),   </span>
+<span id="cb112-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-19" tabindex="-1"></a>              <span class="at">outx =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">&quot;noether&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb112-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-20" tabindex="-1"></a>            )</span>
+<span id="cb112-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-21" tabindex="-1"></a>    </span>
+<span id="cb112-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-22" tabindex="-1"></a>    <span class="co"># extract summary statistics</span></span>
+<span id="cb112-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-23" tabindex="-1"></a>    gene_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(gene, drug, </span>
+<span id="cb112-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-24" tabindex="-1"></a>                              <span class="at">ci =</span> ci<span class="sc">$</span>c.index,</span>
+<span id="cb112-25"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-25" tabindex="-1"></a>                              <span class="at">pvalue =</span> ci<span class="sc">$</span>p.value,</span>
+<span id="cb112-26"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-26" tabindex="-1"></a>                              <span class="at">se =</span> ci<span class="sc">$</span>se,</span>
+<span id="cb112-27"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-27" tabindex="-1"></a>                              <span class="at">upper =</span> ci<span class="sc">$</span>upper,</span>
+<span id="cb112-28"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-28" tabindex="-1"></a>                              <span class="at">lower =</span> ci<span class="sc">$</span>lower)</span>
+<span id="cb112-29"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-29" tabindex="-1"></a>    </span>
+<span id="cb112-30"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-30" tabindex="-1"></a>    <span class="co"># merge with results dataframe</span></span>
+<span id="cb112-31"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-31" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(results, gene_result)</span>
+<span id="cb112-32"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-32" tabindex="-1"></a>  }</span>
+<span id="cb112-33"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-33" tabindex="-1"></a>  </span>
+<span id="cb112-34"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-34" tabindex="-1"></a>  <span class="co"># filtering and multiple test correction</span></span>
+<span id="cb112-35"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-35" tabindex="-1"></a>  results <span class="ot">&lt;-</span> results[<span class="fu">complete.cases</span>(results<span class="sc">$</span>pvalue),]</span>
+<span id="cb112-36"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-36" tabindex="-1"></a>  results<span class="sc">$</span>FDR <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(results<span class="sc">$</span>pvalue, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>, <span class="at">n =</span> <span class="fu">length</span>(results<span class="sc">$</span>pvalue))</span>
+<span id="cb112-37"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-37" tabindex="-1"></a>  results<span class="sc">$</span>FDRsig <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(results<span class="sc">$</span>FDR <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">&#39;FDR Sig&#39;</span>, <span class="st">&#39;Not FDR Sig&#39;</span>)</span>
+<span id="cb112-38"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-38" tabindex="-1"></a>  </span>
+<span id="cb112-39"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-39" tabindex="-1"></a>  <span class="co"># output results</span></span>
+<span id="cb112-40"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-40" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
+<span id="cb112-41"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-41" tabindex="-1"></a>}</span>
+<span id="cb112-42"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-42" tabindex="-1"></a></span>
+<span id="cb112-43"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-43" tabindex="-1"></a><span class="co"># use this function on both our lymp and lung data</span></span>
+<span id="cb112-44"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-44" tabindex="-1"></a>lymp_results <span class="ot">&lt;-</span> <span class="fu">compute_CI</span>(<span class="at">expr =</span> lymp_expr, <span class="at">drug_vector =</span> lymp_auc, <span class="at">drug =</span> drug)</span>
+<span id="cb112-45"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-45" tabindex="-1"></a>lung_results <span class="ot">&lt;-</span> <span class="fu">compute_CI</span>(<span class="at">expr =</span> lung_expr, <span class="at">drug_vector =</span> lung_auc, <span class="at">drug =</span> drug)</span>
+<span id="cb112-46"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-46" tabindex="-1"></a></span>
+<span id="cb112-47"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-47" tabindex="-1"></a>lymp_results <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb112-48"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-48" tabindex="-1"></a><span class="co">#&gt;              gene      drug        ci     pvalue         se     upper     lower</span></span>
+<span id="cb112-49"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-49" tabindex="-1"></a><span class="co">#&gt; 1 ENSG00000181019 lapatinib 0.5497723 0.30681314 0.04870411 0.6452306 0.4543140</span></span>
+<span id="cb112-50"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-50" tabindex="-1"></a><span class="co">#&gt; 2 ENSG00000157764 lapatinib 0.5191932 0.72503712 0.05456734 0.6261432 0.4122432</span></span>
+<span id="cb112-51"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-51" tabindex="-1"></a><span class="co">#&gt; 3 ENSG00000000003 lapatinib 0.4528302 0.38826533 0.05467268 0.5599867 0.3456737</span></span>
+<span id="cb112-52"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-52" tabindex="-1"></a><span class="co">#&gt; 4 ENSG00000000005 lapatinib 0.4547820 0.37310423 0.05076826 0.5542860 0.3552781</span></span>
+<span id="cb112-53"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-53" tabindex="-1"></a><span class="co">#&gt; 5 ENSG00000000419 lapatinib 0.4925179 0.86910085 0.04540095 0.5815021 0.4035337</span></span>
+<span id="cb112-54"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-54" tabindex="-1"></a><span class="co">#&gt; 6 ENSG00000000457 lapatinib 0.6005205 0.06179093 0.05381779 0.7060014 0.4950396</span></span>
+<span id="cb112-55"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-55" tabindex="-1"></a><span class="co">#&gt;         FDR      FDRsig</span></span>
+<span id="cb112-56"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-56" tabindex="-1"></a><span class="co">#&gt; 1 0.8522587 Not FDR Sig</span></span>
+<span id="cb112-57"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-57" tabindex="-1"></a><span class="co">#&gt; 2 0.9062964 Not FDR Sig</span></span>
+<span id="cb112-58"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-58" tabindex="-1"></a><span class="co">#&gt; 3 0.8688491 Not FDR Sig</span></span>
+<span id="cb112-59"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-59" tabindex="-1"></a><span class="co">#&gt; 4 0.8688491 Not FDR Sig</span></span>
+<span id="cb112-60"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-60" tabindex="-1"></a><span class="co">#&gt; 5 0.9516488 Not FDR Sig</span></span>
+<span id="cb112-61"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb112-61" tabindex="-1"></a><span class="co">#&gt; 6 0.7079522 Not FDR Sig</span></span></code></pre></div>
+<p>We also added a column called <code>FDRsig</code> which represents if the association met the FDR &lt; 5% threshold. This will help us in plotting.</p>
+</div>
+<div id="visualizing-feature-drug-associations" class="section level6 hasAnchor">
+<h6>Visualizing Feature-drug Associations<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#visualizing-feature-drug-associations" class="anchor-section" aria-label="Anchor link to header"></a></h6>
+<p>Now that we have the associations between all our genes with lapatinib response for both our tissue groups, let’s visualize the distribution of the computed associations.</p>
+<p>Let’s first rank by concordance index.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-1" tabindex="-1"></a>lymp_results <span class="ot">&lt;-</span> lymp_results[<span class="fu">order</span>(lymp_results<span class="sc">$</span>ci),]</span>
+<span id="cb113-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-2" tabindex="-1"></a>lung_results <span class="ot">&lt;-</span> lung_results[<span class="fu">order</span>(lung_results<span class="sc">$</span>ci),]</span>
+<span id="cb113-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-3" tabindex="-1"></a></span>
+<span id="cb113-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-4" tabindex="-1"></a>lymp_results <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb113-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-5" tabindex="-1"></a><span class="co">#&gt;               gene      drug        ci     pvalue         se     upper</span></span>
+<span id="cb113-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-6" tabindex="-1"></a><span class="co">#&gt; 40 ENSG00000003400 lapatinib 0.4014314 0.07602913 0.05555649 0.5103201</span></span>
+<span id="cb113-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-7" tabindex="-1"></a><span class="co">#&gt; 14 ENSG00000001461 lapatinib 0.4098894 0.08110842 0.05166032 0.5111418</span></span>
+<span id="cb113-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-8" tabindex="-1"></a><span class="co">#&gt; 10 ENSG00000001036 lapatinib 0.4131425 0.10091227 0.05294747 0.5169176</span></span>
+<span id="cb113-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-9" tabindex="-1"></a><span class="co">#&gt; 35 ENSG00000003096 lapatinib 0.4183474 0.11327235 0.05155958 0.5194024</span></span>
+<span id="cb113-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-10" tabindex="-1"></a><span class="co">#&gt; 46 ENSG00000003989 lapatinib 0.4255042 0.14509404 0.05112672 0.5257108</span></span>
+<span id="cb113-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-11" tabindex="-1"></a><span class="co">#&gt; 25 ENSG00000002586 lapatinib 0.4294079 0.17377225 0.05189897 0.5311281</span></span>
+<span id="cb113-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-12" tabindex="-1"></a><span class="co">#&gt;        lower       FDR      FDRsig</span></span>
+<span id="cb113-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-13" tabindex="-1"></a><span class="co">#&gt; 40 0.2925426 0.7079522 Not FDR Sig</span></span>
+<span id="cb113-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-14" tabindex="-1"></a><span class="co">#&gt; 14 0.3086370 0.7079522 Not FDR Sig</span></span>
+<span id="cb113-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-15" tabindex="-1"></a><span class="co">#&gt; 10 0.3093674 0.7079522 Not FDR Sig</span></span>
+<span id="cb113-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-16" tabindex="-1"></a><span class="co">#&gt; 35 0.3172925 0.7079522 Not FDR Sig</span></span>
+<span id="cb113-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-17" tabindex="-1"></a><span class="co">#&gt; 46 0.3252977 0.7254702 Not FDR Sig</span></span>
+<span id="cb113-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb113-18" tabindex="-1"></a><span class="co">#&gt; 25 0.3276878 0.7898739 Not FDR Sig</span></span></code></pre></div>
+<p>Next, we will create a waterfall plot. We’ve created a function to do so, the function is named <code>plot_waterfall</code> and takes the following arguments:</p>
+<ul>
+<li><code>ci_results</code>: results matrix from the <code>compute_CI</code> function</li>
+<li><code>tissue</code>: string of the tissue type</li>
+</ul>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-1" tabindex="-1"></a><span class="co"># create palette</span></span>
+<span id="cb114-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-2" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;FDR Sig&#39;</span> <span class="ot">=</span> <span class="st">&quot;#B1D3A3&quot;</span>, <span class="st">&#39;Not FDR Sig&#39;</span> <span class="ot">=</span> <span class="st">&quot;gray&quot;</span>)</span>
+<span id="cb114-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-3" tabindex="-1"></a></span>
+<span id="cb114-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-4" tabindex="-1"></a><span class="co"># function to plot waterfall plots</span></span>
+<span id="cb114-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-5" tabindex="-1"></a>plot_waterfall <span class="ot">&lt;-</span> <span class="cf">function</span>(ci_results, tissue) {</span>
+<span id="cb114-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-6" tabindex="-1"></a>  </span>
+<span id="cb114-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-7" tabindex="-1"></a>  <span class="co"># minor formating for plotting</span></span>
+<span id="cb114-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-8" tabindex="-1"></a>  ci_results<span class="sc">$</span>rank <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ci_results)</span>
+<span id="cb114-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-9" tabindex="-1"></a>  ci_results<span class="sc">$</span>rank <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ci_results<span class="sc">$</span>rank)</span>
+<span id="cb114-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-10" tabindex="-1"></a>  ci_results<span class="sc">$</span>drug <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ci_results<span class="sc">$</span>drug)</span>
+<span id="cb114-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-11" tabindex="-1"></a>  </span>
+<span id="cb114-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-12" tabindex="-1"></a>  <span class="co"># create waterfall plot</span></span>
+<span id="cb114-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(ci_results, <span class="fu">aes</span>(<span class="at">x =</span> ci <span class="sc">-</span> <span class="fl">0.5</span>, <span class="at">y =</span> rank)) <span class="sc">+</span></span>
+<span id="cb114-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-14" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> FDRsig), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb114-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-15" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="at">labels =</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb114-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-16" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">breaks =</span> ci_results<span class="sc">$</span>rank, <span class="at">labels =</span> ci_results<span class="sc">$</span>gene) <span class="sc">+</span> </span>
+<span id="cb114-17"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-17" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb114-18"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-18" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="st">&quot;FDR Significance&quot;</span>, <span class="at">values =</span> pal) <span class="sc">+</span> </span>
+<span id="cb114-19"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-19" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb114-20"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-20" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb114-21"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-21" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Gene&quot;</span>, <span class="at">title =</span> tissue, <span class="at">x =</span> <span class="st">&quot;Concordance Index (CI)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb114-22"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-22" tabindex="-1"></a>    <span class="fu">coord_flip</span>()</span>
+<span id="cb114-23"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-23" tabindex="-1"></a>}</span>
+<span id="cb114-24"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-24" tabindex="-1"></a></span>
+<span id="cb114-25"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-25" tabindex="-1"></a><span class="co"># call the function on our lymp and lung results</span></span>
+<span id="cb114-26"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb114-26" tabindex="-1"></a><span class="fu">plot_waterfall</span>(lymp_results, <span class="st">&#39;Haematopoietic &amp; Lymphoid&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/waterfall_plot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb115-1" tabindex="-1"></a><span class="fu">plot_waterfall</span>(lung_results, <span class="st">&#39;Lung&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/waterfall_plot-2.png" width="672" /></p>
+<p>Notice that there are no FDR significant associations within the lymp data, but there are some from the lung data.</p>
+<p>If you inspect closely, you can also see that the genes with the most predictive power (low and high CI values) are different between the two tissue types.</p>
+</div>
+<div id="identifying-candidate-biomarkers" class="section level6 hasAnchor">
+<h6>Identifying candidate biomarkers<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#identifying-candidate-biomarkers" class="anchor-section" aria-label="Anchor link to header"></a></h6>
+<p>We see some FDR significant associations in our lung data. Let’s extract those genes.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-1" tabindex="-1"></a>lung_sig <span class="ot">&lt;-</span> lung_results[lung_results<span class="sc">$</span>FDR <span class="sc">&lt;</span> <span class="fl">0.05</span>,]</span>
+<span id="cb116-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-2" tabindex="-1"></a>lung_sig</span>
+<span id="cb116-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-3" tabindex="-1"></a><span class="co">#&gt;               gene      drug        ci       pvalue         se     upper</span></span>
+<span id="cb116-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-4" tabindex="-1"></a><span class="co">#&gt; 3  ENSG00000000003 lapatinib 0.3532213 2.812853e-05 0.03504651 0.4219112</span></span>
+<span id="cb116-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-5" tabindex="-1"></a><span class="co">#&gt; 26 ENSG00000002587 lapatinib 0.3789916 3.713691e-04 0.03399460 0.4456198</span></span>
+<span id="cb116-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-6" tabindex="-1"></a><span class="co">#&gt; 9  ENSG00000000971 lapatinib 0.3837535 3.707483e-04 0.03265282 0.4477519</span></span>
+<span id="cb116-7"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-7" tabindex="-1"></a><span class="co">#&gt; 31 ENSG00000002834 lapatinib 0.3882353 1.091398e-03 0.03422234 0.4553099</span></span>
+<span id="cb116-8"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-8" tabindex="-1"></a><span class="co">#&gt; 40 ENSG00000003400 lapatinib 0.4028011 5.219215e-03 0.03479861 0.4710051</span></span>
+<span id="cb116-9"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-9" tabindex="-1"></a><span class="co">#&gt; 48 ENSG00000004139 lapatinib 0.6196078 1.663106e-04 0.03176533 0.6818667</span></span>
+<span id="cb116-10"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-10" tabindex="-1"></a><span class="co">#&gt;        lower         FDR  FDRsig</span></span>
+<span id="cb116-11"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-11" tabindex="-1"></a><span class="co">#&gt; 3  0.2845314 0.001406427 FDR Sig</span></span>
+<span id="cb116-12"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-12" tabindex="-1"></a><span class="co">#&gt; 26 0.3123634 0.004642114 FDR Sig</span></span>
+<span id="cb116-13"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-13" tabindex="-1"></a><span class="co">#&gt; 9  0.3197552 0.004642114 FDR Sig</span></span>
+<span id="cb116-14"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-14" tabindex="-1"></a><span class="co">#&gt; 31 0.3211607 0.010913980 FDR Sig</span></span>
+<span id="cb116-15"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-15" tabindex="-1"></a><span class="co">#&gt; 40 0.3345971 0.043493456 FDR Sig</span></span>
+<span id="cb116-16"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb116-16" tabindex="-1"></a><span class="co">#&gt; 48 0.5573489 0.004157765 FDR Sig</span></span></code></pre></div>
+<p>There are 6 genes that have FDR significant associations with lapatinib response. Of these 6, the most predictive is <code>ENSG00000000003</code> which is associated with resistance (CI &lt; 0.5).</p>
+<p>A next possible step would be to take some of these genes and assess their association in lung tissue-derived cell lines from another PSet (do a meta-analysis!)</p>
+</div>
+</div>
+</div>
+<div id="interactive-exercise" class="section level4 hasAnchor">
+<h4>Interactive Exercise<a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#interactive-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Task1:</strong> Compare the fixed-effects and random-effects models using the effect
+sizes using a new gene-drug pair. Examine the variability across different the
+two studies. Use the I² and Q-statistics to assess heterogeneity.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb117-1" tabindex="-1"></a><span class="co"># perform meta analysis on GDSC and CCLE on a new gene-drug pair</span></span>
+<span id="cb117-2"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb117-2" tabindex="-1"></a></span>
+<span id="cb117-3"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb117-3" tabindex="-1"></a><span class="co"># Once you have your meta.result, you can use the code below to examine the Q and I-squared statistics</span></span>
+<span id="cb117-4"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb117-4" tabindex="-1"></a></span>
+<span id="cb117-5"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb117-5" tabindex="-1"></a><span class="co">#cat(&quot;Q Statistic:&quot;, meta.result$Q, &quot;\n&quot;)</span></span>
+<span id="cb117-6"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb117-6" tabindex="-1"></a><span class="co">#cat(&quot;I-squared Statistic:&quot;, meta.result$I2, &quot;%\n&quot;)</span></span></code></pre></div>
+<p><strong>Task2</strong>: Perform a subgroup analysis on a new tissue type.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="module-4-pharmacogenomics-for-biomarker-discovery---advanced-analysis.html#cb118-1" tabindex="-1"></a><span class="co"># do a tissue subtype analysis on a new tissue type, reporting any candidate biomarkers</span></span></code></pre></div>
+<div class="callout-green">
+<span class="callout-icon"><i class="fas fa-circle-check" aria-hidden="true"></i></span>
+<div class="callout-content">
+<div class="callout-title-static" style="margin-bottom: 0.5em;">
+<p>Lab Completed!</p>
+</div>
+<p>Congratulations! You have completed Lab 4!</p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="module-3-pharmacogenomics-for-biomarker-discover---basic-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/bioinformaticsdotca/PGX_2024/blob/main/040-module-4.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
