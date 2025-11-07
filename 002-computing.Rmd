@@ -27,7 +27,7 @@
 
 Run to install this package and its dependencies.
 
-```{r}
+```{r, eval=FALSE}
 pak::pkg_install("bhklab/CBWWorkshop2024", dependencies=TRUE)
 ```
 
@@ -35,7 +35,7 @@ pak::pkg_install("bhklab/CBWWorkshop2024", dependencies=TRUE)
 
 You may need to install the pak package first. pak is a [“Fresh Approach to R Package Installation”](https://pak.r-lib.org/). You can install it by running:
 
-```{}
+```{r, eval=FALSE}
 install.packages("pak")
 ```
 
